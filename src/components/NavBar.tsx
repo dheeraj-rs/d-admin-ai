@@ -15,10 +15,9 @@ import {
 	sessionAtom,
 	uiStateAtom
 } from '../state'
-import Logo from './Logo'
 import Settings from './Settings'
 import { Button } from './ui/button'
-import { DessertIcon, LogOutIcon } from 'lucide-react'
+import { DessertIcon } from 'lucide-react'
 
 export default function NavBar() {
 	const navigate = useNavigate()

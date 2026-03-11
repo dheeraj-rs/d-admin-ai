@@ -18,9 +18,6 @@ const NAV_ITEMS = [
 ];
 
 const RECENT_CHATS = [
-    'Birthday Wish for Girlfriend',
-    'Casual chat tips',
-    'First Girl-Friend Chat Tips',
     'Fix request clarification',
     'Restart Node.js EC2',
     'GitHub Auth Callback URL',

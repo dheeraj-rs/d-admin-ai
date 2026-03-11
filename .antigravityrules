@@ -1,0 +1,67 @@
+# Next.js Large-Scale Project — Master Rules
+
+You are an expert Next.js, React, and Tailwind CSS developer building `d-admin-ai`. 
+You must strictly adhere to the following architecture, naming, and size constraint rules for every single line of code you generate or evaluate. There are no exceptions.
+
+## 1. Project Setup
+- **Next.js App Router ONLY**: Pages Router is strictly prohibited.
+- **TypeScript is Mandatory**: Plain JavaScript (`.js`/`.jsx`) is rejected. Use strict types.
+- **Tailwind CSS**: The ONLY allowed styling system. No inline styles, no CSS Modules.
+- **Absolute Imports**: Always use `@/`. Relative paths deeper than one level (`../../`) are BANNED.
+- **Directory Structure**: The root must contain EXACTLY `app/`, `features/`, and `shared/`. Generic catch-all folders like `src/components` are not allowed.
+
+## 2. Directory Architecture
+### `app/` — Routing Layer
+- Only for URL routing, metadata/SEO, and passing server-fetched data.
+- NO UI styling logic, NO business logic, NO reusable components here.
+- `page.tsx` MUST stay under 80 lines.
+
+### `features/` — Business Logic Layer
+- Contains all actual UI features isolated in their own folders (e.g., `workspace`, `chat`).
+- **CRITICAL**: A feature MUST NOT import internal files from another feature directly. Cross-feature communication happens ONLY through `shared/`, global state, or the feature's `index.ts` public exported API.
+- Subfolders: `components/`, `hooks/`, `services/`, `types/`, `constants/`.
+
+### `shared/` — Reusable Tools Layer
+- Contains ONLY generic, stateless, reusable pieces: UI primitives (`shared/ui/`), utility functions, base API clients.
+- MUST NOT contain business logic or depend on any `features/` module.
+- A shared component cannot fetch data or access global state. Props only.
+
+## 3. Strict File Size Limits
+- **Any File (Hard Limit)**: 250 lines
+- **React UI Components**: 150 lines MAX
+- **Custom Hooks**: 100 lines MAX
+- **Server Pages (`page.tsx`)**: 80 lines MAX
+- **Individual Functions**: 25 lines MAX
+*If a file approaches its limit, you must proactively split it into sub-components or extract logic.*
+
+## 4. Prop Flow Rules
+- Prop drilling MUST NOT exceed 2 levels.
+- Use Context or Zustand for deeper data transfer. Never manage cross-component state with deep prop chains.
+
+## 5. Naming Conventions
+- **Folders**: `kebab-case` (e.g., `user-profile`)
+- **React Components**: `PascalCase` (File name MUST match component name exactly, e.g., `PostCard.tsx`)
+- **Custom Hooks**: `camelCase` starting with `use` (e.g., `useWorkspace.ts`)
+- **Utility Functions**: `camelCase`, action-first (e.g., `formatTimestamp.ts`)
+- **Types/Interfaces**: `PascalCase`, NO `I` or `T` prefixes (e.g., `UserProfile`)
+- **Global Constants**: `UPPER_SNAKE_CASE` (e.g., `MAX_UPLOAD_SIZE`)
+
+## 6. Import Order (Enforced by ESLint)
+1. External libraries (`react`, `next`, `lucide-react`, etc.)
+2. `shared/` modules
+3. `features/` modules
+4. Local files within the same feature
+*Circular imports are completely forbidden.*
+
+## 7. Component Responsibility
+- Every component does EXACTLY ONE job (render UI and handle local interaction).
+- Complex business logic belongs in custom hooks or service files.
+- UI Components must never directly call databases or external APIs.
+
+## 8. State Management
+- **Local UI State**: Inside the component (`useState`)
+- **Feature-level State**: Custom hook (e.g., `useWorkspace.ts`)
+- **Global App State**: Dedicated store (Zustand)
+- **Server Data**: Data-fetching layer
+
+Before you generate any code, check your plan against these Master Rules. If your code violates the line count limits, directory structure, or naming conventions, rewrite it before presenting it to the user.

@@ -24,7 +24,7 @@ export default function DefaultTopBar({
     const currentAgent = AGENTS.find((a) => a.id === selectedAgent) || AGENTS[0];
 
     return (
-        <div className="absolute top-0 w-full p-2 sm:p-3 flex justify-between items-center bg-transparent z-10 text-gray-400 pointer-events-none">
+        <div className="sticky top-0 w-full p-2 sm:p-3 flex justify-between items-center backdrop-blur-md bg-[#212121]/80 z-50 text-gray-400 pointer-events-none">
             <div className="flex items-center gap-1 sm:gap-2 pointer-events-auto">
                 <button
                     className="lg:hidden p-2 text-gray-400 hover:text-white rounded-lg transition-colors shrink-0 focus:outline-none focus:ring-0 active:bg-transparent"

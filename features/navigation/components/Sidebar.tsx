@@ -6,12 +6,15 @@ import {
     LayoutTemplate,
     Globe,
 } from 'lucide-react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import type { ViewState } from '../../workspace/types';
 import UserProfileMenu from './UserProfileMenu';
 
 const NAV_ITEMS = [
-    { icon: SquarePen, label: 'New chat', shortcut: '⇧⌘O' },
-    { icon: LayoutTemplate, label: 'Templates' },
-    { icon: Globe, label: 'Published website' },
+    { icon: SquarePen, label: 'New chat', shortcut: '⇧⌘O', href: '/' },
+    { icon: LayoutTemplate, label: 'Templates', href: '/templates' },
+    { icon: Globe, label: 'Published website', href: '/published-sites' },
 ];
 
 const RECENT_CHATS = [
@@ -31,6 +34,7 @@ export default function Sidebar({
     onNewChat?: () => void;
     onOpenSettings?: () => void;
 }) {
+    const pathname = usePathname();
     return (
         <>
             <div
@@ -73,33 +77,48 @@ export default function Sidebar({
 
                 {/* Navigation Items */}
                 <div className="px-3 pb-2 mt-2 flex-shrink-0 flex flex-col items-start gap-1 w-full">
-                    {NAV_ITEMS.map((item, idx) => (
-                        <div key={idx} className="relative w-full group">
-                            <button
-                                className="flex items-center rounded-lg hover:bg-[#202020] transition-colors duration-200 ease-in-out text-gray-200 font-sans overflow-hidden whitespace-nowrap w-full cursor-pointer h-10 px-3 gap-3 shrink-0"
-                                onClick={item.label === 'New chat' ? onNewChat : undefined}
-                            >
-                                <item.icon size={18} className="text-gray-300 shrink-0" strokeWidth={1.5} />
-                                <span
-                                    className={`text-[13.5px] transition-opacity duration-300 ${isOpen ? 'opacity-100 delay-100' : 'opacity-0'}`}
+                    {NAV_ITEMS.map((item, idx) => {
+                        const isActive = pathname === item.href;
+                            
+                        return (
+                            <div key={idx} className="relative w-full group">
+                                <Link
+                                    href={item.href}
+                                    className={`flex items-center rounded-lg transition-colors duration-200 ease-in-out font-sans overflow-hidden whitespace-nowrap w-full cursor-pointer h-10 px-3 gap-3 shrink-0 ${
+                                        isActive 
+                                            ? 'bg-[#2f2f2f] text-white shadow-sm' 
+                                            : 'hover:bg-[#202020] text-gray-200'
+                                    }`}
+                                    onClick={() => {
+                                        if (item.label === 'New chat') onNewChat?.();
+                                    }}
                                 >
-                                    {item.label}
-                                </span>
-                            </button>
-
-                            {/* Tooltip for collapsed state */}
-                            {!isOpen && (
-                                <div className="absolute left-full top-1/2 -translate-y-1/2 ml-1 px-3 py-2 bg-black text-white text-[13.5px] font-medium rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-50 flex items-center shadow-xl border border-[#2d2d2d] pointer-events-none whitespace-nowrap">
-                                    {item.label}
-                                    {item.shortcut && (
-                                        <span className="text-gray-400 text-[13.5px] ml-3 tracking-[0.15em] font-sans flex items-center">
-                                            {item.shortcut}
-                                        </span>
-                                    )}
-                                </div>
-                            )}
-                        </div>
-                    ))}
+                                    <item.icon 
+                                        size={18} 
+                                        className={`shrink-0 transition-colors ${isActive ? 'text-blue-400' : 'text-gray-300'}`} 
+                                        strokeWidth={isActive ? 2 : 1.5} 
+                                    />
+                                    <span
+                                        className={`text-[13.5px] transition-opacity duration-300 ${isOpen ? 'opacity-100 delay-100' : 'opacity-0'} ${isActive ? 'font-medium' : ''}`}
+                                    >
+                                        {item.label}
+                                    </span>
+                                </Link>
+                                
+                                {/* Tooltip for collapsed state */}
+                                {!isOpen && (
+                                    <div className="absolute left-full top-1/2 -translate-y-1/2 ml-1 px-3 py-2 bg-black text-white text-[13.5px] font-medium rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-50 flex items-center shadow-xl border border-[#2d2d2d] pointer-events-none whitespace-nowrap">
+                                        {item.label}
+                                        {item.shortcut && (
+                                            <span className="text-gray-400 text-[13.5px] ml-3 tracking-[0.15em] font-sans flex items-center">
+                                                {item.shortcut}
+                                            </span>
+                                        )}
+                                    </div>
+                                )}
+                            </div>
+                        );
+                    })}
                 </div>
 
                 {/* Scrollable History Area */}
@@ -118,8 +137,6 @@ export default function Sidebar({
                         ))}
                     </div>
                 </div>
-
-                {/* Bottom User Menu */}
                 <UserProfileMenu isOpen={isOpen} onOpenSettings={onOpenSettings} />
             </div>
         </>

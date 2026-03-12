@@ -18,26 +18,8 @@ export default function Workspace() {
     const { viewState, activeTab, showLeftSidebar, inputValue, isAuthOpen, isSettingsOpen, isHelpOpen, isAgentOpen, isShareOpen, selectedAgent } = state;
 
     return (
-        <div className="h-[100dvh] w-full bg-[#212121] text-gray-200 flex font-sans selection:bg-blue-500/30 overflow-hidden relative">
-            <AuthModal isOpen={isAuthOpen} onClose={() => actions.setIsAuthOpen(false)} />
-            <SettingsModal isOpen={isSettingsOpen} onClose={() => actions.setIsSettingsOpen(false)} />
-            <HelpModal isOpen={isHelpOpen} onClose={() => actions.setIsHelpOpen(false)} />
-
-            {showLeftSidebar && (
-                <div className="lg:hidden fixed inset-0 bg-black/50 z-40" onClick={() => actions.setShowLeftSidebar(false)} />
-            )}
-
-            <div className={`fixed lg:relative z-50 h-full transform transition-transform duration-300 ${showLeftSidebar ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}`}>
-                <Sidebar
-                    isOpen={showLeftSidebar}
-                    toggleSidebar={() => actions.setShowLeftSidebar(!showLeftSidebar)}
-                    onNewChat={actions.handleNewChat}
-                    onOpenSettings={() => actions.setIsSettingsOpen(true)}
-                />
-            </div>
-
-            <div className="flex-1 flex flex-col relative overflow-hidden w-full">
-                <TopBar
+        <>
+            <TopBar
                     viewState={viewState}
                     setViewState={actions.setViewState}
                     activeTab={activeTab}
@@ -56,7 +38,7 @@ export default function Workspace() {
                     {viewState === 'fullscreen-editor' ? (
                         <>
                             <div className={`w-full lg:w-[450px] shrink-0 border-r border-[#2f2f2f] bg-[#212121] flex flex-col relative ${activeTab === 'chat' ? 'flex' : 'hidden lg:flex'}`}>
-                                <div className="flex-1 overflow-y-auto w-full pt-6">
+                                <div className="flex-1 overflow-y-auto w-full pt-6 scrollbar-gutter-stable">
                                     <div className="px-4 pb-40 flex flex-col max-w-3xl mx-auto w-full">
                                         <ChatHistory viewState={viewState} setViewState={actions.setViewState} setActiveTab={actions.setActiveTab} />
                                     </div>
@@ -76,7 +58,7 @@ export default function Workspace() {
                         />
                     ) : (
                         <>
-                            <div className="flex-1 overflow-y-auto w-full pt-20">
+                            <div className="flex-1 overflow-y-auto w-full pt-20 scrollbar-gutter-stable">
                                 <div className="px-4 pb-40 flex flex-col gap-8 max-w-3xl mx-auto w-full">
                                     <ChatHistory viewState={viewState} setViewState={actions.setViewState} setActiveTab={actions.setActiveTab} />
                                 </div>
@@ -85,7 +67,6 @@ export default function Workspace() {
                         </>
                     )}
                 </div>
-            </div>
-        </div>
+            </>
     );
 }

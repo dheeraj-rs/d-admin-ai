@@ -1,4 +1,5 @@
-import { Mic, ArrowUp, Globe, Sparkles, Cpu, Zap, ShieldCheck, Layout } from 'lucide-react';
+import Link from 'next/link';
+import { Mic, ArrowUp, Globe, Sparkles, Cpu, Zap, ShieldCheck, Layout, LayoutTemplate } from 'lucide-react';
 import PlusActionMenu from '@/shared/ui/PlusActionMenu';
 import { Suggestions } from '@/features/chat';
 import type { ViewState } from '../types/index';
@@ -19,21 +20,21 @@ export default function InitialInputView({
     return (
         <div className="flex-1 flex flex-col items-center justify-center pt-4 sm:pt-6 md:pt-8 px-4 md:px-6 w-full min-w-0 pb-16 sm:pb-12 overflow-y-auto custom-scrollbar">
             {/* Hero Section */}
-            <div className="w-full max-w-4xl flex flex-col items-center mb-8 md:mb-10 animate-in fade-in slide-in-from-top-6 duration-1000">
+            <div className="w-full max-w-4xl flex flex-col items-center animate-in fade-in slide-in-from-top-6 duration-1000">
                 <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[10px] font-bold uppercase tracking-widest mb-4">
                     <Sparkles size={11} className="animate-pulse" /> Introducing d-admin v2.0
                 </div>
                 
-                <h2 className="text-2xl md:text-5xl font-bold text-white mb-3 text-center tracking-tight leading-[1.1]">
-                    Build and deploy full-stack <br className="hidden md:block" />
-                    <span className="bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent italic px-1 inline-block">
+                <h2 className="text-3xl md:text-5xl lg:text-5xl font-bold text-white mb-4 text-center tracking-tight leading-[1.1] overflow-visible">
+                    Build and deploy <br className="hidden md:block" />
+                    <span className="bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent italic pr-4 inline-block">
                         Websites with AI
                     </span>
                 </h2>
                 
-                <p className="text-gray-400 text-center max-w-2xl mb-6 text-[14px] md:text-[16px] leading-relaxed px-4">
-                    The world's most powerful AI developer experience. <br className="hidden md:block" />
-                    Build, push to GitHub, deploy to Vercel, and export your project—all in a single click.
+                <p className="text-gray-400 text-center max-w-2xl mb-10 text-[15px] md:text-[17px] leading-relaxed px-4">
+                    The world's most powerful developer experience. <br className="hidden md:block" /> 
+                    Build with <span className="text-white font-medium hover:text-blue-400 cursor-help transition-colors">multi-model AI</span> or start fast with <Link href="/templates" className="text-white font-medium hover:text-blue-400 underline decoration-blue-500/30 underline-offset-4 transition-colors cursor-pointer">premium Templates</Link>.
                 </p>
             </div>
             

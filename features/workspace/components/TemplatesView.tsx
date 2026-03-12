@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Plus, ExternalLink, MousePointerClick, LayoutTemplate } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import { useWorkspace } from '../hooks/useWorkspace';
 import PageHeader from '@/shared/ui/PageHeader';
 import ItemCard from '@/shared/ui/ItemCard';
 
@@ -7,38 +9,45 @@ interface Template {
     id: string;
     title: string;
     description: string;
-    category: string;
     image: string;
+    category: 'Portfolio' | 'Business' | 'Blog' | 'Tool';
 }
 
 const TEMPLATES: Template[] = [
     {
-        id: 'portfolio-1',
+        id: '1',
         title: 'Modern Portfolio',
-        description: 'Clean, minimalist portfolio for designers and developers.',
-        category: 'Portfolio',
-        image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=800&auto=format&fit=crop',
+        description: 'A sleek, dark-themed portfolio for creatives and developers.',
+        image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800',
+        category: 'Portfolio'
     },
     {
-        id: 'landing-1',
-        title: 'SaaS Landing Page',
-        description: 'High-converting landing page with feature sections and pricing.',
-        category: 'Business',
-        image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop',
+        id: '1a',
+        title: 'SaaS Platform',
+        description: 'Clean and professional landing page for software products.',
+        image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800',
+        category: 'Business'
     },
     {
-        id: 'dashboard-1',
-        title: 'Admin Dashboard',
-        description: 'Comprehensive dashboard with charts, tables, and analytics.',
-        category: 'Tool',
-        image: 'https://images.unsplash.com/photo-1551288049-bbbda536639a?q=80&w=800&auto=format&fit=crop',
+        id: '2',
+        title: 'Creative Agency',
+        description: 'Bold designs for marketing and design agencies.',
+        image: 'https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&q=80&w=800',
+        category: 'Business'
     },
     {
-        id: 'blog-1',
-        title: 'Minimalist Blog',
-        description: 'Focus on content with a clean, readable typography-focused blog.',
-        category: 'Blog',
-        image: 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=800&auto=format&fit=crop',
+        id: '3',
+        title: 'Minimal Blog',
+        description: 'Focus on content with this elegant blogging template.',
+        image: 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&q=80&w=800',
+        category: 'Blog'
+    },
+    {
+        id: '4',
+        title: 'Personal Sidebar',
+        description: 'A unique sidebar-first landing page.',
+        image: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&q=80&w=800',
+        category: 'Portfolio'
     }
 ];
 
@@ -48,6 +57,8 @@ interface TemplatesViewProps {
 
 export default function TemplatesView({ onBack }: TemplatesViewProps) {
     const [searchValue, setSearchValue] = useState('');
+    const router = useRouter();
+    const { actions } = useWorkspace();
 
     return (
         <div className="flex-1 flex flex-col items-center justify-start p-6 w-full min-w-0 overflow-y-auto custom-scrollbar bg-[#212121] scrollbar-gutter-stable">
@@ -59,6 +70,8 @@ export default function TemplatesView({ onBack }: TemplatesViewProps) {
                     searchValue={searchValue}
                     onSearchChange={setSearchValue}
                     searchPlaceholder="Search templates..."
+                    onBack={() => router.push('/')}
+                    onToggleSidebar={() => actions.setShowLeftSidebar(true)}
                 />
 
                 {/* Categories */}

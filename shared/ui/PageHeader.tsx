@@ -1,5 +1,4 @@
-import React from 'react';
-import { Search, LucideIcon } from 'lucide-react';
+import { Search, LucideIcon, ArrowLeft, PanelLeft } from 'lucide-react';
 
 interface PageHeaderProps {
     title: string;
@@ -9,6 +8,8 @@ interface PageHeaderProps {
     searchValue: string;
     onSearchChange: (value: string) => void;
     searchPlaceholder?: string;
+    onBack?: () => void;
+    onToggleSidebar?: () => void;
 }
 
 export default function PageHeader({
@@ -19,11 +20,32 @@ export default function PageHeader({
     searchValue,
     onSearchChange,
     searchPlaceholder = "Search...",
+    onBack,
+    onToggleSidebar,
 }: PageHeaderProps) {
     return (
         <div className="flex flex-col md:flex-row md:items-center justify-between mb-12 gap-6 w-full animate-in fade-in slide-in-from-top-4 duration-500">
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-4">
+                {onBack && (
+                    <div className="flex items-center gap-3">
+                        <button 
+                            onClick={onBack}
+                            className="flex items-center gap-2 text-gray-400 hover:text-white transition-all w-fit group bg-[#2a2a2a] border border-[#3e3e3e] px-3 py-1.5 rounded-lg active:scale-95 shadow-sm"
+                        >
+                            <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
+                            <span className="text-xs font-semibold">Back to AI Builder</span>
+                        </button>
+                    </div>
+                )}
                 <div className="flex items-center gap-3">
+                    {onToggleSidebar && (
+                        <button 
+                            onClick={onToggleSidebar}
+                            className="lg:hidden p-2 text-gray-400 hover:text-white rounded-lg transition-colors shrink-0 focus:outline-none focus:ring-0 active:bg-transparent -ml-2"
+                        >
+                            <PanelLeft size={24} />
+                        </button>
+                    )}
                     {Icon && (
                         <div className="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-400 shrink-0">
                             <Icon size={24} />

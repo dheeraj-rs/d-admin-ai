@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Globe, Trash2 } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import { useWorkspace } from '../hooks/useWorkspace';
 import PageHeader from '@/shared/ui/PageHeader';
 import ItemCard from '@/shared/ui/ItemCard';
 
@@ -28,6 +30,8 @@ const MOCK_SITES: PublishedSite[] = [
 
 export default function PublishedSitesView({ onBack }: { onBack?: () => void }) {
     const [searchValue, setSearchValue] = useState('');
+    const router = useRouter();
+    const { actions } = useWorkspace();
 
     return (
         <div className="flex-1 flex flex-col items-center justify-start p-6 w-full min-w-0 overflow-y-auto custom-scrollbar bg-[#212121] scrollbar-gutter-stable">
@@ -40,6 +44,8 @@ export default function PublishedSitesView({ onBack }: { onBack?: () => void }) 
                     searchValue={searchValue}
                     onSearchChange={setSearchValue}
                     searchPlaceholder="Search sites..."
+                    onBack={() => router.push('/')}
+                    onToggleSidebar={() => actions.setShowLeftSidebar(true)}
                 />
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

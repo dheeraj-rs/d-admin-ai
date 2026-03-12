@@ -1,11 +1,9 @@
-import { useState, useRef, useEffect } from 'react';
 import {
     SquareTerminal,
     PanelLeftClose,
     PanelLeft,
     SquarePen,
     LayoutTemplate,
-    MousePointerClick,
     Globe,
 } from 'lucide-react';
 import UserProfileMenu from './UserProfileMenu';
@@ -13,7 +11,6 @@ import UserProfileMenu from './UserProfileMenu';
 const NAV_ITEMS = [
     { icon: SquarePen, label: 'New chat', shortcut: '⇧⌘O' },
     { icon: LayoutTemplate, label: 'Templates' },
-    { icon: MousePointerClick, label: 'Drag and drop builder' },
     { icon: Globe, label: 'Published website' },
 ];
 

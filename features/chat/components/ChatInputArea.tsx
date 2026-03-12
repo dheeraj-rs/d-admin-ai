@@ -23,7 +23,7 @@ export default function ChatInputArea({
 
     return (
         <div
-            className={`absolute bottom-0 w-full bg-gradient-to-t from-[#212121] via-[#212121] to-transparent ${isSidebar ? 'pt-8 pb-4 px-4' : 'pt-6 pb-4 px-4'} pointer-events-none z-10`}
+            className={`absolute bottom-0 w-full bg-gradient-to-t from-[#212121] via-[#212121] to-transparent ${isSidebar ? 'pt-8 pb-4 sm:pb-6 px-4' : 'pt-6 pb-4 sm:pb-6 px-4'} pointer-events-none z-10 transition-all duration-300`}
         >
             <div className={`${isSidebar ? 'w-full' : 'max-w-3xl mx-auto'} pointer-events-auto`}>
                 <div className="relative flex items-center bg-[#2f2f2f] rounded-[32px] p-2 pl-3 pr-3 shadow-lg">

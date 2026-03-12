@@ -1,4 +1,4 @@
-import { ChevronDown, Upload, Globe, Menu, Check } from 'lucide-react';
+import { ChevronDown, Upload, Globe, PanelLeft, Check } from 'lucide-react';
 import type { ViewState } from '../types/index';
 import { AGENTS } from '../constants/agents';
 
@@ -24,76 +24,74 @@ export default function DefaultTopBar({
     const currentAgent = AGENTS.find((a) => a.id === selectedAgent) || AGENTS[0];
 
     return (
-        <div className="absolute top-0 w-full p-3 flex justify-between items-center bg-transparent z-10 text-gray-400 pointer-events-none">
-            <div className="flex items-center gap-2 pointer-events-auto">
+        <div className="absolute top-0 w-full p-2 sm:p-3 flex justify-between items-center bg-transparent z-10 text-gray-400 pointer-events-none">
+            <div className="flex items-center gap-1 sm:gap-2 pointer-events-auto">
                 <button
-                    className="lg:hidden p-2 text-gray-400 hover:text-white hover:bg-[#2f2f2f] rounded-lg transition-colors"
+                    className="lg:hidden p-2 text-gray-400 hover:text-white rounded-lg transition-colors shrink-0 focus:outline-none focus:ring-0 active:bg-transparent"
                     onClick={() => setShowLeftSidebar(true)}
                 >
-                    <Menu size={20} />
+                    <PanelLeft size={20} />
                 </button>
-                <div className="relative pointer-events-auto">
+                <div className="relative pointer-events-auto min-w-0">
                     <button
                         onClick={() => setIsAgentOpen(!isAgentOpen)}
-                        onBlur={() => setTimeout(() => setIsAgentOpen(false), 200)}
-                        className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded-xl transition-all cursor-pointer font-semibold text-[14px] sm:text-[15px] border ${isAgentOpen ? 'bg-transparent border-[#555] shadow-sm' : 'bg-transparent border-transparent hover:bg-[#2f2f2f]'}`}
+                        className={`flex items-center gap-1.5 sm:gap-2 px-1.5 sm:px-2 py-1.5 transition-all cursor-pointer font-semibold text-[14px] sm:text-[15px] whitespace-nowrap focus:outline-none focus:ring-0 ${isAgentOpen ? 'text-white' : 'text-gray-400 hover:text-white'}`}
                     >
-                        <span className="text-white">d-admin</span>
-                        <div className="flex items-center gap-1.5 ml-1 px-2 py-0.5">
+                        <span className="text-white truncate">d-admin</span>
+                        <div className="flex items-center gap-1.5 ml-0.5">
                             {currentAgent.icon}
-                            <span className="text-gray-300 font-medium text-[13px]">{currentAgent.name}</span>
+                            <span className="text-gray-300 font-medium text-[13px] hidden xs:inline">{currentAgent.name}</span>
                         </div>
                         <ChevronDown
                             size={14}
-                            className={`text-gray-400 transition-transform duration-200 ml-0.5 ${isAgentOpen ? 'rotate-180' : ''}`}
+                            className={`text-gray-400 transition-transform duration-200 ml-0.5 shrink-0 ${isAgentOpen ? 'rotate-180' : ''}`}
                         />
                     </button>
 
                     {isAgentOpen && (
-                        <div className="absolute top-full left-0 mt-2 w-64 bg-[#212121] rounded-xl shadow-2xl border border-[#3e3e3e] z-50 flex flex-col p-1.5 animate-in fade-in slide-in-from-top-2 zoom-in-95">
-                            {AGENTS.map((agent) => (
-                                <button
-                                    key={agent.id}
-                                    onClick={() => {
-                                        setSelectedAgent(agent.id);
-                                        setIsAgentOpen(false);
-                                    }}
-                                    className={`flex items-center justify-between px-3 py-2.5 text-[14px] hover:bg-[#2f2f2f] rounded-lg transition-all text-left w-full font-medium ${selectedAgent === agent.id ? 'bg-[#2a2a2a] text-white' : 'text-gray-300 hover:text-white'}`}
-                                >
-                                    <div className="flex items-center gap-3">
-                                        <div className="p-1 bg-[#151515] rounded-md shadow-sm border border-[#333]">
+                        <>
+                            <div className="fixed inset-0 z-40" onClick={() => setIsAgentOpen(false)} />
+                            <div className="absolute top-full left-0 mt-2 w-44 sm:w-48 bg-[#1a1a1a] rounded-xl shadow-2xl border border-[#2f2f2f] z-50 flex flex-col p-1 animate-in fade-in slide-in-from-top-2 zoom-in-95">
+                                {AGENTS.map((agent) => (
+                                    <button
+                                        key={agent.id}
+                                        onClick={() => {
+                                            setSelectedAgent(agent.id);
+                                            setIsAgentOpen(false);
+                                        }}
+                                        className={`flex items-center justify-between px-3 py-2 text-[14px] rounded-lg transition-all text-left w-full font-medium ${selectedAgent === agent.id ? 'text-white' : 'text-gray-400 hover:text-white'}`}
+                                    >
+                                        <div className="flex items-center gap-2.5">
                                             {agent.icon}
+                                            {agent.name}
                                         </div>
-                                        {agent.name}
-                                    </div>
-                                    {selectedAgent === agent.id && (
-                                        <Check size={16} className="text-gray-200" strokeWidth={2.5} />
-                                    )}
-                                </button>
-                            ))}
-                        </div>
+                                        {selectedAgent === agent.id && (
+                                            <Check size={14} className="text-gray-200" strokeWidth={2.5} />
+                                        )}
+                                    </button>
+                                ))}
+                            </div>
+                        </>
                     )}
                 </div>
             </div>
             {viewState !== 'initial' ? (
-                <div className="flex items-center gap-1 pr-2 pointer-events-auto">
-                    <button className="flex items-center gap-1.5 px-3 h-[34px] rounded-lg border border-[#2f2f2f] text-gray-300 hover:text-white hover:bg-[#2f2f2f] transition-colors text-[13px] sm:text-sm font-medium">
-                        <Upload size={14} /> Share
+                <div className="flex items-center gap-1 pr-1 sm:pr-2 pointer-events-auto">
+                    <button className="flex items-center gap-1.5 px-2.5 sm:px-3 h-[34px] text-gray-400 hover:text-white transition-colors text-[13px] sm:text-sm font-medium whitespace-nowrap focus:outline-none focus:ring-0">
+                        <Upload size={14} /> <span className="hidden xs:inline">Share</span>
                     </button>
                 </div>
             ) : (
-                <div className="flex items-center gap-1 pr-2 pointer-events-auto">
+                <div className="flex items-center gap-1 pr-1 sm:pr-2 pointer-events-auto shrink-0">
                     <button
                         onClick={() => setIsHelpOpen(true)}
-                        className="group flex items-center gap-2 px-3 sm:px-4 h-[36px] rounded-full bg-gradient-to-r from-[#212121] to-[#2a2a2a] border border-[#3e3e3e] hover:border-blue-500/50 hover:from-blue-500/10 hover:to-purple-500/10 text-gray-300 hover:text-white transition-all duration-300 text-[13px] sm:text-sm font-medium shadow-lg hover:shadow-[0_0_20px_rgba(59,130,246,0.2)] hover:-translate-y-0.5 cursor-pointer"
+                        className="group flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 h-[36px] text-gray-400 hover:text-white transition-all duration-300 text-[13px] sm:text-sm font-medium cursor-pointer whitespace-nowrap focus:outline-none focus:ring-0"
                     >
-                        <div className="flex items-center justify-center w-5 h-5 rounded-full bg-[#1a1a1a] border border-[#3e3e3e] group-hover:border-blue-500/30 group-hover:bg-blue-500/20 transition-all duration-300 shadow-sm">
-                            <Globe
-                                size={12}
-                                className="text-gray-400 group-hover:text-blue-400 transition-colors duration-300"
-                            />
-                        </div>
-                        How it works ?
+                        <Globe
+                            size={16}
+                            className="text-gray-400 group-hover:text-blue-400 transition-colors duration-300"
+                        />
+                        <span className="hidden xss:inline font-medium">How it works ?</span>
                     </button>
                 </div>
             )}

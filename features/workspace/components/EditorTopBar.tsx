@@ -44,11 +44,11 @@ export default function EditorTopBar({
             </div>
 
             {/* Middle/Toggles */}
-            <div className="flex-1 flex justify-center sm:justify-start lg:justify-center">
-                <div className="flex items-center justify-center bg-[#151515] p-1 rounded-lg border border-[#2f2f2f] h-[36px]">
+            <div className="flex-1 flex justify-center sm:justify-start lg:justify-center min-w-0">
+                <div className="flex items-center justify-center bg-[#151515] p-1 rounded-lg border border-[#2f2f2f] h-[36px] w-full sm:w-auto">
                     <button
                         onClick={() => setActiveTab('chat')}
-                        className={`flex items-center justify-center gap-2 px-3 sm:px-4 h-full rounded-md transition-colors lg:hidden ${activeTab === 'chat' ? 'bg-[#2f2f2f] text-white shadow-sm' : 'text-gray-400 hover:text-gray-200'}`}
+                        className={`flex-1 sm:flex-none flex items-center justify-center gap-2 px-3 sm:px-4 h-full rounded-md transition-colors lg:hidden ${activeTab === 'chat' ? 'bg-[#2f2f2f] text-white shadow-sm' : 'text-gray-400 hover:text-gray-200'}`}
                         title="Chat"
                     >
                         <MessageSquare size={15} />
@@ -56,7 +56,7 @@ export default function EditorTopBar({
                     </button>
                     <button
                         onClick={() => setActiveTab('preview')}
-                        className={`flex items-center justify-center gap-2 px-3 sm:px-4 h-full rounded-md transition-colors ${activeTab === 'preview' ? 'bg-[#2f2f2f] text-white shadow-sm' : 'text-gray-400 hover:text-gray-200'}`}
+                        className={`flex-1 sm:flex-none flex items-center justify-center gap-2 px-3 sm:px-4 h-full rounded-md transition-colors ${activeTab === 'preview' ? 'bg-[#2f2f2f] text-white shadow-sm' : 'text-gray-400 hover:text-gray-200'}`}
                         title="Preview"
                     >
                         <Eye size={15} />
@@ -64,7 +64,7 @@ export default function EditorTopBar({
                     </button>
                     <button
                         onClick={() => setActiveTab('code')}
-                        className={`flex items-center justify-center gap-2 px-3 sm:px-4 h-full rounded-md transition-colors ${activeTab === 'code' ? 'bg-[#2f2f2f] text-white shadow-sm' : 'text-gray-400 hover:text-gray-200'}`}
+                        className={`flex-1 sm:flex-none flex items-center justify-center gap-2 px-3 sm:px-4 h-full rounded-md transition-colors ${activeTab === 'code' ? 'bg-[#2f2f2f] text-white shadow-sm' : 'text-gray-400 hover:text-gray-200'}`}
                         title="Code"
                     >
                         <Code size={15} />

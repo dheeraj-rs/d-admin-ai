@@ -11,8 +11,8 @@ const SUGGESTIONS = [
 
 export default function Suggestions({ onSelect }: { onSelect: (text: string) => void }) {
     return (
-        <div className="w-full relative min-w-0 max-w-full">
-            <div className="mt-8 flex flex-wrap justify-center gap-2.5 w-full max-w-3xl mx-auto px-4">
+        <div className="w-full relative min-w-0 max-w-full overflow-x-hidden">
+            <div className="mt-6 sm:mt-8 flex flex-wrap justify-center gap-2.5 w-full max-w-3xl mx-auto px-2 sm:px-4">
                 {SUGGESTIONS.map((sug, idx) => (
                     <button
                         key={idx}

@@ -19,11 +19,11 @@ export default function InitialInputView({
     setViewState,
 }: InitialInputViewProps) {
     return (
-        <div className="flex-1 flex flex-col items-center justify-center px-4 md:px-6 w-full min-w-0">
+        <div className="flex-1 flex flex-col items-center justify-end sm:justify-center px-4 md:px-6 w-full min-w-0 pb-16 sm:pb-0">
             <h1 className="text-2xl md:text-[32px] font-semibold text-gray-200 mb-6 md:mb-8 tracking-tight text-center w-full">
                 Where should we begin?
             </h1>
-            <div className="w-full max-w-3xl min-w-0">
+            <div className="w-full max-w-3xl min-w-0 mb-4 sm:mb-0">
                 <div className="relative flex items-center bg-[#2f2f2f] rounded-[32px] p-2 pl-3 pr-3 shadow-lg w-full">
                     <PlusActionMenu />
                     <input

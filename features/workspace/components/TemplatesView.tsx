@@ -1,7 +1,7 @@
-'use client';
-
-import React from 'react';
-import { LayoutTemplate, MousePointerClick, ArrowLeft, Search, Plus, ExternalLink } from 'lucide-react';
+import React, { useState } from 'react';
+import { Plus, ExternalLink, MousePointerClick, LayoutTemplate } from 'lucide-react';
+import PageHeader from '@/shared/ui/PageHeader';
+import ItemCard from '@/shared/ui/ItemCard';
 
 interface Template {
     id: string;
@@ -43,35 +43,23 @@ const TEMPLATES: Template[] = [
 ];
 
 interface TemplatesViewProps {
-    onBack: () => void;
+    onBack?: () => void;
 }
 
 export default function TemplatesView({ onBack }: TemplatesViewProps) {
-    return (
-        <div className="flex-1 flex flex-col items-center justify-start p-6 w-full min-w-0 overflow-y-auto custom-scrollbar bg-[#212121]">
-            <div className="w-full">
-                {/* Header */}
-                <div className="flex flex-col md:flex-row md:items-center justify-between mb-12 gap-6">
-                    <div>
-                        <h1 className="text-3xl md:text-5xl font-bold text-white mb-2 tracking-tight">
-                            Start with <span className="text-blue-400 underline decoration-blue-500/30 underline-offset-8">Templates</span>
-                        </h1>
-                        <p className="text-gray-400 text-lg">
-                            Choose a starting point and build exactly what you imagine with drag-and-drop.
-                        </p>
-                    </div>
+    const [searchValue, setSearchValue] = useState('');
 
-                    <div className="flex items-center gap-3">
-                        <div className="relative group">
-                            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-blue-400 transition-colors" size={18} />
-                            <input 
-                                type="text" 
-                                placeholder="Search templates..." 
-                                className="bg-[#2a2a2a] border border-[#3e3e3e] rounded-xl pl-10 pr-4 py-2.5 w-full md:w-64 text-sm focus:outline-none focus:border-blue-500/50 transition-all text-gray-200 placeholder:text-gray-500"
-                            />
-                        </div>
-                    </div>
-                </div>
+    return (
+        <div className="flex-1 flex flex-col items-center justify-start p-6 w-full min-w-0 overflow-y-auto custom-scrollbar bg-[#212121] scrollbar-gutter-stable">
+            <div className="w-full max-w-7xl">
+                <PageHeader 
+                    title="Start with"
+                    highlight="Templates"
+                    description="Choose a starting point and build exactly what you imagine with drag-and-drop."
+                    searchValue={searchValue}
+                    onSearchChange={setSearchValue}
+                    searchPlaceholder="Search templates..."
+                />
 
                 {/* Categories */}
                 <div className="flex items-center gap-2 mb-8 overflow-x-auto pb-2 no-scrollbar">
@@ -101,30 +89,19 @@ export default function TemplatesView({ onBack }: TemplatesViewProps) {
                         <p className="text-gray-500 text-sm">Full freedom with our drag-and-drop builder.</p>
                     </div>
 
-                    {TEMPLATES.map((template) => (
-                        <div key={template.id} className="flex flex-col group cursor-pointer">
-                            <div className="aspect-[4/3] rounded-2xl bg-[#1a1a1a] border border-[#3e3e3e] overflow-hidden relative mb-4">
-                                <img 
-                                    src={template.image} 
-                                    alt={template.title} 
-                                    className="w-full h-full object-cover opacity-60 group-hover:opacity-80 group-hover:scale-105 transition-all duration-500"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                                    <button className="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-lg font-medium text-sm flex items-center gap-2 shadow-xl shadow-blue-600/20 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
-                                        Use Template
-                                        <ExternalLink size={14} />
-                                    </button>
-                                </div>
-                                <div className="absolute top-4 left-4">
-                                    <span className="bg-black/60 backdrop-blur-md border border-white/10 text-white text-[10px] uppercase font-bold tracking-widest px-2 py-1 rounded-md">
-                                        {template.category}
-                                    </span>
-                                </div>
-                            </div>
-                            <h3 className="text-lg font-semibold text-white mb-1 group-hover:text-blue-400 transition-colors">{template.title}</h3>
-                            <p className="text-gray-500 text-sm line-clamp-2">{template.description}</p>
-                        </div>
-                    ))}
+                    {TEMPLATES
+                        .filter(t => t.title.toLowerCase().includes(searchValue.toLowerCase()) || t.category.toLowerCase().includes(searchValue.toLowerCase()))
+                        .map((template) => (
+                            <ItemCard
+                                key={template.id}
+                                title={template.title}
+                                description={template.description}
+                                image={template.image}
+                                badge={template.category}
+                                primaryActionText="Use Template"
+                                onPrimaryAction={() => {}}
+                            />
+                        ))}
                 </div>
 
                 {/* Drag and Drop Feature Highlight */}

@@ -29,16 +29,15 @@ export default function EditorTopBar({
 }: EditorTopBarProps) {
     return (
         <div className="h-14 flex items-center justify-between gap-2 bg-[#1e1e1e] border-b border-[#2f2f2f] px-2 sm:px-4 shrink-0 transition-opacity w-full">
-            {/* Left: Hide Code / Title */}
             <div className="flex items-center gap-2 sm:gap-4 flex-none sm:flex-1 min-w-0 sm:pr-4">
                 <button
                     onClick={() => setViewState('chat-with-code')}
                     className="flex items-center justify-center w-[34px] h-[34px] sm:w-auto sm:h-auto sm:bg-transparent rounded-lg sm:rounded-none bg-[#151515] border border-[#2f2f2f] sm:border-0 hover:text-white text-gray-400 transition-colors shrink-0 max-w-full min-w-0 group"
-                    title="Hide code"
+                    title="Hide Editor"
                 >
                     <ArrowLeftToLine className="shrink-0 w-5 h-5 group-hover:-translate-x-0.5 transition-transform" />
                     <span className="text-gray-200 hidden sm:inline truncate ml-2 text-[15px] font-medium">
-                        Hide code
+                        Hide Editor
                     </span>
                 </button>
             </div>

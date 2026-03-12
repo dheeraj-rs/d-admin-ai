@@ -33,9 +33,8 @@ export const useSettingsStore = create<SettingsState>()(
             },
 
             addApiKey: (provider, key) => {
-                if (!key.trim()) return;
                 set((state) => ({
-                    [provider]: [...state[provider], key.trim()],
+                    [provider]: [...state[provider], key],
                 }));
             },
 
@@ -56,7 +55,7 @@ export const useSettingsStore = create<SettingsState>()(
             updateApiKey: (provider, index, key) => {
                 set((state) => {
                     const newKeys = [...state[provider]];
-                    newKeys[index] = key.trim();
+                    newKeys[index] = key;
                     return { [provider]: newKeys };
                 });
             },

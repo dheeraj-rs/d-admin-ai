@@ -27,8 +27,8 @@ export default function DefaultTopBar({
 
     return (
         <div className="sticky top-0 z-50 w-full flex items-center justify-between px-2 h-14 pointer-events-none">
-            {/* LEFT — sidebar toggle */}
-            <div className="flex items-center pointer-events-auto">
+            {/* LEFT — sidebar toggle + agent picker */}
+            <div className="flex items-center gap-1 pointer-events-auto">
                 <button
                     id="topbar-sidebar-toggle"
                     className="lg:hidden w-10 h-10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/[0.06] rounded-xl transition-all focus:outline-none active:scale-95"
@@ -37,10 +37,7 @@ export default function DefaultTopBar({
                 >
                     <PanelLeft size={20} />
                 </button>
-            </div>
 
-            {/* CENTER — brand + agent picker */}
-            <div className="flex-1 flex justify-center pointer-events-auto">
                 <div className="relative">
                     <button
                         id="topbar-agent-picker"
@@ -61,7 +58,7 @@ export default function DefaultTopBar({
                     {isAgentOpen && (
                         <>
                             <div className="fixed inset-0 z-40" onClick={() => setIsAgentOpen(false)} />
-                            <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-48 bg-[#1e1e1e] rounded-2xl shadow-2xl border border-white/[0.07] z-50 flex flex-col p-1.5 animate-in fade-in slide-in-from-top-2 zoom-in-95">
+                            <div className="absolute top-full left-0 mt-2 w-48 bg-[#1e1e1e] rounded-2xl shadow-2xl border border-white/[0.07] z-50 flex flex-col p-1.5 animate-in fade-in slide-in-from-top-2 zoom-in-95">
                                 {AGENTS.map((agent) => (
                                     <button
                                         key={agent.id}
@@ -85,6 +82,9 @@ export default function DefaultTopBar({
                     )}
                 </div>
             </div>
+
+            {/* SPACER */}
+            <div className="flex-1" />
 
             {/* RIGHT — context action */}
             <div className="flex items-center pointer-events-auto">

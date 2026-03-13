@@ -76,7 +76,7 @@ export default function Sidebar({
                 </div>
 
                 {/* Navigation Items */}
-                <div className="px-3 pb-2 mt-2 flex-shrink-0 flex flex-col items-start gap-1 w-full">
+                <div className="px-3 pb-2 mt-4 flex-shrink-0 flex flex-col items-start gap-1.5 w-full">
                     {NAV_ITEMS.map((item, idx) => {
                         const isActive = pathname === item.href;
                             
@@ -84,22 +84,23 @@ export default function Sidebar({
                             <div key={idx} className="relative w-full group">
                                 <Link
                                     href={item.href}
-                                    className={`flex items-center rounded-lg transition-colors duration-200 ease-in-out font-sans overflow-hidden whitespace-nowrap w-full cursor-pointer h-10 px-3 gap-3 shrink-0 ${
+                                    className={`flex items-center rounded-xl transition-all duration-300 ease-in-out font-sans overflow-hidden whitespace-nowrap w-full cursor-pointer h-11 px-3 gap-3 shrink-0 ${
                                         isActive 
-                                            ? 'bg-[#2f2f2f] text-white shadow-sm' 
-                                            : 'hover:bg-[#202020] text-gray-200'
+                                            ? 'bg-gradient-to-r from-blue-600/20 to-indigo-600/20 text-white border border-blue-500/20' 
+                                            : 'hover:bg-white/[0.05] text-gray-400 hover:text-gray-200 border border-transparent hover:border-white/[0.05]'
                                     }`}
                                     onClick={() => {
                                         if (item.label === 'New chat') onNewChat?.();
                                     }}
                                 >
-                                    <item.icon 
-                                        size={18} 
-                                        className={`shrink-0 transition-colors ${isActive ? 'text-blue-400' : 'text-gray-300'}`} 
-                                        strokeWidth={isActive ? 2 : 1.5} 
-                                    />
+                                    <div className={`p-1.5 rounded-lg transition-all ${isActive ? 'bg-blue-500/20 text-blue-400 shadow-[0_0_15px_-3px_rgba(59,130,246,0.5)]' : 'text-gray-400 group-hover:text-gray-200'}`}>
+                                        <item.icon 
+                                            size={18} 
+                                            strokeWidth={isActive ? 2.5 : 2} 
+                                        />
+                                    </div>
                                     <span
-                                        className={`text-[13.5px] transition-opacity duration-300 ${isOpen ? 'opacity-100 delay-100' : 'opacity-0'} ${isActive ? 'font-medium' : ''}`}
+                                        className={`text-[13.5px] tracking-tight transition-opacity duration-300 ${isOpen ? 'opacity-100 delay-100' : 'opacity-0'} ${isActive ? 'font-bold' : 'font-medium'}`}
                                     >
                                         {item.label}
                                     </span>
@@ -107,13 +108,14 @@ export default function Sidebar({
                                 
                                 {/* Tooltip for collapsed state */}
                                 {!isOpen && (
-                                    <div className="absolute left-full top-1/2 -translate-y-1/2 ml-1 px-3 py-2 bg-black text-white text-[13.5px] font-medium rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-50 flex items-center shadow-xl border border-[#2d2d2d] pointer-events-none whitespace-nowrap">
+                                    <div className="absolute left-full top-1/2 -translate-y-1/2 ml-3 px-3 py-2 bg-[#1e1e1e] text-white text-[12px] font-bold rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-200 z-[70] flex items-center shadow-2xl border border-white/[0.1] pointer-events-none whitespace-nowrap translate-x-1 group-hover:translate-x-0">
                                         {item.label}
                                         {item.shortcut && (
-                                            <span className="text-gray-400 text-[13.5px] ml-3 tracking-[0.15em] font-sans flex items-center">
+                                            <span className="text-gray-500 text-[10px] ml-3 tracking-widest font-black flex items-center bg-white/[0.05] px-1.5 py-0.5 rounded-lg">
                                                 {item.shortcut}
                                             </span>
                                         )}
+                                        <div className="absolute left-[-4px] top-1/2 -translate-y-1/2 w-2 h-2 bg-[#1e1e1e] rotate-45 border-l border-b border-white/[0.1]" />
                                     </div>
                                 )}
                             </div>
@@ -123,16 +125,17 @@ export default function Sidebar({
 
                 {/* Scrollable History Area */}
                 <div
-                    className={`flex-1 overflow-y-auto overflow-x-hidden mt-2 transition-opacity duration-300 ${isOpen ? 'opacity-100 delay-100' : 'opacity-0 pointer-events-none delay-0'}`}
+                    className={`flex-1 overflow-y-auto overflow-x-hidden mt-6 transition-opacity duration-300 ${isOpen ? 'opacity-100 delay-100' : 'opacity-0 pointer-events-none delay-0'}`}
                 >
-                    <div className="px-5 py-2 text-xs font-semibold text-gray-500 whitespace-nowrap">Your chats</div>
-                    <div className="px-3 space-y-0.5 w-[240px]">
+                    <div className="px-5 py-2 text-[10px] font-black text-gray-500 uppercase tracking-[0.2em]">Recent active</div>
+                    <div className="px-3 space-y-1 w-[240px]">
                         {RECENT_CHATS.map((chat, idx) => (
                             <div
                                 key={idx}
-                                className="p-2 px-3 rounded-lg hover:bg-[#202020] cursor-pointer text-sm text-gray-300 transition-colors truncate"
+                                className="group/chat flex items-center gap-2 p-2 px-3 rounded-xl hover:bg-white/[0.04] cursor-pointer text-[13px] text-gray-400 hover:text-gray-200 transition-all truncate border border-transparent hover:border-white/[0.05]"
                             >
-                                {chat}
+                                <div className="w-1 h-1 rounded-full bg-blue-500 opacity-0 group-hover/chat:opacity-100 transition-opacity" />
+                                <span className="truncate font-medium">{chat}</span>
                             </div>
                         ))}
                     </div>

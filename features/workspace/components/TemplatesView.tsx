@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Plus, ExternalLink, MousePointerClick, LayoutTemplate } from 'lucide-react';
+import { Plus, ExternalLink, MousePointerClick, LayoutTemplate, Search } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useWorkspace } from '../hooks/useWorkspace';
 import PageHeader from '@/shared/ui/PageHeader';
@@ -61,18 +61,30 @@ export default function TemplatesView({ onBack }: TemplatesViewProps) {
     const { actions } = useWorkspace();
 
     return (
-        <div className="flex-1 flex flex-col items-center justify-start p-6 w-full min-w-0 overflow-y-auto custom-scrollbar bg-[#212121] scrollbar-gutter-stable">
+        <div className="flex-1 flex flex-col items-center justify-start px-6 pt-4 pb-12 w-full min-w-0">
             <div className="w-full max-w-7xl">
-                <PageHeader 
-                    title="Start with"
-                    highlight="Templates"
-                    description="Choose a starting point and build exactly what you imagine with drag-and-drop."
-                    searchValue={searchValue}
-                    onSearchChange={setSearchValue}
-                    searchPlaceholder="Search templates..."
-                    onBack={() => router.push('/')}
-                    onToggleSidebar={() => actions.setShowLeftSidebar(true)}
-                />
+                <div className="mb-8 text-center animate-in fade-in slide-in-from-top-4 duration-700">
+                    <h1 className="text-3xl lg:text-4xl font-black text-white mb-3">
+                        Start with <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-400 italic font-serif">Templates</span>
+                    </h1>
+                    <p className="text-gray-400 text-sm lg:text-base font-medium max-w-xl mx-auto mb-8">
+                        Choose a starting point and build exactly what you imagine with drag-and-drop.
+                    </p>
+
+                    <div className="relative max-w-2xl mx-auto group">
+                        <div className="absolute inset-0 bg-blue-500/10 blur-xl opacity-0 group-focus-within:opacity-100 transition-opacity" />
+                        <div className="relative flex items-center">
+                            <Search className="absolute left-4 text-gray-500 group-focus-within:text-blue-400 transition-colors" size={20} />
+                            <input 
+                                type="text"
+                                placeholder="Search premium templates..."
+                                value={searchValue}
+                                onChange={(e) => setSearchValue(e.target.value)}
+                                className="w-full h-12 bg-white/[0.03] border border-white/[0.08] rounded-2xl pl-12 pr-4 text-white placeholder:text-gray-500 text-sm focus:outline-none focus:border-blue-500/50 focus:bg-white/[0.05] transition-all"
+                            />
+                        </div>
+                    </div>
+                </div>
 
                 {/* Categories */}
                 <div className="flex items-center gap-2 mb-8 overflow-x-auto pb-2 no-scrollbar">

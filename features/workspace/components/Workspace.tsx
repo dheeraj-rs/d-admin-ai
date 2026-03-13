@@ -18,23 +18,7 @@ export default function Workspace() {
     const { viewState, activeTab, showLeftSidebar, inputValue, isAuthOpen, isSettingsOpen, isHelpOpen, isAgentOpen, isShareOpen, selectedAgent } = state;
 
     return (
-        <>
-            <TopBar
-                    viewState={viewState}
-                    setViewState={actions.setViewState}
-                    activeTab={activeTab}
-                    setActiveTab={actions.setActiveTab}
-                    setShowLeftSidebar={actions.setShowLeftSidebar}
-                    isAgentOpen={isAgentOpen}
-                    setIsAgentOpen={actions.setIsAgentOpen}
-                    isShareOpen={isShareOpen}
-                    setIsShareOpen={actions.setIsShareOpen}
-                    setIsHelpOpen={actions.setIsHelpOpen}
-                    selectedAgent={selectedAgent}
-                    setSelectedAgent={actions.setSelectedAgent}
-                />
-
-                <div className="flex-1 flex overflow-hidden relative">
+        <div className="flex-1 flex overflow-hidden relative h-full">
                     {viewState === 'fullscreen-editor' ? (
                         <>
                             <div className={`w-full lg:w-[450px] shrink-0 border-r border-[#2f2f2f] bg-[#212121] flex flex-col relative ${activeTab === 'chat' ? 'flex' : 'hidden lg:flex'}`}>
@@ -66,7 +50,6 @@ export default function Workspace() {
                             <ChatInputArea inputValue={inputValue} setInputValue={actions.setInputValue} handleSubmit={actions.handleSubmit} isSidebar={false} />
                         </>
                     )}
-                </div>
-            </>
+        </div>
     );
 }

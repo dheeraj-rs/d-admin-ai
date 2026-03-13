@@ -2,6 +2,7 @@
 
 import { useWorkspace } from '@/features/workspace/hooks/useWorkspace';
 import { Sidebar } from '@/features/navigation';
+import TopBar from '@/features/workspace/components/TopBar';
 import dynamic from 'next/dynamic';
 
 const AuthModal = dynamic(() => import('@/features/auth/components/AuthModal'), { ssr: false });
@@ -14,7 +15,7 @@ export default function WorkspaceLayout({
     children: React.ReactNode;
 }) {
     const { state, actions } = useWorkspace();
-    const { showLeftSidebar, isAuthOpen, isSettingsOpen, isHelpOpen, viewState } = state;
+    const { showLeftSidebar, isAuthOpen, isSettingsOpen, isHelpOpen, viewState, activeTab, isAgentOpen, isShareOpen, selectedAgent } = state;
 
     return (
         <div className="h-[100dvh] w-full bg-[#212121] text-gray-200 flex font-sans selection:bg-blue-500/30 overflow-hidden relative">
@@ -35,8 +36,24 @@ export default function WorkspaceLayout({
                 />
             </div>
 
-            <div className="flex-1 flex flex-col relative overflow-hidden w-full scrollbar-gutter-stable">
-                {children}
+            <div className="flex-1 flex flex-col relative overflow-hidden w-full">
+                <TopBar
+                    viewState={viewState}
+                    setViewState={actions.setViewState}
+                    activeTab={activeTab}
+                    setActiveTab={actions.setActiveTab}
+                    setShowLeftSidebar={actions.setShowLeftSidebar}
+                    isAgentOpen={isAgentOpen}
+                    setIsAgentOpen={actions.setIsAgentOpen}
+                    isShareOpen={isShareOpen}
+                    setIsShareOpen={actions.setIsShareOpen}
+                    setIsHelpOpen={actions.setIsHelpOpen}
+                    selectedAgent={selectedAgent}
+                    setSelectedAgent={actions.setSelectedAgent}
+                />
+                <div className="flex-1 relative overflow-auto scrollbar-gutter-stable">
+                    {children}
+                </div>
             </div>
         </div>
     );

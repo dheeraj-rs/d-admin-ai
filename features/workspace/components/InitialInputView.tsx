@@ -1,8 +1,13 @@
-import Link from 'next/link';
-import { Mic, ArrowUp, Globe, Sparkles, Cpu, Zap, ShieldCheck, Layout, LayoutTemplate } from 'lucide-react';
-import PlusActionMenu from '@/shared/ui/PlusActionMenu';
-import { Suggestions } from '@/features/chat';
+'use client';
+
+import { useState } from 'react';
+import { Sparkles } from 'lucide-react';
+import ModeToggle from './ModeToggle';
+import AIBuildPanel from './AIBuildPanel';
+import TemplateModePanel from './TemplateModePanel';
 import type { ViewState } from '../types/index';
+
+type Mode = 'ai' | 'template';
 
 interface InitialInputViewProps {
     inputValue: string;
@@ -17,72 +22,63 @@ export default function InitialInputView({
     handleSubmit,
     setViewState,
 }: InitialInputViewProps) {
+    const [mode, setMode] = useState<Mode>('template');
+
     return (
-        <div className="flex-1 flex flex-col items-center justify-center pt-4 sm:pt-6 md:pt-8 px-4 md:px-6 w-full min-w-0 pb-16 sm:pb-12 overflow-y-auto custom-scrollbar">
-            {/* Hero Section */}
-            <div className="w-full max-w-4xl flex flex-col items-center animate-in fade-in slide-in-from-top-6 duration-1000">
-                <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[10px] font-bold uppercase tracking-widest mb-4">
-                    <Sparkles size={11} className="animate-pulse" /> Introducing d-admin v2.0
+        <div className="flex-1 flex flex-col items-center justify-start pt-5 sm:pt-8 px-4 md:px-6 w-full min-w-0 pb-16 overflow-y-auto custom-scrollbar">
+            {/* ── Hero section ── */}
+            <div className="w-full max-w-lg flex flex-col items-center animate-in fade-in slide-in-from-top-6 duration-700 mb-5">
+                {/* Badge */}
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/25 text-blue-400 text-[10px] font-bold uppercase tracking-widest mb-4">
+                    <Sparkles size={10} className="animate-pulse" /> Introducing d-admin v2.0
                 </div>
-                
-                <h2 className="text-3xl md:text-5xl lg:text-5xl font-bold text-white mb-4 text-center tracking-tight leading-[1.1] overflow-visible">
-                    Build and deploy <br className="hidden md:block" />
-                    <span className="bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent italic pr-4 inline-block">
+
+                {/* Headline */}
+                <h1 className="w-full font-extrabold text-white mb-3 text-center tracking-tight leading-[1.12] text-[22px] xs:text-[26px] sm:text-4xl md:text-5xl whitespace-nowrap pr-2">
+                    Build &amp; deploy{' '}
+                    <span className="bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent italic">
                         Websites with AI
                     </span>
-                </h2>
-                
-                <p className="text-gray-400 text-center max-w-2xl mb-10 text-[15px] md:text-[17px] leading-relaxed px-4">
-                    The world's most powerful developer experience. <br className="hidden md:block" /> 
-                    Build with <span className="text-white font-medium hover:text-blue-400 cursor-help transition-colors">multi-model AI</span> or start fast with <Link href="/templates" className="text-white font-medium hover:text-blue-400 underline decoration-blue-500/30 underline-offset-4 transition-colors cursor-pointer">premium Templates</Link>.
+                </h1>
+
+                {/* Value subtitle — confidence inspiring, specific */}
+                <p className="text-gray-400 text-center text-[13px] sm:text-[14px] leading-[1.7] px-1 mb-5 max-w-[340px]">
+                    Go from an idea to a{' '}
+                    <span className="text-white font-semibold">live website in under&nbsp;60&nbsp;seconds</span>
+                    {' '}— completely free.
+                    <br />
+                    <span className="text-gray-500 text-[12px]">
+                        No code needed · Export to GitHub · One‑click publish
+                    </span>
                 </p>
+
+                {/* Mode Switch */}
+                <ModeToggle activeMode={mode} onModeChange={setMode} />
             </div>
-            
-            <div className="w-full max-w-3xl min-w-0 mb-4 sm:mb-0 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-400">
-                <div className="relative flex items-center bg-[#2f2f2f] rounded-[32px] p-2 pl-3 pr-3 shadow-lg w-full group focus-within:ring-2 focus-within:ring-blue-500/50 transition-all">
-                    <PlusActionMenu />
-                    <input
-                        type="text"
-                        className="flex-1 min-w-0 bg-transparent border-none outline-none text-gray-200 px-2 sm:px-3 py-3 placeholder-gray-500 text-[16px] sm:text-[15px]"
-                        placeholder="Describe what you want to build..."
-                        value={inputValue}
-                        onChange={(e) => setInputValue(e.target.value)}
-                        onKeyDown={(e) => {
-                            if (e.key === 'Enter' && !e.shiftKey) {
-                                e.preventDefault();
-                                handleSubmit();
-                            }
-                        }}
+
+            {/* ── Mode panel ── */}
+            <div className="w-full max-w-lg">
+                {mode === 'ai' ? (
+                    <AIBuildPanel
+                        inputValue={inputValue}
+                        setInputValue={setInputValue}
+                        handleSubmit={handleSubmit}
+                        setViewState={setViewState}
                     />
-                    <div className="flex items-center gap-1.5 pr-0.5">
-                        <button className="text-gray-400 hover:text-gray-200 w-[34px] h-[34px] flex items-center justify-center focus:outline-none transition-colors rounded-full">
-                            <Mic size={20} strokeWidth={2} />
-                        </button>
-                        {inputValue.trim() ? (
-                            <button
-                                onClick={handleSubmit}
-                                className="bg-white text-black w-[34px] h-[34px] rounded-full outline-none focus:outline-none flex items-center justify-center shrink-0 hover:bg-gray-200 transition-transform hover:scale-105 active:scale-95 shadow-sm"
-                            >
-                                <ArrowUp size={18} strokeWidth={2.5} />
-                            </button>
-                        ) : (
-                            <button className="bg-white text-black w-[34px] h-[34px] rounded-full outline-none focus:outline-none flex items-center justify-center shrink-0 hover:bg-gray-200 transition-transform hover:scale-105 active:scale-95 shadow-sm">
-                                <Globe size={18} strokeWidth={2.5} />
-                            </button>
-                        )}
-                    </div>
-                </div>
-                <Suggestions
-                    onSelect={(text) => {
-                        setInputValue(text);
-                        const lower = text.toLowerCase();
-                        if (lower.includes('html') || lower.includes('code') || lower.includes('website')) {
-                            setViewState('chat-with-code');
-                        } else {
-                            setViewState('chat');
-                        }
-                    }}
-                />
+                ) : (
+                    <TemplateModePanel />
+                )}
+            </div>
+
+            {/* ── Fixed bottom stat bar — always visible at device bottom ── */}
+            <div className="fixed bottom-0 left-0 right-0 z-30 flex items-center justify-center gap-3 py-3 text-[11px] font-medium"
+                style={{ background: 'linear-gradient(to top, #212121 60%, transparent)' }}
+            >
+                <span className="flex items-center gap-1 text-gray-400"><span className="text-yellow-400">⚡</span> Live in 60s</span>
+                <span className="text-gray-700">·</span>
+                <span className="flex items-center gap-1 text-gray-400"><span className="text-green-400">✓</span> Free forever</span>
+                <span className="text-gray-700">·</span>
+                <span className="flex items-center gap-1 text-gray-400"><span className="text-purple-400">↑</span> Push to GitHub</span>
             </div>
         </div>
     );

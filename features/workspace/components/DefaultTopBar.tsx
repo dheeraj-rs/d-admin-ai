@@ -1,4 +1,6 @@
-import { ChevronDown, Upload, Globe, PanelLeft, Check } from 'lucide-react';
+'use client';
+
+import { ChevronDown, Upload, Globe, PanelLeft, Check, Sparkles } from 'lucide-react';
 import type { ViewState } from '../types/index';
 import { AGENTS } from '../constants/agents';
 
@@ -24,34 +26,42 @@ export default function DefaultTopBar({
     const currentAgent = AGENTS.find((a) => a.id === selectedAgent) || AGENTS[0];
 
     return (
-        <div className="sticky top-0 w-full p-2 sm:p-3 flex justify-between items-center backdrop-blur-md bg-[#212121]/80 z-50 text-gray-400 pointer-events-none">
-            <div className="flex items-center gap-1 sm:gap-2 pointer-events-auto">
+        <div className="sticky top-0 z-50 w-full flex items-center justify-between px-2 h-14 pointer-events-none">
+            {/* LEFT — sidebar toggle */}
+            <div className="flex items-center pointer-events-auto">
                 <button
-                    className="lg:hidden p-2 text-gray-400 hover:text-white rounded-lg transition-colors shrink-0 focus:outline-none focus:ring-0 active:bg-transparent"
+                    id="topbar-sidebar-toggle"
+                    className="lg:hidden w-10 h-10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/[0.06] rounded-xl transition-all focus:outline-none active:scale-95"
                     onClick={() => setShowLeftSidebar(true)}
+                    aria-label="Open sidebar"
                 >
                     <PanelLeft size={20} />
                 </button>
-                <div className="relative pointer-events-auto min-w-0">
+            </div>
+
+            {/* CENTER — brand + agent picker */}
+            <div className="flex-1 flex justify-center pointer-events-auto">
+                <div className="relative">
                     <button
+                        id="topbar-agent-picker"
                         onClick={() => setIsAgentOpen(!isAgentOpen)}
-                        className={`flex items-center gap-1.5 sm:gap-2 px-1.5 sm:px-2 py-1.5 transition-all cursor-pointer font-semibold text-[14px] sm:text-[15px] whitespace-nowrap focus:outline-none focus:ring-0 ${isAgentOpen ? 'text-white' : 'text-gray-400 hover:text-white'}`}
+                        className={`flex items-center gap-1.5 px-2 py-1.5 rounded-xl transition-all font-semibold focus:outline-none ${isAgentOpen ? 'bg-white/[0.07] text-white' : 'text-white hover:bg-white/[0.05]'}`}
                     >
-                        <span className="text-white truncate">d-admin</span>
-                        <div className="flex items-center gap-1.5 ml-0.5">
+                        <span className="text-white text-[15px] font-bold tracking-tight">d-admin</span>
+                        <div className="flex items-center gap-1 ml-0.5">
                             {currentAgent.icon}
-                            <span className="text-gray-300 font-medium text-[13px] hidden xs:inline">{currentAgent.name}</span>
+                            <span className="text-gray-400 text-[12px] font-medium hidden sm:inline">{currentAgent.name}</span>
                         </div>
                         <ChevronDown
-                            size={14}
-                            className={`text-gray-400 transition-transform duration-200 ml-0.5 shrink-0 ${isAgentOpen ? 'rotate-180' : ''}`}
+                            size={13}
+                            className={`text-gray-500 transition-transform duration-200 ${isAgentOpen ? 'rotate-180' : ''}`}
                         />
                     </button>
 
                     {isAgentOpen && (
                         <>
                             <div className="fixed inset-0 z-40" onClick={() => setIsAgentOpen(false)} />
-                            <div className="absolute top-full left-0 mt-2 w-44 sm:w-48 bg-[#1a1a1a] rounded-xl shadow-2xl border border-[#2f2f2f] z-50 flex flex-col p-1 animate-in fade-in slide-in-from-top-2 zoom-in-95">
+                            <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-48 bg-[#1e1e1e] rounded-2xl shadow-2xl border border-white/[0.07] z-50 flex flex-col p-1.5 animate-in fade-in slide-in-from-top-2 zoom-in-95">
                                 {AGENTS.map((agent) => (
                                     <button
                                         key={agent.id}
@@ -59,14 +69,14 @@ export default function DefaultTopBar({
                                             setSelectedAgent(agent.id);
                                             setIsAgentOpen(false);
                                         }}
-                                        className={`flex items-center justify-between px-3 py-2 text-[14px] rounded-lg transition-all text-left w-full font-medium ${selectedAgent === agent.id ? 'text-white' : 'text-gray-400 hover:text-white'}`}
+                                        className={`flex items-center justify-between px-3 py-2.5 text-[13px] rounded-xl transition-all text-left w-full font-medium ${selectedAgent === agent.id ? 'bg-white/[0.07] text-white' : 'text-gray-400 hover:bg-white/[0.04] hover:text-white'}`}
                                     >
                                         <div className="flex items-center gap-2.5">
                                             {agent.icon}
                                             {agent.name}
                                         </div>
                                         {selectedAgent === agent.id && (
-                                            <Check size={14} className="text-gray-200" strokeWidth={2.5} />
+                                            <Check size={13} className="text-blue-400" strokeWidth={2.5} />
                                         )}
                                     </button>
                                 ))}
@@ -75,26 +85,28 @@ export default function DefaultTopBar({
                     )}
                 </div>
             </div>
-            {viewState !== 'initial' ? (
-                <div className="flex items-center gap-1 pr-1 sm:pr-2 pointer-events-auto">
-                    <button className="flex items-center gap-1.5 px-2.5 sm:px-3 h-[34px] text-gray-400 hover:text-white transition-colors text-[13px] sm:text-sm font-medium whitespace-nowrap focus:outline-none focus:ring-0">
-                        <Upload size={14} /> <span className="hidden xs:inline">Share</span>
-                    </button>
-                </div>
-            ) : (
-                <div className="flex items-center gap-1 pr-1 sm:pr-2 pointer-events-auto shrink-0">
+
+            {/* RIGHT — context action */}
+            <div className="flex items-center pointer-events-auto">
+                {viewState !== 'initial' ? (
                     <button
-                        onClick={() => setIsHelpOpen(true)}
-                        className="group flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 h-[36px] text-gray-400 hover:text-white transition-all duration-300 text-[13px] sm:text-sm font-medium cursor-pointer whitespace-nowrap focus:outline-none focus:ring-0"
+                        id="topbar-share-btn"
+                        className="flex items-center gap-1.5 px-3 py-1.5 h-9 text-gray-400 hover:text-white text-[13px] font-medium rounded-xl hover:bg-white/[0.06] transition-all focus:outline-none"
                     >
-                        <Globe
-                            size={16}
-                            className="text-gray-400 group-hover:text-blue-400 transition-colors duration-300"
-                        />
-                        <span className="hidden xss:inline font-medium">How it works ?</span>
+                        <Upload size={14} />
+                        <span className="hidden sm:inline">Share</span>
                     </button>
-                </div>
-            )}
+                ) : (
+                    <button
+                        id="topbar-how-it-works-btn"
+                        onClick={() => setIsHelpOpen(true)}
+                        className="group flex items-center gap-1.5 px-2.5 py-1.5 h-9 text-gray-400 hover:text-white text-[13px] font-medium rounded-xl hover:bg-white/[0.06] transition-all focus:outline-none whitespace-nowrap"
+                    >
+                        <Globe size={15} className="group-hover:text-blue-400 transition-colors" />
+                        <span className="hidden sm:inline">How it works?</span>
+                    </button>
+                )}
+            </div>
         </div>
     );
 }

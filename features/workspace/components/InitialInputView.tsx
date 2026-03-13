@@ -12,6 +12,8 @@ interface InitialInputViewProps {
     setInputValue: (v: string) => void;
     handleSubmit: () => void;
     setViewState: (s: ViewState) => void;
+    showAIPanel: boolean;
+    setShowAIPanel: (v: boolean) => void;
 }
 
 export default function InitialInputView({
@@ -19,9 +21,9 @@ export default function InitialInputView({
     setInputValue,
     handleSubmit,
     setViewState,
+    showAIPanel,
+    setShowAIPanel,
 }: InitialInputViewProps) {
-    const [showAIPanel, setShowAIPanel] = useState(false);
-
     const handleStartWithAI = () => {
         setShowAIPanel(true);
         setTimeout(() => document.getElementById('ai-build-input')?.focus(), 100);
@@ -42,7 +44,7 @@ export default function InitialInputView({
 
                     {/* Hero Section */}
                     <section className="text-center pt-6 sm:pt-10 pb-6 lg:pb-8 animate-in fade-in slide-in-from-top-4 duration-700">
-                        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/25 text-blue-400 text-[10px] font-bold uppercase tracking-widest mb-4">
+                        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/25 text-blue-400 text-[10px] font-bold uppercase tracking-widest mb-8">
                             <Sparkles size={10} className="animate-pulse" /> Introducing d-admin v2.0
                         </div>
                         <h1 className="font-extrabold tracking-tight mb-3 leading-[1.08]">
@@ -60,13 +62,7 @@ export default function InitialInputView({
 
                     {/* Main panel */}
                     {showAIPanel ? (
-                        <div className="flex flex-col gap-4 animate-in fade-in slide-in-from-bottom-3 duration-400">
-                            <button
-                                onClick={() => setShowAIPanel(false)}
-                                className="self-start flex items-center gap-1.5 text-[12px] text-gray-500 hover:text-gray-300 transition-colors"
-                            >
-                                ← Back
-                            </button>
+                        <div className="flex flex-col gap-4 lg:gap-5 animate-in fade-in duration-500">
                             <AIBuildPanel
                                 inputValue={inputValue}
                                 setInputValue={setInputValue}
@@ -78,8 +74,6 @@ export default function InitialInputView({
                         <div className="flex flex-col gap-4 lg:gap-5 animate-in fade-in duration-500">
                             <HeroCards onStartWithAI={handleStartWithAI} setViewState={setViewState} />
                             <TemplatePreviews />
-
-                            {/* Platform Performance Dashboard */}
                             <section className="bg-[#13131E] border border-white/5 rounded-[24px] p-6 shadow-2xl relative group mb-2 overflow-hidden">
                                 <div className="absolute top-0 right-0 p-8 bg-blue-500/5 blur-3xl rounded-full" />
                                 

@@ -12,6 +12,7 @@ interface WorkspaceState {
     isAuthOpen: boolean;
     isHelpOpen: boolean;
     selectedAgent: string;
+    showAIPanel: boolean;
 }
 
 interface WorkspaceActions {
@@ -25,6 +26,7 @@ interface WorkspaceActions {
     setIsAuthOpen: (v: boolean) => void;
     setIsHelpOpen: (v: boolean) => void;
     setSelectedAgent: (v: string) => void;
+    setShowAIPanel: (v: boolean) => void;
     handleNewChat: () => void;
     handleSubmit: () => void;
 }
@@ -42,6 +44,7 @@ const INITIAL_STATE: WorkspaceState = {
     isAuthOpen: true,
     isHelpOpen: false,
     selectedAgent: 'auto',
+    showAIPanel: false,
 };
 
 export const useWorkspaceStore = create<WorkspaceStore>((set, get) => ({
@@ -57,9 +60,10 @@ export const useWorkspaceStore = create<WorkspaceStore>((set, get) => ({
     setIsAuthOpen: (v) => set({ isAuthOpen: v }),
     setIsHelpOpen: (v) => set({ isHelpOpen: v }),
     setSelectedAgent: (v) => set({ selectedAgent: v }),
+    setShowAIPanel: (v) => set({ showAIPanel: v }),
 
     handleNewChat: () => {
-        set({ viewState: 'initial', inputValue: '' });
+        set({ viewState: 'initial', inputValue: '', showAIPanel: false });
         if (typeof window !== 'undefined' && window.innerWidth < 1024) {
             set({ showLeftSidebar: false });
         }

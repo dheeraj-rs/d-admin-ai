@@ -84,7 +84,7 @@ export default function Sidebar({
                             <div key={idx} className="relative w-full group">
                                 <Link
                                     href={item.href}
-                                    className={`flex items-center rounded-xl transition-all duration-300 ease-in-out font-sans overflow-hidden whitespace-nowrap w-full cursor-pointer h-11 px-3 gap-3 shrink-0 ${
+                                    className={`flex items-center rounded-xl transition-all duration-300 ease-in-out font-sans overflow-hidden whitespace-nowrap w-full cursor-pointer h-11 px-3 shrink-0 ${
                                         isActive 
                                             ? 'bg-gradient-to-r from-blue-600/20 to-indigo-600/20 text-white border border-blue-500/20' 
                                             : 'hover:bg-white/[0.05] text-gray-400 hover:text-gray-200 border border-transparent hover:border-white/[0.05]'
@@ -93,14 +93,16 @@ export default function Sidebar({
                                         if (item.label === 'New chat') onNewChat?.();
                                     }}
                                 >
-                                    <div className={`p-1.5 rounded-lg transition-all ${isActive ? 'bg-blue-500/20 text-blue-400 shadow-[0_0_15px_-3px_rgba(59,130,246,0.5)]' : 'text-gray-400 group-hover:text-gray-200'}`}>
-                                        <item.icon 
-                                            size={18} 
-                                            strokeWidth={isActive ? 2.5 : 2} 
-                                        />
+                                    <div className="w-11 flex items-center justify-center shrink-0 -ml-3">
+                                        <div className={`flex items-center justify-center p-1.5 rounded-lg transition-all ${isActive ? 'bg-blue-500/20 text-blue-400 shadow-[0_0_15px_-3px_rgba(59,130,246,0.5)]' : 'text-gray-400 group-hover:text-gray-200'}`}>
+                                            <item.icon 
+                                                size={18} 
+                                                strokeWidth={isActive ? 2.5 : 2} 
+                                            />
+                                        </div>
                                     </div>
                                     <span
-                                        className={`text-[13.5px] tracking-tight transition-opacity duration-300 ${isOpen ? 'opacity-100 delay-100' : 'opacity-0'} ${isActive ? 'font-bold' : 'font-medium'}`}
+                                        className={`text-[13.5px] tracking-tight transition-all duration-300 ml-1 ${isOpen ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4 pointer-events-none'}`}
                                     >
                                         {item.label}
                                     </span>

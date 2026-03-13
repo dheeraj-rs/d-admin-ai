@@ -14,6 +14,8 @@ interface TopBarProps {
     setIsHelpOpen: (s: boolean) => void;
     selectedAgent: string;
     setSelectedAgent: (s: string) => void;
+    showAIPanel: boolean;
+    setShowAIPanel: (v: boolean) => void;
 }
 
 export default function TopBar({
@@ -29,6 +31,8 @@ export default function TopBar({
     setIsHelpOpen,
     selectedAgent,
     setSelectedAgent,
+    showAIPanel,
+    setShowAIPanel,
 }: TopBarProps) {
     if (viewState === 'fullscreen-editor') {
         return (
@@ -51,6 +55,8 @@ export default function TopBar({
             setIsHelpOpen={setIsHelpOpen}
             selectedAgent={selectedAgent}
             setSelectedAgent={setSelectedAgent}
+            showAIPanel={showAIPanel}
+            setShowAIPanel={setShowAIPanel}
         />
     );
 }

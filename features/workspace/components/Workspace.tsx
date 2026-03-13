@@ -39,6 +39,8 @@ export default function Workspace() {
                             setInputValue={actions.setInputValue}
                             handleSubmit={actions.handleSubmit}
                             setViewState={actions.setViewState}
+                            showAIPanel={state.showAIPanel}
+                            setShowAIPanel={actions.setShowAIPanel}
                         />
                     ) : (
                         <>

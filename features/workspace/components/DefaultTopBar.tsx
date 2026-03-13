@@ -12,6 +12,8 @@ interface DefaultTopBarProps {
     setIsHelpOpen: (s: boolean) => void;
     selectedAgent: string;
     setSelectedAgent: (s: string) => void;
+    showAIPanel?: boolean;
+    setShowAIPanel?: (v: boolean) => void;
 }
 
 export default function DefaultTopBar({
@@ -22,6 +24,8 @@ export default function DefaultTopBar({
     setIsHelpOpen,
     selectedAgent,
     setSelectedAgent,
+    showAIPanel,
+    setShowAIPanel,
 }: DefaultTopBarProps) {
     const currentAgent = AGENTS.find((a) => a.id === selectedAgent) || AGENTS[0];
 
@@ -38,49 +42,67 @@ export default function DefaultTopBar({
                     <PanelLeft size={20} />
                 </button>
 
-                <div className="relative">
-                    <button
-                        id="topbar-agent-picker"
-                        onClick={() => setIsAgentOpen(!isAgentOpen)}
-                        className={`flex items-center gap-1.5 px-2 py-1.5 rounded-xl transition-all font-semibold focus:outline-none ${isAgentOpen ? 'bg-white/[0.07] text-white' : 'text-white hover:bg-white/[0.05]'}`}
-                    >
-                        <span className="text-white text-[15px] font-bold tracking-tight">d-admin</span>
-                        <div className="flex items-center gap-1 ml-0.5">
-                            {currentAgent.icon}
-                            <span className="text-gray-400 text-[12px] font-medium hidden sm:inline">{currentAgent.name}</span>
-                        </div>
-                        <ChevronDown
-                            size={13}
-                            className={`text-gray-500 transition-transform duration-200 ${isAgentOpen ? 'rotate-180' : ''}`}
-                        />
-                    </button>
-
-                    {isAgentOpen && (
-                        <>
-                            <div className="fixed inset-0 z-40" onClick={() => setIsAgentOpen(false)} />
-                            <div className="absolute top-full left-0 mt-2 w-48 bg-[#1e1e1e] rounded-2xl shadow-2xl border border-white/[0.07] z-50 flex flex-col p-1.5 animate-in fade-in slide-in-from-top-2 zoom-in-95">
-                                {AGENTS.map((agent) => (
-                                    <button
-                                        key={agent.id}
-                                        onClick={() => {
-                                            setSelectedAgent(agent.id);
-                                            setIsAgentOpen(false);
-                                        }}
-                                        className={`flex items-center justify-between px-3 py-2.5 text-[13px] rounded-xl transition-all text-left w-full font-medium ${selectedAgent === agent.id ? 'bg-white/[0.07] text-white' : 'text-gray-400 hover:bg-white/[0.04] hover:text-white'}`}
-                                    >
-                                        <div className="flex items-center gap-2.5">
-                                            {agent.icon}
-                                            {agent.name}
-                                        </div>
-                                        {selectedAgent === agent.id && (
-                                            <Check size={13} className="text-blue-400" strokeWidth={2.5} />
-                                        )}
-                                    </button>
-                                ))}
-                            </div>
-                        </>
+                <div className="flex items-center gap-2 ml-2">
+                    {showAIPanel && setShowAIPanel && (
+                        <button
+                            onClick={() => setShowAIPanel(false)}
+                            className="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/[0.06] rounded-lg transition-all focus:outline-none active:scale-95 mr-1"
+                            aria-label="Back to landing"
+                        >
+                            <ChevronDown size={18} className="rotate-90" />
+                        </button>
                     )}
-                </div>
+                    <span className="text-white text-[16px] font-black tracking-tightest">D-Admin</span>
+                    
+                    {(viewState !== 'initial' || showAIPanel) && (
+                        <div className="relative group">
+                            <button
+                                id="topbar-agent-picker"
+                                onClick={() => setIsAgentOpen(!isAgentOpen)}
+                                className={`flex items-center gap-2 px-3 py-1.5 rounded-xl transition-all font-semibold focus:outline-none border shadow-sm ${
+                                    isAgentOpen 
+                                        ? 'bg-white/[0.08] text-white border-white/[0.15]' 
+                                        : 'text-white/70 hover:text-white hover:bg-white/[0.05] border-transparent hover:border-white/[0.1]'
+                                }`}
+                            >
+                                <div className="flex items-center gap-2">
+                                    {currentAgent.icon}
+                                    <span className="text-[12px] font-bold tracking-tight hidden sm:inline">{currentAgent.name}</span>
+                                </div>
+                                <ChevronDown
+                                    size={12}
+                                    className={`text-gray-500 transition-transform duration-200 ${isAgentOpen ? 'rotate-180' : ''}`}
+                                />
+                            </button>
+
+                            {isAgentOpen && (
+                                <>
+                                    <div className="fixed inset-0 z-40" onClick={() => setIsAgentOpen(false)} />
+                                    <div className="absolute top-full left-0 mt-2 w-48 bg-[#1e1e1e] rounded-2xl shadow-2xl border border-white/[0.07] z-50 flex flex-col p-1.5 animate-in fade-in slide-in-from-top-2 zoom-in-95">
+                                        {AGENTS.map((agent) => (
+                                            <button
+                                                key={agent.id}
+                                                onClick={() => {
+                                                    setSelectedAgent(agent.id);
+                                                    setIsAgentOpen(false);
+                                                }}
+                                                className={`flex items-center justify-between px-3 py-2.5 text-[13px] rounded-xl transition-all text-left w-full font-medium ${selectedAgent === agent.id ? 'bg-white/[0.07] text-white' : 'text-gray-400 hover:bg-white/[0.04] hover:text-white'}`}
+                                        >
+                                            <div className="flex items-center gap-2.5">
+                                                {agent.icon}
+                                                {agent.name}
+                                            </div>
+                                            {selectedAgent === agent.id && (
+                                                <Check size={13} className="text-blue-400" strokeWidth={2.5} />
+                                            )}
+                                        </button>
+                                    ))}
+                                </div>
+                            </>
+                        )}
+                    </div>
+                )}
+            </div>
             </div>
 
             {/* SPACER */}

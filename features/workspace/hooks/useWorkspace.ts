@@ -19,6 +19,7 @@ export function useWorkspace() {
             isAuthOpen: store.isAuthOpen,
             isHelpOpen: store.isHelpOpen,
             selectedAgent: store.selectedAgent,
+            showAIPanel: store.showAIPanel,
         },
         actions: {
             setShowLeftSidebar: store.setShowLeftSidebar,
@@ -31,6 +32,7 @@ export function useWorkspace() {
             setIsAuthOpen: store.setIsAuthOpen,
             setIsHelpOpen: store.setIsHelpOpen,
             setSelectedAgent: store.setSelectedAgent,
+            setShowAIPanel: store.setShowAIPanel,
             handleNewChat: store.handleNewChat,
             handleSubmit: store.handleSubmit,
         },

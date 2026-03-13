@@ -50,6 +50,8 @@ export default function WorkspaceLayout({
                     setIsHelpOpen={actions.setIsHelpOpen}
                     selectedAgent={selectedAgent}
                     setSelectedAgent={actions.setSelectedAgent}
+                    showAIPanel={state.showAIPanel}
+                    setShowAIPanel={actions.setShowAIPanel}
                 />
                 <div className="flex-1 relative overflow-auto scrollbar-gutter-stable">
                     {children}

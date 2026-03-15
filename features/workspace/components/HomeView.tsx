@@ -28,18 +28,18 @@ const HomeView = () => {
   }, []);
 
   return (
-    <div className="flex-1 w-full min-h-[100dvh] bg-[#f0f9ff] dark:bg-[#02060D] text-gray-900 dark:text-white font-sans overflow-y-auto overflow-x-hidden relative z-0 flex flex-col custom-scrollbar transition-colors duration-300">
-        <div className="fixed inset-0 w-[100dvw] h-[100dvh] z-0 pointer-events-none overflow-hidden bg-[#f0f9ff] dark:bg-[#02060D] transition-colors duration-300">
+    <div className="flex-1 w-full min-h-[100dvh] dark:bg-[#02060D] text-gray-900 dark:text-white font-sans overflow-y-auto overflow-x-hidden relative z-0 flex flex-col custom-scrollbar transition-colors duration-300">
+        <div className="fixed inset-0 w-[100dvw] h-[100dvh] z-0 pointer-events-none overflow-hidden bg-[#dbeafe] dark:bg-[#02060D] transition-colors duration-300">
         <div 
           className="absolute inset-0 bg-cover bg-center transition-all duration-700 opacity-100"
           style={{ backgroundImage: 'url("/home_hero_bg.png")' }}
         />
         
-        {/* Edge fade gradients matching the light blue bg seamlessly */}
-        <div className="absolute inset-x-0 bottom-0 h-[40%] bg-gradient-to-t from-[#f0f9ff] via-[#f0f9ff]/80 dark:from-[#02060D] dark:via-transparent to-transparent transition-colors duration-300 pointer-events-none" />
-        <div className="absolute inset-x-0 top-0 h-[25%] bg-gradient-to-b from-[#f0f9ff] via-[#f0f9ff]/80 dark:from-[#02060D]/60 dark:via-transparent to-transparent transition-colors duration-300 pointer-events-none" />
-        <div className="absolute inset-y-0 left-0 w-[50%] md:w-[40%] bg-gradient-to-r from-[#f0f9ff] via-[#f0f9ff]/90 dark:from-[#02060D] dark:via-transparent to-transparent transition-colors duration-300 pointer-events-none" />
-        <div className="absolute inset-y-0 right-0 w-[40%] md:w-[35%] bg-gradient-to-l from-[#f0f9ff] via-[#f0f9ff]/80 dark:from-[#02060D]/80 dark:via-transparent to-transparent transition-colors duration-300 pointer-events-none" />
+        {/* Very subtle cyan-tinted edge fade — keeps image visible while blending with the blue theme */}
+        <div className="absolute inset-x-0 bottom-0 h-[30%] bg-gradient-to-t from-[#dbeafe]/90 via-[#dbeafe]/40 dark:from-[#02060D] dark:via-transparent to-transparent transition-colors duration-300 pointer-events-none" />
+        <div className="absolute inset-x-0 top-0 h-[15%] bg-gradient-to-b from-[#bfdbfe]/60 dark:from-[#02060D]/60 dark:via-transparent to-transparent transition-colors duration-300 pointer-events-none" />
+        <div className="absolute inset-y-0 left-0 w-[35%] md:w-[25%] bg-gradient-to-r from-[#dbeafe]/80 via-[#dbeafe]/30 dark:from-[#02060D] dark:via-transparent to-transparent transition-colors duration-300 pointer-events-none" />
+        <div className="absolute inset-y-0 right-0 w-[30%] md:w-[20%] bg-gradient-to-l from-[#dbeafe]/70 via-[#dbeafe]/20 dark:from-[#02060D]/80 dark:via-transparent to-transparent transition-colors duration-300 pointer-events-none" />
       </div>
 
       <div className="relative z-10 flex flex-col w-full min-h-[100dvh] max-w-[1500px] mx-auto pt-[70px] px-6 lg:px-10 pb-4">

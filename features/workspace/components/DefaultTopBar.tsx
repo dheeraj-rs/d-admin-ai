@@ -122,7 +122,7 @@ export default function DefaultTopBar({
                     <button
                         id="topbar-how-it-works-btn"
                         onClick={() => setIsHelpOpen(true)}
-                        className="group flex items-center gap-1.5 px-2.5 py-1.5 h-9 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white text-[13px] font-medium rounded-xl hover:bg-black/5 dark:hover:bg-white/[0.06] transition-all focus:outline-none whitespace-nowrap"
+                        className="group flex items-center gap-1.5 px-2.5 py-1.5 h-9 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white text-[13px] font-medium rounded-xl hover:bg-black/5 dark:hover:bg-white/[0.06] transition-all focus:outline-none whitespace-nowrap cursor-pointer"
                     >
                         <Globe size={15} className="group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors" />
                         <span className="hidden sm:inline">How it works?</span>

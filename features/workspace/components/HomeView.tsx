@@ -31,14 +31,15 @@ const HomeView = () => {
     <div className="flex-1 w-full min-h-[100dvh] bg-[#f8fafc] dark:bg-[#02060D] text-gray-900 dark:text-white font-sans overflow-y-auto overflow-x-hidden relative z-0 flex flex-col custom-scrollbar transition-colors duration-300">
         <div className="fixed inset-0 w-[100dvw] h-[100dvh] z-0 pointer-events-none overflow-hidden bg-[#f8fafc] dark:bg-[#02060D] transition-colors duration-300">
         <div 
-          className="absolute inset-0 bg-cover bg-center transition-all duration-700 opacity-[0.85] dark:opacity-100"
+          className="absolute inset-0 bg-cover bg-center transition-all duration-700 opacity-100"
           style={{ backgroundImage: 'url("/home_hero_bg.png")' }}
         />
-        <div className="absolute inset-0 bg-white/30 dark:bg-transparent transition-colors duration-500 pointer-events-none" />
+        {/* Subtle, premium glass layer that doesn't completely hide the girl but gives a wow feel */}
+        <div className="absolute inset-0 bg-white/20 dark:bg-transparent backdrop-blur-[3px] dark:backdrop-blur-none transition-all duration-500 pointer-events-none" />
         
         {/* Edge fade gradients matching the off-white bg, soft transitions */}
         <div className="absolute inset-x-0 bottom-0 h-[35%] bg-gradient-to-t from-[#f8fafc] dark:from-[#02060D] to-transparent transition-colors duration-300 pointer-events-none" />
-        <div className="absolute inset-x-0 top-0 h-[20%] bg-gradient-to-b from-[#f8fafc]/90 dark:from-[#02060D]/60 to-transparent transition-colors duration-300 pointer-events-none" />
+        <div className="absolute inset-x-0 top-0 h-[20%] bg-gradient-to-b from-[#f8fafc]/80 dark:from-[#02060D]/60 to-transparent transition-colors duration-300 pointer-events-none" />
         <div className="absolute inset-y-0 left-0 w-[40%] md:w-[35%] bg-gradient-to-r from-[#f8fafc] dark:from-[#02060D] to-transparent transition-colors duration-300 pointer-events-none" />
         <div className="absolute inset-y-0 right-0 w-[40%] md:w-[35%] bg-gradient-to-l from-[#f8fafc]/90 dark:from-[#02060D]/80 to-transparent transition-colors duration-300 pointer-events-none" />
       </div>
@@ -89,7 +90,7 @@ const HomeView = () => {
              <div className="w-full relative z-30 mb-2">
                 <div className="absolute -top-[8px] -left-[8px] w-8 h-8 border-t-[1.5px] border-l-[1.5px] border-cyan-500/30 dark:border-cyan-400/50 rounded-tl-2xl pointer-events-none opacity-90 shadow-[-4px_-4px_10px_rgba(34,211,238,0.1)] dark:shadow-[-4px_-4px_10px_rgba(34,211,238,0.2)] z-10"></div>
                 <div className="absolute -bottom-[8px] -right-[8px] w-8 h-8 border-b-[1.5px] border-r-[1.5px] border-cyan-500/30 dark:border-cyan-400/50 rounded-br-2xl pointer-events-none opacity-90 shadow-[4px_4px_10px_rgba(34,211,238,0.1)] dark:shadow-[4px_4px_10px_rgba(34,211,238,0.2)] z-10"></div>
-                <div className="w-full bg-white/70 dark:bg-[#06101E]/40 backdrop-blur-md border-[1.5px] border-cyan-500/30 dark:border-cyan-400/50 rounded-xl p-5 shadow-[0_4px_20px_rgba(0,0,0,0.05),inset_0_0_15px_rgba(34,211,238,0.05)] dark:shadow-[0_0_30px_rgba(34,211,238,0.2),inset_0_0_15px_rgba(34,211,238,0.1)] flex flex-col relative z-20 transition-colors duration-300">
+                <div className="w-full bg-white/40 dark:bg-[#06101E]/40 backdrop-blur-xl border-[1.5px] border-white/60 dark:border-cyan-400/50 rounded-xl p-5 shadow-[0_8px_32px_rgba(0,0,0,0.06),inset_0_0_15px_rgba(255,255,255,0.4)] dark:shadow-[0_0_30px_rgba(34,211,238,0.2),inset_0_0_15px_rgba(34,211,238,0.1)] flex flex-col relative z-20 transition-colors duration-300">
                   <div className="flex items-center gap-3 mb-4 pl-1">
                     <div className="w-8 h-8 rounded-lg bg-cyan-50 dark:bg-[#0b1b36] border border-cyan-500/30 dark:border-cyan-400/60 flex items-center justify-center shadow-[0_0_8px_rgba(34,211,238,0.15)] dark:shadow-[0_0_12px_rgba(34,211,238,0.3)]">
                       <span className="text-cyan-600 dark:text-cyan-400 font-bold text-[12px] font-mono tracking-widest">AI</span>
@@ -119,7 +120,7 @@ const HomeView = () => {
             <div className="w-full relative z-30 mb-2">
                 <div className="absolute -top-[8px] -left-[8px] w-8 h-8 border-t-[1.5px] border-l-[1.5px] border-cyan-500/30 dark:border-cyan-400/50 rounded-tl-2xl pointer-events-none opacity-90 shadow-[-4px_-4px_10px_rgba(34,211,238,0.1)] dark:shadow-[-4px_-4px_10px_rgba(34,211,238,0.2)] z-10"></div>
                 <div className="absolute -bottom-[8px] -right-[8px] w-8 h-8 border-b-[1.5px] border-r-[1.5px] border-purple-500/30 dark:border-purple-400/50 rounded-br-2xl pointer-events-none opacity-90 shadow-[4px_4px_10px_rgba(168,85,247,0.1)] dark:shadow-[4px_4px_10px_rgba(168,85,247,0.2)] z-10"></div>
-                <div className="w-full bg-white/70 dark:bg-[#06101E]/40 backdrop-blur-md border-[1.5px] border-cyan-500/30 dark:border-cyan-400/50 rounded-xl p-5 shadow-[0_4px_20px_rgba(0,0,0,0.05),inset_0_0_15px_rgba(34,211,238,0.05)] dark:shadow-[0_0_30px_rgba(34,211,238,0.2),inset_0_0_15px_rgba(34,211,238,0.1)] flex flex-col relative z-20 transition-colors duration-300">
+                <div className="w-full bg-white/40 dark:bg-[#06101E]/40 backdrop-blur-xl border-[1.5px] border-white/60 dark:border-cyan-400/50 rounded-xl p-5 shadow-[0_8px_32px_rgba(0,0,0,0.06),inset_0_0_15px_rgba(255,255,255,0.4)] dark:shadow-[0_0_30px_rgba(34,211,238,0.2),inset_0_0_15px_rgba(34,211,238,0.1)] flex flex-col relative z-20 transition-colors duration-300">
                <div className="flex justify-between items-center mb-4 px-1 mt-1">
                   <h3 className="text-gray-800 dark:text-gray-200 text-[12px] font-medium tracking-wide">Select from our curated gallery</h3>
                   <span onClick={() => router.push('/templates')} className="text-[10px] text-cyan-600 dark:text-cyan-400 hover:text-cyan-700 dark:hover:text-cyan-300 cursor-pointer font-bold tracking-widest uppercase transition-colors">VIEW_ALL</span>

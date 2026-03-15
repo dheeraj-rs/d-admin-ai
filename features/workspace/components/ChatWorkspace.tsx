@@ -14,10 +14,10 @@ export default function ChatWorkspace() {
     const { handleNewChat } = actions;
 
     return (
-        <div className="flex-1 flex overflow-hidden relative h-full bg-[#02060D] text-gray-900 dark:text-white font-sans z-0 transition-colors duration-300">
+        <div className="flex-1 flex overflow-hidden relative h-full bg-white dark:bg-[#02060D] text-gray-900 dark:text-white font-sans z-0 transition-colors duration-300">
             {/* Ambient Theme Background for Chat Builder - Removed light blobs */}
             {viewState !== 'fullscreen-editor' && (
-                <div className="fixed inset-0 w-[100dvw] h-[100dvh] z-0 pointer-events-none overflow-hidden bg-[#02060D] transition-colors duration-300">
+                <div className="fixed inset-0 w-[100dvw] h-[100dvh] z-0 pointer-events-none overflow-hidden bg-white dark:bg-[#02060D] transition-colors duration-300">
                     {/* Subtle dark ambient glows only */}
                     <div className="absolute top-[-10%] left-[-10%] w-[40vw] h-[40vw] bg-cyan-600/5 rounded-full blur-[120px]" />
                     <div className="absolute bottom-[-10%] right-[-10%] w-[40vw] h-[40vw] bg-blue-600/5 rounded-full blur-[120px]" />
@@ -26,7 +26,7 @@ export default function ChatWorkspace() {
             
             {viewState === 'fullscreen-editor' ? (
                 <>
-                    <div className={`w-full lg:w-[450px] shrink-0 border-r border-gray-200 dark:border-[#2f2f2f] bg-gray-50 dark:bg-[#212121] flex flex-col relative transition-colors duration-300 ${activeTab === 'chat' ? 'flex' : 'hidden lg:flex'}`}>
+                    <div className={`w-full lg:w-[450px] shrink-0 border-r border-gray-200 dark:border-[#2f2f2f] bg-slate-50/50 dark:bg-[#02060D]/50 backdrop-blur-xl flex flex-col relative transition-colors duration-300 ${activeTab === 'chat' ? 'flex' : 'hidden lg:flex'}`}>
                         <div className="flex-1 overflow-y-auto w-full pt-6 scrollbar-gutter-stable">
                             <div className="px-4 pb-40 flex flex-col max-w-3xl mx-auto w-full">
                                 <ChatHistory 
@@ -39,7 +39,7 @@ export default function ChatWorkspace() {
                         </div>
                         <ChatInputArea inputValue={inputValue} setInputValue={actions.setInputValue} handleSubmit={actions.handleSubmit} isSidebar={true} />
                     </div>
-                    <div className={`flex-1 bg-[#ecfeff] dark:bg-[#1e1e1e] relative flex flex-col transition-colors duration-300 ${activeTab === 'chat' ? 'hidden lg:flex' : 'flex'}`}>
+                    <div className={`flex-1 bg-white dark:bg-[#0b0f1a] relative flex flex-col transition-colors duration-300 ${activeTab === 'chat' ? 'hidden lg:flex' : 'flex'}`}>
                         {activeTab === 'code' ? <WorkbenchMock /> : <RightPanel />}
                     </div>
                 </>

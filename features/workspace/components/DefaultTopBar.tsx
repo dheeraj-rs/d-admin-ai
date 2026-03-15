@@ -120,13 +120,15 @@ export default function DefaultTopBar({
                                 </>
                             )}
                         </div>
-                        <button
-                            onClick={handleNewChat}
-                            className="flex items-center gap-1.5 px-1.5 py-1 h-8 text-indigo-500 dark:text-indigo-400 hover:text-indigo-600 dark:hover:text-indigo-300 text-[12px] font-bold transition-all focus:outline-none active:scale-95 bg-transparent border-none shadow-none"
-                        >
-                            <Sparkles size={14} />
-                            <span>New Chat</span>
-                        </button>
+                        {viewState !== 'initial' && (
+                            <button
+                                onClick={handleNewChat}
+                                className="flex items-center gap-1.5 px-1.5 py-1 h-8 text-indigo-500 dark:text-indigo-400 hover:text-indigo-600 dark:hover:text-indigo-300 text-[12px] font-bold transition-all focus:outline-none active:scale-95 bg-transparent border-none shadow-none"
+                            >
+                                <Sparkles size={14} />
+                                <span>New Chat</span>
+                            </button>
+                        )}
                     </div>
                 )}
             </div>

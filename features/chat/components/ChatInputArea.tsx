@@ -23,14 +23,14 @@ export default function ChatInputArea({
 
     return (
         <div
-            className={`absolute bottom-0 w-full bg-gradient-to-t from-transparent via-transparent to-transparent ${isSidebar ? 'pt-8 pb-4 sm:pb-6 px-4' : 'pt-6 pb-4 sm:pb-6 px-4'} pointer-events-none z-10 transition-colors duration-300`}
+            className={`absolute bottom-0 w-full bg-gradient-to-t from-white dark:from-[#02060D] via-white/95 dark:via-[#02060D]/95 to-transparent ${isSidebar ? 'pt-8 pb-4 sm:pb-6 px-4' : 'pt-6 pb-4 sm:pb-6 px-4'} pointer-events-none z-10 transition-colors duration-300`}
         >
             <div className={`${isSidebar ? 'w-full' : 'max-w-3xl mx-auto'} pointer-events-auto`}>
                 <div className="relative flex items-center bg-black/20 dark:bg-white/[0.03] backdrop-blur-xl border border-white/5 rounded-[32px] p-2 pl-3 pr-3 shadow-2xl transition-colors duration-300 ring-1 ring-white/5">
                     <PlusActionMenu />
                     <input
                         type="text"
-                        className="flex-1 min-w-0 bg-transparent border-none outline-none text-gray-900 dark:text-gray-200 px-2 sm:px-3 py-3 placeholder-gray-400 dark:placeholder-gray-500 text-[16px] sm:text-[15px]"
+                        className="flex-1 min-w-0 bg-transparent border-none outline-none text-gray-100 px-2 sm:px-3 py-3 placeholder-gray-400 dark:placeholder-gray-500 text-[16px] sm:text-[15px]"
                         placeholder="Ask anything"
                         value={inputValue}
                         onChange={(e) => setInputValue(e.target.value)}

@@ -33,7 +33,7 @@ export default function ChatWorkspace() {
                         </div>
                         <ChatInputArea inputValue={inputValue} setInputValue={actions.setInputValue} handleSubmit={actions.handleSubmit} isSidebar={true} />
                     </div>
-                    <div className={`flex-1 bg-white dark:bg-[#1e1e1e] relative flex flex-col transition-colors duration-300 ${activeTab === 'chat' ? 'hidden lg:flex' : 'flex'}`}>
+                    <div className={`flex-1 bg-[#f0f9ff] dark:bg-[#1e1e1e] relative flex flex-col transition-colors duration-300 ${activeTab === 'chat' ? 'hidden lg:flex' : 'flex'}`}>
                         {activeTab === 'code' ? <WorkbenchMock /> : <RightPanel />}
                     </div>
                 </>

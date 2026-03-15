@@ -60,7 +60,7 @@ export default function PublishedSitesView({ onBack }: { onBack?: () => void }) 
                                 placeholder="Filter your live sites..."
                                 value={searchValue}
                                 onChange={(e) => setSearchValue(e.target.value)}
-                                className="w-full h-12 bg-gray-50 dark:bg-white/[0.03] border border-gray-200 dark:border-white/[0.08] rounded-2xl pl-12 pr-4 text-gray-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-gray-500 text-sm focus:outline-none focus:border-green-500/50 focus:bg-white dark:focus:bg-white/[0.05] transition-all shadow-sm dark:shadow-none"
+                                className="w-full h-12 bg-sky-50 dark:bg-white/[0.03] border border-sky-200 dark:border-white/[0.08] rounded-2xl pl-12 pr-4 text-gray-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-gray-500 text-sm focus:outline-none focus:border-green-500/50 focus:bg-sky-100 dark:focus:bg-white/[0.05] transition-all shadow-sm dark:shadow-none"
                             />
                         </div>
                     </div>

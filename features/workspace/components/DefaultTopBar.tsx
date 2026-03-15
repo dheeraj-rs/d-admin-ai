@@ -78,7 +78,7 @@ export default function DefaultTopBar({
                             {isAgentOpen && (
                                 <>
                                     <div className="fixed inset-0 z-40" onClick={() => setIsAgentOpen(false)} />
-                                    <div className="absolute top-full left-0 mt-2 w-48 bg-white dark:bg-[#1e1e1e] rounded-2xl shadow-xl dark:shadow-2xl border border-gray-200 dark:border-white/[0.07] z-50 flex flex-col p-1.5 animate-in fade-in slide-in-from-top-2 zoom-in-95">
+                                    <div className="absolute top-full left-0 mt-2 w-48 bg-[#f0f9ff] dark:bg-[#1e1e1e] rounded-2xl shadow-xl dark:shadow-2xl border border-sky-200 dark:border-white/[0.07] z-50 flex flex-col p-1.5 animate-in fade-in slide-in-from-top-2 zoom-in-95">
                                         {AGENTS.map((agent) => (
                                             <button
                                                 key={agent.id}

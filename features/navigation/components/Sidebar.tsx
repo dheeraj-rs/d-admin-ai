@@ -113,14 +113,14 @@ export default function Sidebar({
                                 
                                 {/* Tooltip for collapsed state */}
                                 {!isOpen && (
-                                    <div className="absolute left-full top-1/2 -translate-y-1/2 ml-3 px-3 py-2 bg-white dark:bg-[#1e1e1e] text-gray-900 dark:text-white text-[12px] font-bold rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-200 z-[70] flex items-center shadow-xl dark:shadow-2xl border border-gray-200 dark:border-white/[0.1] pointer-events-none whitespace-nowrap translate-x-1 group-hover:translate-x-0">
+                                    <div className="absolute left-full top-1/2 -translate-y-1/2 ml-3 px-3 py-2 bg-[#f0f9ff] dark:bg-[#1e1e1e] text-gray-900 dark:text-white text-[12px] font-bold rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-200 z-[70] flex items-center shadow-xl dark:shadow-2xl border border-sky-200 dark:border-white/[0.1] pointer-events-none whitespace-nowrap translate-x-1 group-hover:translate-x-0">
                                         {item.label}
                                         {item.shortcut && (
                                             <span className="text-gray-500 text-[10px] ml-3 tracking-widest font-black flex items-center bg-black/[0.05] dark:bg-white/[0.05] px-1.5 py-0.5 rounded-lg">
                                                 {item.shortcut}
                                             </span>
                                         )}
-                                        <div className="absolute left-[-4px] top-1/2 -translate-y-1/2 w-2 h-2 bg-white dark:bg-[#1e1e1e] rotate-45 border-l border-b border-gray-200 dark:border-white/[0.1]" />
+                                        <div className="absolute left-[-4px] top-1/2 -translate-y-1/2 w-2 h-2 bg-[#f0f9ff] dark:bg-[#1e1e1e] rotate-45 border-l border-b border-sky-200 dark:border-white/[0.1]" />
                                     </div>
                                 )}
                             </div>

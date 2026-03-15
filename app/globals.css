@@ -1,5 +1,8 @@
 @import 'tailwindcss';
 
+/* Enable class-based dark mode for next-themes */
+@custom-variant dark (&:is(.dark *));
+
 @theme {
     --color-primary: #3b82f6;
     --breakpoint-xs: 400px;
@@ -8,9 +11,14 @@
 
 /* Base Resets */
 :root {
+    background-color: #ffffff;
+    color: #111827;
+    font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+}
+
+.dark {
     background-color: #212121;
     color: #ececec;
-    font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
 }
 
 html,
@@ -21,7 +29,7 @@ body {
     overflow: hidden;
 }
 
-/* Custom Scrollbar for dark theme */
+/* Custom Scrollbar */
 ::-webkit-scrollbar {
     width: 8px;
     height: 8px;
@@ -30,9 +38,16 @@ body {
     background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-    background: #424242;
+    background: #cbd5e1; /* gray-300 */
     border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8; /* gray-400 */
+}
+
+.dark ::-webkit-scrollbar-thumb {
+    background: #424242;
+}
+.dark ::-webkit-scrollbar-thumb:hover {
     background: #505050;
 }

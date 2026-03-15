@@ -22,7 +22,7 @@ export default function ChatInitialView({
         <div className="flex-1 flex flex-col overflow-y-auto custom-scrollbar relative h-full z-10 font-sans">
             {/* ── Scrollable page content ── */}
             <main className="flex-1 relative z-10 w-full flex flex-col justify-center min-h-[80vh]">
-                <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 w-full -mt-20">
+                <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-16 sm:pt-20">
                     {/* Hero Section */}
                     <section className="text-center pb-6 lg:pb-8 animate-in fade-in slide-in-from-top-4 duration-700 relative flex flex-col items-center">
                         <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/25 text-blue-400 text-[10px] font-bold uppercase tracking-widest mb-6 transition-all duration-300 hover:bg-blue-500/20">

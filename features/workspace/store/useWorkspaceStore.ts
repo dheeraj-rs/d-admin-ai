@@ -13,6 +13,7 @@ interface WorkspaceState {
     isHelpOpen: boolean;
     selectedAgent: string;
     showAIPanel: boolean;
+    showTerminal: boolean;
     messages: Message[];
     projectSummary: ProjectSummary;
 }
@@ -29,6 +30,7 @@ interface WorkspaceActions {
     setIsHelpOpen: (v: boolean) => void;
     setSelectedAgent: (v: string) => void;
     setShowAIPanel: (v: boolean) => void;
+    setShowTerminal: (v: boolean) => void;
     handleNewChat: () => void;
     handleSubmit: () => void;
     addMessage: (message: Message) => void;
@@ -49,6 +51,7 @@ const INITIAL_STATE: WorkspaceState = {
     isHelpOpen: false,
     selectedAgent: 'auto',
     showAIPanel: false,
+    showTerminal: false,
     messages: [],
     projectSummary: {
         branding: '',
@@ -72,6 +75,7 @@ export const useWorkspaceStore = create<WorkspaceStore>((set, get) => ({
     setIsHelpOpen: (v) => set({ isHelpOpen: v }),
     setSelectedAgent: (v) => set({ selectedAgent: v }),
     setShowAIPanel: (v) => set({ showAIPanel: v }),
+    setShowTerminal: (v) => set({ showTerminal: v }),
 
     addMessage: (msg) => set((state) => ({ messages: [...state.messages, msg] })),
     updateProjectSummary: (summary) => set((state) => ({ projectSummary: { ...state.projectSummary, ...summary } })),

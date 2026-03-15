@@ -20,6 +20,7 @@ export function useWorkspace() {
             isHelpOpen: store.isHelpOpen,
             selectedAgent: store.selectedAgent,
             showAIPanel: store.showAIPanel,
+            showTerminal: store.showTerminal,
             messages: store.messages,
             projectSummary: store.projectSummary,
         },
@@ -36,6 +37,7 @@ export function useWorkspace() {
             setIsHelpOpen: store.setIsHelpOpen,
             setSelectedAgent: store.setSelectedAgent,
             setShowAIPanel: store.setShowAIPanel,
+            setShowTerminal: store.setShowTerminal,
             handleSubmit: store.handleSubmit,
         },
     };

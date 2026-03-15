@@ -31,63 +31,60 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
 
     return (
         <div
-            className="fixed inset-0 bg-black/50 z-[100] flex items-center justify-center p-4 backdrop-blur-sm animate-in fade-in duration-200"
+            className="fixed inset-0 bg-slate-950/60 z-[100] flex items-center justify-center p-4 backdrop-blur-md animate-in fade-in duration-200"
             onClick={onClose}
         >
             <div
-                className="bg-[#212121] w-full max-w-[420px] rounded-[24px] shadow-2xl flex flex-col overflow-hidden animate-in zoom-in-95 duration-200 border border-[#3f3f3f]"
+                className="bg-slate-900/90 dark:bg-[#0B0B0D]/90 w-full max-w-[420px] max-h-[90dvh] rounded-[28px] shadow-[0_0_50px_rgba(0,0,0,0.5)] flex flex-col animate-in zoom-in-95 duration-200 border border-white/10 dark:border-indigo-500/20 backdrop-blur-xl overflow-hidden"
                 onClick={(e) => e.stopPropagation()}
             >
-                <div className="flex justify-end p-4 pb-0">
+                <div className="flex justify-end p-4 pb-0 shrink-0">
                     <button
                         onClick={onClose}
-                        className="text-gray-400 hover:text-white transition-colors rounded-full p-1.5 hover:bg-[#3f3f3f]"
+                        className="text-slate-400 hover:text-white transition-all rounded-lg p-2 hover:bg-white/5 border border-transparent hover:border-white/10 active:scale-95"
                     >
                         <X size={20} />
                     </button>
                 </div>
 
-                <div className="px-8 pb-10 flex flex-col items-center">
-                    <h2 className="text-2xl font-semibold text-white mb-6">Welcome back</h2>
-                    <p className="text-[15px] text-gray-300 mb-8 text-center max-w-[280px]">
+                <div className="px-8 pb-10 flex flex-col items-center overflow-y-auto custom-scrollbar flex-1">
+                    <h2 className="text-3xl font-extrabold text-white mb-2 tracking-tightest">Welcome back</h2>
+                    <p className="text-[14px] text-slate-400 mb-8 text-center font-medium">
                         Choose an account to continue.
                     </p>
 
-                    <div className="w-full flex items-center justify-between p-3.5 rounded-xl border border-[#3f3f3f] bg-transparent hover:bg-[#2d2d2d] transition-colors cursor-pointer mb-6 group">
-                        <div className="flex items-center gap-3.5">
-                            <div className="w-10 h-10 rounded-full bg-[#f39c12] flex items-center justify-center text-white font-medium text-[15px]">
+                    <div className="w-full flex items-center justify-between p-4 rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 transition-all cursor-pointer mb-6 group active:scale-[0.98]">
+                        <div className="flex items-center gap-4">
+                            <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-amber-500 to-orange-400 flex items-center justify-center text-white font-black text-[16px] shadow-lg">
                                 DS
                             </div>
                             <div className="flex flex-col">
-                                <span className="text-[15px] font-medium text-white leading-tight mb-0.5">
+                                <span className="text-[15px] font-bold text-white leading-tight">
                                     DHEERAJ R S
                                 </span>
-                                <span className="text-[13px] text-gray-400">drjsde@gmail.com</span>
+                                <span className="text-[12px] text-slate-400 font-medium">drjsde@gmail.com</span>
                             </div>
                         </div>
-                        <button className="text-gray-400 hover:text-white p-1.5 rounded-md opacity-0 group-hover:opacity-100 transition-opacity">
-                            <X size={16} />
-                        </button>
                     </div>
 
                     <div className="flex items-center w-full gap-4 mb-6">
-                        <div className="flex-1 h-[1px] bg-[#3f3f3f]"></div>
-                        <span className="text-[11px] text-gray-500 font-medium tracking-wider">OR</span>
-                        <div className="flex-1 h-[1px] bg-[#3f3f3f]"></div>
+                        <div className="flex-1 h-[1px] bg-white/10"></div>
+                        <span className="text-[10px] text-slate-500 font-bold tracking-widest uppercase mt-0.5">OR</span>
+                        <div className="flex-1 h-[1px] bg-white/10"></div>
                     </div>
 
                     <div className="w-full flex flex-col gap-3">
-                        <button className="w-full flex items-center justify-center gap-3 bg-white text-black hover:bg-gray-100 py-3 px-4 rounded-xl font-medium transition-colors border border-transparent">
-                            <Github size={18} />
+                        <button className="w-full h-12 min-h-[48px] flex items-center justify-center gap-3 bg-white text-black hover:bg-gray-100 rounded-xl font-bold transition-all transform active:scale-95 shadow-lg">
+                            <Github size={18} strokeWidth={2.5} />
                             Continue with GitHub
                         </button>
 
-                        <button className="w-full flex items-center justify-center gap-3 bg-transparent text-white hover:bg-[#3f3f3f] py-3 px-4 rounded-xl font-medium transition-colors border border-[#3f3f3f]">
+                        <button className="w-full h-12 min-h-[48px] flex items-center justify-center gap-3 bg-white/5 text-white hover:bg-white/10 rounded-xl font-bold transition-all border border-white/10 active:scale-95">
                             <GoogleLogo className="w-[18px] h-[18px]" />
                             Continue with Google
                         </button>
 
-                        <button className="w-full text-[15px] text-gray-300 hover:text-white hover:bg-[#3f3f3f] py-3 px-4 rounded-xl font-medium transition-colors border border-transparent mt-1">
+                        <button className="w-full h-11 text-[13px] text-slate-400 hover:text-white font-bold tracking-wide transition-colors mt-2">
                             Log in to another account
                         </button>
                     </div>

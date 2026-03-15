@@ -61,12 +61,19 @@ export default function WorkspaceLayout({
                                 handleNewChat={actions.handleNewChat}
                             />
                         </div>
-                        <div className="flex-1 relative overflow-auto scrollbar-gutter-stable w-full h-full">
+                        <div className="flex-1 relative overflow-auto w-full h-full">
                             {children}
                         </div>
                     </>
                 ) : (
                     <>
+                        {viewState === 'fullscreen-editor' && (
+                            <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+                                <div className="absolute top-[-10%] left-[-20%] w-[80%] h-[300px] bg-purple-600/20 rounded-full blur-[120px] animate-pulse" />
+                                <div className="absolute top-[20%] right-[-20%] w-[60%] h-[200px] bg-blue-600/10 rounded-full blur-[100px] animate-pulse" style={{ animationDelay: '1s' }} />
+                                <div className="absolute bottom-[-10%] left-[30%] w-[50%] h-[250px] bg-cyan-600/10 rounded-full blur-[110px] animate-pulse" style={{ animationDelay: '2s' }} />
+                            </div>
+                        )}
                         <TopBar
                             viewState={viewState}
                             setViewState={actions.setViewState}
@@ -84,7 +91,7 @@ export default function WorkspaceLayout({
                             setShowAIPanel={actions.setShowAIPanel}
                             handleNewChat={actions.handleNewChat}
                         />
-                        <div className="flex-1 relative overflow-auto scrollbar-gutter-stable">
+                        <div className="flex-1 relative overflow-auto z-10">
                             {children}
                         </div>
                     </>

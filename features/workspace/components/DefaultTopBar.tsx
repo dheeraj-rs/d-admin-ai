@@ -35,9 +35,10 @@ export default function DefaultTopBar({
     const router = useRouter();
 
     const isChatBuilder = pathname === '/ai-chat-builder';
-    const isSpecializedRoute = pathname !== '/';
+    const isHome = pathname === '/';
+    const isSpecializedRoute = pathname !== '/' && pathname !== '/ai-chat-builder';
     const shouldShowBackButton = showAIPanel || isSpecializedRoute;
-    const shouldShowAgentPicker = viewState !== 'initial' || showAIPanel || isChatBuilder;
+    const shouldShowAgentPicker = (viewState !== 'initial' || showAIPanel || isChatBuilder) && !isHome;
 
     const handleBack = () => {
         if (isSpecializedRoute) {
@@ -50,27 +51,27 @@ export default function DefaultTopBar({
     return (
         <div className="sticky top-0 z-50 w-full flex items-center justify-between px-2 lg:px-8 h-14 pointer-events-none">
             {/* LEFT — sidebar toggle + agent picker */}
-            <div className="flex items-center gap-1 pointer-events-auto">
+            <div className="flex items-center gap-1.5 pointer-events-auto">
                 <button
                     id="topbar-sidebar-toggle"
-                    className="lg:hidden w-10 h-10 flex items-center justify-center text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/[0.06] rounded-xl transition-all focus:outline-none active:scale-95"
+                    className="w-10 h-10 flex items-center justify-center text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/[0.06] rounded-lg transition-all focus:outline-none active:scale-95"
                     onClick={() => setShowLeftSidebar(true)}
                     aria-label="Open sidebar"
                 >
                     <PanelLeft size={20} />
                 </button>
 
-                <div className="flex items-center gap-2 ml-2">
+                <div className="flex items-center gap-2">
                     {shouldShowBackButton && (
                         <button
                             onClick={handleBack}
-                            className="w-8 h-8 flex items-center justify-center text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/[0.06] rounded-lg transition-all focus:outline-none active:scale-95 mr-1"
+                            className="w-10 h-10 flex items-center justify-center text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/[0.06] rounded-lg border border-transparent hover:border-slate-200 dark:hover:border-white/10 transition-all focus:outline-none active:scale-95"
                             aria-label="Back"
                         >
                             <ArrowLeft size={18} />
                         </button>
                     )}
-                    <span className="text-gray-900 dark:text-white text-[16px] font-black tracking-tightest">D-Admin</span>
+                    <span className="text-gray-900 dark:text-white text-[16px] font-black tracking-tightest hidden sm:inline-block">D-Admin</span>
                     
                     {shouldShowAgentPicker && (
                         <div className="flex items-center gap-1.5">
@@ -78,7 +79,7 @@ export default function DefaultTopBar({
                                 <button
                                     id="topbar-agent-picker"
                                     onClick={() => setIsAgentOpen(!isAgentOpen)}
-                                    className={`flex items-center gap-2 px-3 py-1.5 rounded-xl transition-all font-semibold focus:outline-none border shadow-sm dark:shadow-none ${
+                                    className={`flex items-center gap-2 px-3 h-10 rounded-lg transition-all font-semibold focus:outline-none border shadow-sm dark:shadow-none ${
                                         isAgentOpen 
                                             ? 'bg-gray-100 dark:bg-white/[0.08] text-gray-900 dark:text-white border-gray-200 dark:border-white/[0.15]' 
                                             : 'text-gray-600 dark:text-white/70 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-white/[0.05] border-transparent hover:border-gray-200 dark:hover:border-white/[0.1]'
@@ -86,7 +87,7 @@ export default function DefaultTopBar({
                                 >
                                     <div className="flex items-center gap-2">
                                         {currentAgent.icon}
-                                        <span className="text-[12px] font-bold tracking-tight hidden sm:inline text-inherit">{currentAgent.name}</span>
+                                        <span className="text-[12px] font-bold tracking-tight hidden md:inline text-inherit">{currentAgent.name}</span>
                                     </div>
                                     <ChevronDown
                                         size={12}
@@ -97,7 +98,7 @@ export default function DefaultTopBar({
                                 {isAgentOpen && (
                                     <>
                                         <div className="fixed inset-0 z-40" onClick={() => setIsAgentOpen(false)} />
-                                        <div className="absolute top-full left-0 mt-2 w-48 bg-white dark:bg-slate-900 rounded-2xl shadow-xl dark:shadow-2xl border border-slate-200 dark:border-slate-800 z-50 flex flex-col p-1.5 animate-in fade-in slide-in-from-top-2 zoom-in-95">
+                                        <div className="absolute top-full left-0 mt-2 w-48 bg-white dark:bg-slate-900 rounded-xl shadow-xl dark:shadow-2xl border border-slate-200 dark:border-slate-800 z-50 flex flex-col p-1.5 animate-in fade-in slide-in-from-top-2 zoom-in-95">
                                             {AGENTS.map((agent) => (
                                                 <button
                                                     key={agent.id}
@@ -105,7 +106,7 @@ export default function DefaultTopBar({
                                                         setSelectedAgent(agent.id);
                                                         setIsAgentOpen(false);
                                                     }}
-                                                    className={`flex items-center justify-between px-3 py-2.5 text-[13px] rounded-xl transition-all text-left w-full font-medium ${selectedAgent === agent.id ? 'bg-slate-100 dark:bg-slate-800 text-[var(--text-main)]' : 'text-[var(--text-muted)] hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-[var(--text-main)]'}`}
+                                                    className={`flex items-center justify-between px-3 py-2.5 text-[13px] rounded-lg transition-all text-left w-full font-medium ${selectedAgent === agent.id ? 'bg-slate-100 dark:bg-slate-800 text-[var(--text-main)]' : 'text-[var(--text-muted)] hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-[var(--text-main)]'}`}
                                             >
                                                 <div className="flex items-center gap-2.5">
                                                     {agent.icon}
@@ -120,13 +121,14 @@ export default function DefaultTopBar({
                                 </>
                             )}
                         </div>
-                        {viewState !== 'initial' && (
+                        {viewState !== 'initial' && !isHome && (
                             <button
                                 onClick={handleNewChat}
-                                className="flex items-center gap-1.5 px-1.5 py-1 h-8 text-indigo-500 dark:text-indigo-400 hover:text-indigo-600 dark:hover:text-indigo-300 text-[12px] font-bold transition-all focus:outline-none active:scale-95 bg-transparent border-none shadow-none"
+                                className="flex items-center justify-center w-10 h-10 sm:w-auto sm:px-3 text-indigo-500 dark:text-indigo-400 hover:text-indigo-600 dark:hover:text-indigo-300 text-[12px] font-bold transition-all focus:outline-none active:scale-95 bg-indigo-50 dark:bg-indigo-500/10 rounded-lg border border-transparent hover:border-indigo-200 dark:hover:border-indigo-500/30 ml-1"
+                                title="New Chat"
                             >
-                                <Sparkles size={14} />
-                                <span>New Chat</span>
+                                <Sparkles size={16} />
+                                <span className="hidden sm:inline ml-1.5">New Chat</span>
                             </button>
                         )}
                     </div>
@@ -138,20 +140,20 @@ export default function DefaultTopBar({
             <div className="flex-1" />
 
             {/* RIGHT — context action */}
-            <div className="flex items-center pointer-events-auto">
-                {viewState !== 'initial' ? (
+            <div className="flex items-center pointer-events-auto gap-2">
+                {viewState !== 'initial' && !isHome ? (
                     <button
                         id="topbar-share-btn"
-                        className="flex items-center gap-1.5 px-3 py-1.5 h-9 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white text-[13px] font-medium rounded-xl hover:bg-black/5 dark:hover:bg-white/[0.06] transition-all focus:outline-none"
+                        className="flex items-center justify-center w-10 h-10 sm:w-auto sm:px-4 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white text-[13px] font-medium rounded-lg bg-gray-50 dark:bg-white/[0.04] border border-gray-200 dark:border-white/10 hover:bg-gray-100 dark:hover:bg-white/[0.08] transition-all focus:outline-none"
                     >
-                        <Upload size={14} />
-                        <span className="hidden sm:inline">Share</span>
+                        <Upload size={16} />
+                        <span className="hidden sm:inline ml-2">Share</span>
                     </button>
                 ) : (
                     <button
                         id="topbar-how-it-works-btn"
                         onClick={() => setIsHelpOpen(true)}
-                        className="group flex items-center gap-1.5 px-2.5 py-1.5 h-9 text-black dark:text-gray-400 hover:text-gray-900 dark:hover:text-white text-[13px] font-medium rounded-xl hover:bg-black/5 dark:hover:bg-white/[0.06] transition-all focus:outline-none whitespace-nowrap cursor-pointer"
+                        className="group flex items-center gap-1.5 px-3 h-10 text-black dark:text-gray-400 hover:text-gray-900 dark:hover:text-white text-[13px] font-medium rounded-lg hover:bg-black/5 dark:hover:bg-white/[0.06] border border-transparent hover:border-gray-200 dark:hover:border-white/10 transition-all focus:outline-none whitespace-nowrap cursor-pointer"
                     >
                         <Globe size={15} className="group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors" />
                         <span className="hidden sm:inline">How it works?</span>

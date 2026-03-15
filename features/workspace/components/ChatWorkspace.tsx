@@ -26,8 +26,8 @@ export default function ChatWorkspace() {
             
             {viewState === 'fullscreen-editor' ? (
                 <>
-                    <div className={`w-full lg:w-[450px] shrink-0 border-r border-gray-200 dark:border-[#2f2f2f] bg-slate-50/50 dark:bg-[#02060D]/50 backdrop-blur-xl flex flex-col relative transition-colors duration-300 ${activeTab === 'chat' ? 'flex' : 'hidden lg:flex'}`}>
-                        <div className="flex-1 overflow-y-auto w-full pt-6 scrollbar-gutter-stable">
+                    <div className={`w-full lg:w-[450px] shrink-0 bg-[#0B0B0D] flex flex-col relative transition-colors duration-300 ${activeTab === 'chat' ? 'flex h-full' : 'hidden lg:flex h-full'}`}>
+                        <div className="flex-1 overflow-y-auto no-scrollbar w-full pt-6">
                             <div className="px-4 pb-40 flex flex-col max-w-3xl mx-auto w-full">
                                 <ChatHistory 
                                     messages={state.messages}
@@ -39,8 +39,13 @@ export default function ChatWorkspace() {
                         </div>
                         <ChatInputArea inputValue={inputValue} setInputValue={actions.setInputValue} handleSubmit={actions.handleSubmit} isSidebar={true} />
                     </div>
-                    <div className={`flex-1 bg-white dark:bg-[#0b0f1a] relative flex flex-col transition-colors duration-300 ${activeTab === 'chat' ? 'hidden lg:flex' : 'flex'}`}>
-                        {activeTab === 'code' ? <WorkbenchMock /> : <RightPanel />}
+                    <div className={`flex-1 relative flex flex-col transition-colors duration-300 min-w-0 ${activeTab === 'chat' ? 'hidden lg:flex' : 'flex'}`}>
+                        <WorkbenchMock 
+                            activeTab={activeTab === 'chat' ? 'code' : activeTab} 
+                            setActiveTab={actions.setActiveTab}
+                            showTerminal={state.showTerminal}
+                            setShowTerminal={actions.setShowTerminal}
+                        />
                     </div>
                 </>
             ) : viewState === 'initial' ? (
@@ -53,7 +58,7 @@ export default function ChatWorkspace() {
             ) : (
                 <div className="flex-1 flex overflow-hidden">
                     <div className="flex-1 flex flex-col relative min-w-0">
-                        <div className="flex-1 overflow-y-auto w-full pt-20 pb-40 scrollbar-gutter-stable relative z-10 transition-all duration-500 ease-in-out">
+                        <div className="flex-1 overflow-y-auto no-scrollbar w-full pt-20 pb-40 relative z-10 transition-all duration-500 ease-in-out">
                             <div className="px-4 flex flex-col gap-8 max-w-2xl mx-auto w-full">
                                 <ChatHistory 
                                     messages={state.messages} 

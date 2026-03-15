@@ -31,15 +31,16 @@ const HomeView = () => {
     <div className="flex-1 w-full min-h-[100dvh] bg-[#f8fafc] dark:bg-[#02060D] text-gray-900 dark:text-white font-sans overflow-y-auto overflow-x-hidden relative z-0 flex flex-col custom-scrollbar transition-colors duration-300">
         <div className="fixed inset-0 w-[100dvw] h-[100dvh] z-0 pointer-events-none overflow-hidden bg-[#f8fafc] dark:bg-[#02060D] transition-colors duration-300">
         <div 
-          className="absolute inset-0 bg-cover bg-center transition-all duration-700 opacity-100"
+          className="absolute inset-0 bg-cover bg-center transition-all duration-700 opacity-[0.85] dark:opacity-100"
           style={{ backgroundImage: 'url("/home_hero_bg.png")' }}
         />
+        <div className="absolute inset-0 bg-white/30 dark:bg-transparent transition-colors duration-500 pointer-events-none" />
         
-        {/* Edge fade gradients matching the off-white bg, with 'via' for stronger text protection */}
-        <div className="absolute inset-x-0 bottom-0 h-[40%] bg-gradient-to-t from-[#f8fafc] via-[#f8fafc]/80 dark:from-[#02060D] dark:via-[#02060D]/60 to-transparent transition-colors duration-300 pointer-events-none" />
-        <div className="absolute inset-x-0 top-0 h-[30%] bg-gradient-to-b from-[#f8fafc] via-[#f8fafc]/90 dark:from-[#02060D] dark:via-[#02060D]/60 to-transparent transition-colors duration-300 pointer-events-none" />
-        <div className="absolute inset-y-0 left-0 w-[60%] md:w-[45%] bg-gradient-to-r from-[#f8fafc] via-[#f8fafc]/95 dark:from-[#02060D] dark:via-[#02060D]/80 to-transparent transition-colors duration-300 pointer-events-none" />
-        <div className="absolute inset-y-0 right-0 w-[60%] md:w-[45%] bg-gradient-to-l from-[#f8fafc] via-[#f8fafc]/95 dark:from-[#02060D] dark:via-[#02060D]/80 to-transparent transition-colors duration-300 pointer-events-none" />
+        {/* Edge fade gradients matching the off-white bg, soft transitions */}
+        <div className="absolute inset-x-0 bottom-0 h-[35%] bg-gradient-to-t from-[#f8fafc] dark:from-[#02060D] to-transparent transition-colors duration-300 pointer-events-none" />
+        <div className="absolute inset-x-0 top-0 h-[20%] bg-gradient-to-b from-[#f8fafc]/90 dark:from-[#02060D]/60 to-transparent transition-colors duration-300 pointer-events-none" />
+        <div className="absolute inset-y-0 left-0 w-[40%] md:w-[35%] bg-gradient-to-r from-[#f8fafc] dark:from-[#02060D] to-transparent transition-colors duration-300 pointer-events-none" />
+        <div className="absolute inset-y-0 right-0 w-[40%] md:w-[35%] bg-gradient-to-l from-[#f8fafc]/90 dark:from-[#02060D]/80 to-transparent transition-colors duration-300 pointer-events-none" />
       </div>
 
       <div className="relative z-10 flex flex-col w-full min-h-[100dvh] max-w-[1500px] mx-auto pt-[70px] px-6 lg:px-10 pb-4">

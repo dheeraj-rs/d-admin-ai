@@ -28,16 +28,20 @@ const HomeView = () => {
   }, []);
 
   return (
-    <div className="flex-1 w-full min-h-[100dvh] bg-white dark:bg-[#02060D] text-gray-900 dark:text-white font-sans overflow-y-auto overflow-x-hidden relative z-0 flex flex-col custom-scrollbar transition-colors duration-300">
-        <div className="fixed inset-0 w-[100dvw] h-[100dvh] z-0 pointer-events-none overflow-hidden bg-white dark:bg-[#02060D] transition-colors duration-300">
+    <div className="flex-1 w-full min-h-[100dvh] bg-[#f8fafc] dark:bg-[#02060D] text-gray-900 dark:text-white font-sans overflow-y-auto overflow-x-hidden relative z-0 flex flex-col custom-scrollbar transition-colors duration-300">
+        <div className="fixed inset-0 w-[100dvw] h-[100dvh] z-0 pointer-events-none overflow-hidden bg-[#f8fafc] dark:bg-[#02060D] transition-colors duration-300">
         <div 
-          className="absolute inset-0 bg-cover bg-center opacity-40 dark:opacity-100 transition-opacity duration-300 mix-blend-multiply dark:mix-blend-normal"
+          className="absolute inset-0 bg-cover bg-center transition-all duration-700 opacity-100 mix-blend-normal"
           style={{ backgroundImage: 'url("/home_hero_bg.png")' }}
         />
-        <div className="absolute inset-x-0 bottom-0 h-[40%] bg-gradient-to-t from-white dark:from-[#02060D] to-transparent transition-colors duration-300" />
-        <div className="absolute inset-x-0 top-0 h-[25%] bg-gradient-to-b from-white/60 dark:from-[#02060D]/60 to-transparent transition-colors duration-300" />
-        <div className="absolute inset-y-0 left-0 w-[40%] bg-gradient-to-r from-white dark:from-[#02060D] to-transparent transition-colors duration-300" />
-        <div className="absolute inset-y-0 right-0 w-[40%] bg-gradient-to-l from-white/80 dark:from-[#02060D]/80 to-transparent transition-colors duration-300" />
+        {/* Frosted glass overlay for light mode to make image "pop" subtly but keep text readable */}
+        <div className="absolute inset-0 bg-white/70 dark:bg-transparent backdrop-blur-[2px] dark:backdrop-blur-none transition-all duration-500" />
+        
+        {/* Edge fade gradients matching the off-white bg */}
+        <div className="absolute inset-x-0 bottom-0 h-[40%] bg-gradient-to-t from-[#f8fafc] dark:from-[#02060D] to-transparent transition-colors duration-300" />
+        <div className="absolute inset-x-0 top-0 h-[25%] bg-gradient-to-b from-[#f8fafc]/80 dark:from-[#02060D]/60 to-transparent transition-colors duration-300" />
+        <div className="absolute inset-y-0 left-0 w-[40%] bg-gradient-to-r from-[#f8fafc] dark:from-[#02060D] to-transparent transition-colors duration-300" />
+        <div className="absolute inset-y-0 right-0 w-[40%] bg-gradient-to-l from-[#f8fafc]/90 dark:from-[#02060D]/80 to-transparent transition-colors duration-300" />
       </div>
 
       <div className="relative z-10 flex flex-col w-full min-h-[100dvh] max-w-[1500px] mx-auto pt-[70px] px-6 lg:px-10 pb-4">

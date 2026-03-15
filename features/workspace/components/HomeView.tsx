@@ -34,9 +34,6 @@ const HomeView = () => {
           className="absolute inset-0 bg-cover bg-center transition-all duration-700 opacity-100"
           style={{ backgroundImage: 'url("/home_hero_bg.png")' }}
         />
-        {/* Heavy white wash in light mode so the dark image actually becomes a light background */}
-        <div className="absolute inset-0 bg-white/60 dark:bg-transparent transition-colors duration-500 pointer-events-none" />
-        <div className="absolute inset-0 bg-[#f8fafc]/40 dark:bg-transparent transition-colors duration-500 pointer-events-none mix-blend-screen" />
         
         {/* Edge fade gradients matching the off-white bg seamlessly */}
         <div className="absolute inset-x-0 bottom-0 h-[40%] bg-gradient-to-t from-[#f8fafc] via-[#f8fafc]/80 dark:from-[#02060D] dark:via-transparent to-transparent transition-colors duration-300 pointer-events-none" />

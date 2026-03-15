@@ -61,9 +61,9 @@ export default function TemplatesView({ onBack }: TemplatesViewProps) {
     const { actions } = useWorkspace();
 
     return (
-        <div className="flex-1 flex flex-col items-center justify-start px-6 pt-4 pb-12 w-full min-w-0 bg-[#f8fafc] dark:bg-[#02060D] text-gray-900 dark:text-white font-sans relative z-0 transition-colors duration-300">
+        <div className="flex-1 flex flex-col items-center justify-start px-6 pt-4 pb-12 w-full min-w-0 bg-[#f0f9ff] dark:bg-[#02060D] text-gray-900 dark:text-white font-sans relative z-0 transition-colors duration-300">
             {/* Ambient Theme Background */}
-            <div className="fixed inset-0 w-[100dvw] h-[100dvh] z-0 pointer-events-none overflow-hidden bg-[#f8fafc] dark:bg-[#02060D] transition-colors duration-300">
+            <div className="fixed inset-0 w-[100dvw] h-[100dvh] z-0 pointer-events-none overflow-hidden bg-[#f0f9ff] dark:bg-[#02060D] transition-colors duration-300">
                 <div className="absolute top-[-10%] left-[-10%] w-[40vw] h-[40vw] bg-cyan-600/5 dark:bg-cyan-600/10 rounded-full blur-[120px]" />
                 <div className="absolute bottom-[-10%] right-[-10%] w-[40vw] h-[40vw] bg-blue-600/5 dark:bg-blue-600/10 rounded-full blur-[120px]" />
                 <div className="absolute top-[20%] right-[20%] w-[30vw] h-[30vw] bg-indigo-600/2 dark:bg-indigo-600/5 rounded-full blur-[100px]" />

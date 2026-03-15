@@ -1,5 +1,3 @@
-import { ThumbsUp, ThumbsDown } from 'lucide-react';
-
 export default function RightPanel() {
     return (
         <div className="flex-1 overflow-hidden flex flex-col relative w-full h-full bg-white">
@@ -80,16 +78,6 @@ export default function RightPanel() {
                         </div>
                     </div>
                 </div>
-            </div>
-
-            {/* Feedback Bottom Bar */}
-            <div className="absolute bottom-4 right-4 flex gap-1 bg-[#2f2f2f]/80 backdrop-blur-md border border-[#3e3e3e] rounded-full p-1 shadow-lg z-10">
-                <button className="p-1.5 rounded-full hover:bg-[#3e3e3e] text-gray-400 hover:text-white transition-colors">
-                    <ThumbsUp size={14} />
-                </button>
-                <button className="p-1.5 rounded-full hover:bg-[#3e3e3e] text-gray-400 hover:text-white transition-colors">
-                    <ThumbsDown size={14} />
-                </button>
             </div>
         </div>
     );

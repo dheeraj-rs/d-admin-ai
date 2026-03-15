@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import PublishedSitesView from '@/features/workspace/components/PublishedSitesView';
+import { PublishedSitesView } from '@/features/workspace';
 
 export default function PublishedSitesPage() {
     const router = useRouter();

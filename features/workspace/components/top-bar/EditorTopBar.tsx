@@ -9,7 +9,7 @@ import {
     Upload,
     ArrowLeftToLine,
 } from 'lucide-react';
-import type { ViewState, ActiveTab } from '../types/index';
+import type { ViewState, ActiveTab } from '../../types/index';
 
 interface EditorTopBarProps {
     setViewState: (s: ViewState) => void;

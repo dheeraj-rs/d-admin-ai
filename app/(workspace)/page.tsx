@@ -1,4 +1,4 @@
-import HomeView from '@/features/workspace/components/HomeView';
+import { HomeView } from '@/features/workspace';
 
 export default function WorkspaceHome() {
     return <HomeView />;

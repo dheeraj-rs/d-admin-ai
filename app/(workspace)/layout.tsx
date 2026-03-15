@@ -2,7 +2,7 @@
 
 import { useWorkspace } from '@/features/workspace/hooks/useWorkspace';
 import { Sidebar } from '@/features/navigation';
-import TopBar from '@/features/workspace/components/TopBar';
+import { TopBar } from '@/features/workspace';
 import dynamic from 'next/dynamic';
 import { usePathname } from 'next/navigation';
 

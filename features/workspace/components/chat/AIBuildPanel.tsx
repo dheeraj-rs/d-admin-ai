@@ -3,7 +3,7 @@
 import { Mic, ArrowUp, Globe } from 'lucide-react';
 import PlusActionMenu from '@/shared/ui/PlusActionMenu';
 import { Suggestions } from '@/features/chat';
-import type { ViewState } from '../types/index';
+import type { ViewState } from '../../types/index';
 
 interface AIBuildPanelProps {
     inputValue: string;
@@ -43,14 +43,14 @@ export default function AIBuildPanel({ inputValue, setInputValue, handleSubmit, 
                         <button
                             id="ai-build-submit-btn"
                             onClick={handleSubmit}
-                            className="bg-indigo-600 hover:bg-indigo-500 text-white w-[36px] h-[36px] 2xl:w-[60px] 2xl:h-[60px] flex items-center justify-center shrink-0 transition-all hover:scale-105 active:scale-95 shadow-md shadow-indigo-500/20"
+                            className="bg-gray-900 dark:bg-white text-white dark:text-black w-[34px] h-[34px] 2xl:w-[56px] 2xl:h-[56px] rounded-full outline-none focus:outline-none flex items-center justify-center shrink-0 hover:bg-gray-800 dark:hover:bg-gray-200 transition-transform hover:scale-105 active:scale-95 shadow-sm"
                         >
                             <ArrowUp size={18} className="2xl:w-7 2xl:h-7" strokeWidth={2.5} />
                         </button>
                     ) : (
                         <button
                             id="ai-build-globe-btn"
-                            className="bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 w-[36px] h-[36px] 2xl:w-[60px] 2xl:h-[60px] rounded-full flex items-center justify-center shrink-0 hover:bg-slate-800 dark:hover:bg-white transition-all hover:scale-105 active:scale-95 shadow-sm"
+                            className="bg-gray-900 dark:bg-white text-white dark:text-black w-[34px] h-[34px] 2xl:w-[56px] 2xl:h-[56px] rounded-full outline-none focus:outline-none flex items-center justify-center shrink-0 hover:bg-gray-800 dark:hover:bg-gray-200 transition-transform hover:scale-105 active:scale-95 shadow-sm"
                         >
                             <Globe size={18} className="2xl:w-7 2xl:h-7" strokeWidth={2.5} />
                         </button>

@@ -1,9 +1,9 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import { useWorkspace } from '../hooks/useWorkspace';
+import { useWorkspace } from '../../hooks/useWorkspace';
 import { Sidebar } from '@/features/navigation';
-import TopBar from './TopBar';
+import TopBar from '../top-bar/TopBar';
 import { ChatHistory, ChatInputArea } from '@/features/chat';
 import { RightPanel, WorkbenchMock } from '@/features/editor';
 import ChatInitialView from './ChatInitialView';

@@ -1,4 +1,4 @@
-import type { ViewState, ActiveTab } from '../types/index';
+import type { ViewState, ActiveTab } from '../../types/index';
 import EditorTopBar from './EditorTopBar';
 import DefaultTopBar from './DefaultTopBar';
 interface TopBarProps {

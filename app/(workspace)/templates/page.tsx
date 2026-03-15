@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import TemplatesView from '@/features/workspace/components/TemplatesView';
+import { TemplatesView } from '@/features/workspace';
 
 export default function TemplatesPage() {
     const router = useRouter();

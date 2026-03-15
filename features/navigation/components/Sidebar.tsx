@@ -1,6 +1,4 @@
 import {
-    SquareTerminal,
-    PanelLeftClose,
     PanelLeft,
     SquarePen,
     LayoutTemplate,
@@ -9,7 +7,6 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import type { ViewState } from '../../workspace/types';
 import UserProfileMenu from './UserProfileMenu';
 
 const NAV_ITEMS = [

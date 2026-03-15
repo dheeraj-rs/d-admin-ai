@@ -1,16 +1,15 @@
+'use client';
+
 import React, { useState } from 'react';
 import { Globe, Trash2, Search } from 'lucide-react';
-import { useRouter } from 'next/navigation';
-import { useWorkspace } from '../hooks/useWorkspace';
-import PageHeader from '@/shared/ui/PageHeader';
 import ItemCard from '@/shared/ui/ItemCard';
+import WorkspaceViewBackground from '../shared/WorkspaceViewBackground';
 
 interface PublishedSite {
     id: string;
     url: string;
     name: string;
     publishedAt: string;
-    thumbnail?: string;
 }
 
 const MOCK_SITES: PublishedSite[] = [
@@ -30,17 +29,15 @@ const MOCK_SITES: PublishedSite[] = [
 
 export default function PublishedSitesView({ onBack }: { onBack?: () => void }) {
     const [searchValue, setSearchValue] = useState('');
-    const router = useRouter();
-    const { actions } = useWorkspace();
+
+    const filteredSites = MOCK_SITES.filter(site => 
+        site.name.toLowerCase().includes(searchValue.toLowerCase()) || 
+        site.url.toLowerCase().includes(searchValue.toLowerCase())
+    );
 
     return (
         <div className="flex-1 flex flex-col items-center justify-start px-4 sm:px-6 pt-4 pb-12 w-full min-w-0 bg-[#ecfeff] dark:bg-[#02060D] text-gray-900 dark:text-white font-sans relative z-0 transition-colors duration-300">
-            {/* Ambient Theme Background */}
-            <div className="fixed inset-0 w-[100dvw] h-[100dvh] z-0 pointer-events-none overflow-hidden bg-[#ecfeff] dark:bg-[#02060D] transition-colors duration-300">
-                <div className="absolute top-[-10%] left-[-10%] w-[40vw] h-[40vw] bg-cyan-600/5 dark:bg-cyan-600/10 rounded-full blur-[120px]" />
-                <div className="absolute bottom-[-10%] right-[-10%] w-[40vw] h-[40vw] bg-blue-600/5 dark:bg-blue-600/10 rounded-full blur-[120px]" />
-                <div className="absolute top-[20%] right-[20%] w-[30vw] h-[30vw] bg-indigo-600/2 dark:bg-indigo-600/5 rounded-full blur-[100px]" />
-            </div>
+            <WorkspaceViewBackground />
 
             <div className="w-full max-w-[1800px] relative z-10 px-4 2xl:px-8">
                 <div className="mb-8 2xl:mb-16 text-center animate-in fade-in slide-in-from-top-4 duration-700">
@@ -66,27 +63,24 @@ export default function PublishedSitesView({ onBack }: { onBack?: () => void }) 
                     </div>
                 </div>
 
-
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {MOCK_SITES
-                        .filter(site => site.name.toLowerCase().includes(searchValue.toLowerCase()) || site.url.toLowerCase().includes(searchValue.toLowerCase()))
-                        .map((site) => (
-                            <ItemCard
-                                key={site.id}
-                                title={site.name}
-                                description={site.url.replace('https://', '')}
-                                icon={Globe}
-                                badge="Live"
-                                metaInfo={`Published on ${site.publishedAt}`}
-                                primaryActionText="View Live"
-                                onPrimaryAction={() => window.open(site.url, '_blank')}
-                                secondaryAction={
-                                    <button className="p-2 text-gray-500 hover:text-red-400 hover:bg-red-400/10 rounded-lg transition-all">
-                                        <Trash2 size={16} />
-                                    </button>
-                                }
-                            />
-                        ))}
+                    {filteredSites.map((site) => (
+                        <ItemCard
+                            key={site.id}
+                            title={site.name}
+                            description={site.url.replace('https://', '')}
+                            icon={Globe}
+                            badge="Live"
+                            metaInfo={`Published on ${site.publishedAt}`}
+                            primaryActionText="View Live"
+                            onPrimaryAction={() => window.open(site.url, '_blank')}
+                            secondaryAction={
+                                <button className="p-2 text-gray-500 hover:text-red-400 hover:bg-red-400/10 rounded-lg transition-all">
+                                    <Trash2 size={16} />
+                                </button>
+                            }
+                        />
+                    ))}
                 </div>
             </div>
         </div>

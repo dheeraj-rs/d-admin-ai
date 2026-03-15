@@ -2,7 +2,7 @@
 
 import { Sparkles } from 'lucide-react';
 import AIBuildPanel from './AIBuildPanel';
-import type { ViewState } from '../types/index';
+import type { ViewState } from '../../types/index';
 
 interface ChatInitialViewProps {
     inputValue: string;

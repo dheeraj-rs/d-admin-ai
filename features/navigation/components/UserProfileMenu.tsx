@@ -38,7 +38,7 @@ export default function UserProfileMenu({ isOpen, onOpenSettings }: UserProfileM
 
             {/* Expanded Profile Menu */}
             {isProfileOpen && (
-                <div className="absolute mb-2 bg-white dark:bg-[#2d2d2d] rounded-[16px] p-1.5 shadow-xl dark:shadow-2xl border border-gray-200 dark:border-[#3e3e3e] font-sans z-50 w-[220px] bottom-[58px] left-[10px] animate-in fade-in zoom-in-95">
+                <div className="absolute mb-2 bg-white/80 dark:bg-[#2d2d2d]/80 backdrop-blur-2xl rounded-[16px] p-1.5 shadow-xl dark:shadow-2xl border border-black/5 dark:border-[#3e3e3e] font-sans z-50 w-[220px] bottom-[58px] left-[10px] animate-in fade-in zoom-in-95">
                     <div className="flex items-center gap-2.5 px-2.5 py-1.5">
                         <div className="w-7 h-7 rounded-full bg-[#f29f05] text-white flex items-center justify-center font-semibold text-[11px] shrink-0 tracking-wide shadow-sm">
                             DS
@@ -51,18 +51,18 @@ export default function UserProfileMenu({ isOpen, onOpenSettings }: UserProfileM
                         </div>
                     </div>
 
-                    <div className="h-[1px] bg-gray-100 dark:bg-[#3e3e3e] my-1 mx-1.5" />
+                    <div className="h-[1px] bg-black/5 dark:bg-[#3e3e3e] my-1 mx-1.5" />
 
-                    <button className="flex items-center gap-2.5 px-2.5 py-2.5 rounded-xl text-[13.5px] text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-[#3f3f3f] cursor-pointer outline-none w-full text-left transition-colors">
+                    <button className="flex items-center gap-2.5 px-2.5 py-2.5 rounded-xl text-[13.5px] text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white hover:bg-black/5 dark:hover:bg-[#3f3f3f] cursor-pointer outline-none w-full text-left transition-colors">
                         <Sparkles size={16} className="text-gray-400 dark:text-gray-300 shrink-0" strokeWidth={2} />
                         <span>Upgrade plan</span>
                     </button>
-                    <button className="flex items-center gap-2.5 px-2.5 py-2.5 rounded-xl text-[13.5px] text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-[#3f3f3f] cursor-pointer outline-none w-full text-left transition-colors">
+                    <button className="flex items-center gap-2.5 px-2.5 py-2.5 rounded-xl text-[13.5px] text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white hover:bg-black/5 dark:hover:bg-[#3f3f3f] cursor-pointer outline-none w-full text-left transition-colors">
                         <User size={16} className="text-gray-400 dark:text-gray-300 shrink-0" strokeWidth={2} />
                         <span>Personalization</span>
                     </button>
                     <button
-                        className="flex items-center gap-2.5 px-2.5 py-2.5 rounded-xl text-[13.5px] text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-[#3f3f3f] cursor-pointer outline-none w-full text-left transition-colors"
+                        className="flex items-center gap-2.5 px-2.5 py-2.5 rounded-xl text-[13.5px] text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white hover:bg-black/5 dark:hover:bg-[#3f3f3f] cursor-pointer outline-none w-full text-left transition-colors"
                         onClick={() => {
                             onOpenSettings?.();
                             setIsProfileOpen(false);
@@ -72,16 +72,16 @@ export default function UserProfileMenu({ isOpen, onOpenSettings }: UserProfileM
                         <span>Settings</span>
                     </button>
 
-                    <div className="h-[1px] bg-gray-100 dark:bg-[#3e3e3e] my-1 mx-1.5" />
+                    <div className="h-[1px] bg-black/5 dark:bg-[#3e3e3e] my-1 mx-1.5" />
 
-                    <button className="flex items-center justify-between px-2.5 py-2.5 rounded-xl text-[13.5px] text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-[#3f3f3f] cursor-pointer outline-none w-full text-left transition-colors group">
+                    <button className="flex items-center justify-between px-2.5 py-2.5 rounded-xl text-[13.5px] text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white hover:bg-black/5 dark:hover:bg-[#3f3f3f] cursor-pointer outline-none w-full text-left transition-colors group">
                         <div className="flex items-center gap-2.5">
                             <LifeBuoy size={16} className="text-gray-400 dark:text-gray-300 shrink-0" strokeWidth={2} />
                             <span>Help</span>
                         </div>
                         <ChevronRight size={14} className="text-gray-300 dark:text-gray-400 group-hover:text-gray-500 dark:group-hover:text-gray-200 transition-colors" />
                     </button>
-                    <button className="flex items-center gap-2.5 px-2.5 py-2.5 rounded-xl text-[13.5px] text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-[#3f3f3f] cursor-pointer outline-none w-full text-left transition-colors">
+                    <button className="flex items-center gap-2.5 px-2.5 py-2.5 rounded-xl text-[13.5px] text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white hover:bg-black/5 dark:hover:bg-[#3f3f3f] cursor-pointer outline-none w-full text-left transition-colors">
                         <LogOut size={16} className="text-gray-400 dark:text-gray-300 shrink-0" strokeWidth={2} />
                         <span>Log out</span>
                     </button>

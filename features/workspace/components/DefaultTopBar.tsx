@@ -1,6 +1,6 @@
 'use client';
 
-import { ChevronDown, Upload, Globe, PanelLeft, Check, Sparkles, ArrowLeft } from 'lucide-react';
+import { ChevronDown, Upload, Globe, PanelLeft, Check, Sparkles, ArrowLeft, MessageSquarePlus } from 'lucide-react';
 import type { ViewState } from '../types/index';
 import { AGENTS } from '../constants/agents';
 import { usePathname, useRouter } from 'next/navigation';
@@ -37,11 +37,11 @@ export default function DefaultTopBar({
     const isChatBuilder = pathname === '/ai-chat-builder';
     const isHome = pathname === '/';
     const isSpecializedRoute = pathname !== '/' && pathname !== '/ai-chat-builder';
-    const shouldShowBackButton = showAIPanel || isSpecializedRoute;
+    const shouldShowBackButton = showAIPanel || isSpecializedRoute || isChatBuilder;
     const shouldShowAgentPicker = (viewState !== 'initial' || showAIPanel || isChatBuilder) && !isHome;
 
     const handleBack = () => {
-        if (isSpecializedRoute) {
+        if (isSpecializedRoute || isChatBuilder) {
             router.push('/');
         } else if (setShowAIPanel) {
             setShowAIPanel(false);
@@ -79,10 +79,10 @@ export default function DefaultTopBar({
                                 <button
                                     id="topbar-agent-picker"
                                     onClick={() => setIsAgentOpen(!isAgentOpen)}
-                                    className={`flex items-center gap-2 px-3 h-10 rounded-lg transition-all font-semibold focus:outline-none border shadow-sm dark:shadow-none ${
+                                    className={`flex items-center gap-1.5 px-2 h-10 rounded-lg transition-all font-semibold focus:outline-none border-none bg-transparent ${
                                         isAgentOpen 
-                                            ? 'bg-gray-100 dark:bg-white/[0.08] text-gray-900 dark:text-white border-gray-200 dark:border-white/[0.15]' 
-                                            : 'text-gray-600 dark:text-white/70 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-white/[0.05] border-transparent hover:border-gray-200 dark:hover:border-white/[0.1]'
+                                            ? 'text-gray-900 dark:text-white' 
+                                            : 'text-gray-600 dark:text-white/70 hover:text-gray-900 dark:hover:text-white'
                                     }`}
                                 >
                                     <div className="flex items-center gap-2">
@@ -124,11 +124,10 @@ export default function DefaultTopBar({
                         {viewState !== 'initial' && !isHome && (
                             <button
                                 onClick={handleNewChat}
-                                className="flex items-center justify-center w-10 h-10 sm:w-auto sm:px-3 text-indigo-500 dark:text-indigo-400 hover:text-indigo-600 dark:hover:text-indigo-300 text-[12px] font-bold transition-all focus:outline-none active:scale-95 bg-indigo-50 dark:bg-indigo-500/10 rounded-lg border border-transparent hover:border-indigo-200 dark:hover:border-indigo-500/30 ml-1"
+                                className="flex items-center justify-center w-10 h-10 text-indigo-500 dark:text-indigo-400 hover:text-indigo-600 dark:hover:text-indigo-300 transition-all focus:outline-none active:scale-95 bg-transparent border-none ml-1"
                                 title="New Chat"
                             >
-                                <Sparkles size={16} />
-                                <span className="hidden sm:inline ml-1.5">New Chat</span>
+                                <MessageSquarePlus size={18} />
                             </button>
                         )}
                     </div>
@@ -144,10 +143,9 @@ export default function DefaultTopBar({
                 {viewState !== 'initial' && !isHome ? (
                     <button
                         id="topbar-share-btn"
-                        className="flex items-center justify-center w-10 h-10 sm:w-auto sm:px-4 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white text-[13px] font-medium rounded-lg bg-gray-50 dark:bg-white/[0.04] border border-gray-200 dark:border-white/10 hover:bg-gray-100 dark:hover:bg-white/[0.08] transition-all focus:outline-none"
+                        className="flex items-center justify-center w-10 h-10 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-all focus:outline-none bg-transparent border-none"
                     >
-                        <Upload size={16} />
-                        <span className="hidden sm:inline ml-2">Share</span>
+                        <Upload size={18} />
                     </button>
                 ) : (
                     <button

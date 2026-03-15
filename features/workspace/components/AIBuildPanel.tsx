@@ -16,12 +16,12 @@ export default function AIBuildPanel({ inputValue, setInputValue, handleSubmit, 
     return (
         <div className="w-full flex flex-col gap-4 animate-in fade-in slide-in-from-bottom-3 duration-400">
             {/* Input box */}
-            <div className="relative flex items-center bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm rounded-[28px] p-2 pl-3 pr-3 shadow-sm dark:shadow-[0_8px_32px_rgba(0,0,0,0.5)] w-full group focus-within:ring-2 focus-within:ring-indigo-500/30 transition-all border border-slate-200 dark:border-slate-800">
+            <div className="relative flex items-center bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm rounded-[28px] 2xl:rounded-[40px] p-2 2xl:p-4 pl-3 pr-3 2xl:pl-5 2xl:pr-5 shadow-sm dark:shadow-[0_8px_32px_rgba(0,0,0,0.5)] w-full group focus-within:ring-2 focus-within:ring-indigo-500/30 transition-all border border-slate-200 dark:border-slate-800">
                 <PlusActionMenu />
                 <input
                     id="ai-build-input"
                     type="text"
-                    className="flex-1 min-w-0 bg-transparent border-none outline-none text-[var(--text-main)] px-2.5 py-3 placeholder-slate-400 text-[16px]"
+                    className="flex-1 min-w-0 bg-transparent border-none outline-none text-[var(--text-main)] px-2.5 py-3 2xl:py-6 3xl:py-8 placeholder-slate-400 text-[16px] 2xl:text-[24px] 3xl:text-[28px]"
                     placeholder="Describe what you want to build..."
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
@@ -32,27 +32,27 @@ export default function AIBuildPanel({ inputValue, setInputValue, handleSubmit, 
                         }
                     }}
                 />
-                <div className="flex items-center gap-1.5 pr-0.5">
+                <div className="flex items-center gap-1.5 2xl:gap-3 pr-0.5">
                     <button
                         id="ai-build-mic-btn"
-                        className="text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 w-[36px] h-[36px] flex items-center justify-center rounded-full transition-colors"
+                        className="text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 w-[36px] h-[36px] 2xl:w-[60px] 2xl:h-[60px] flex items-center justify-center rounded-full transition-colors"
                     >
-                        <Mic size={20} strokeWidth={2} />
+                        <Mic size={20} className="2xl:w-8 2xl:h-8" strokeWidth={2} />
                     </button>
                     {inputValue.trim() ? (
                         <button
                             id="ai-build-submit-btn"
                             onClick={handleSubmit}
-                            className="bg-indigo-600 hover:bg-indigo-500 text-white w-[36px] h-[36px] rounded-full flex items-center justify-center shrink-0 transition-all hover:scale-105 active:scale-95 shadow-md shadow-indigo-500/20"
+                            className="bg-indigo-600 hover:bg-indigo-500 text-white w-[36px] h-[36px] 2xl:w-[60px] 2xl:h-[60px] flex items-center justify-center shrink-0 transition-all hover:scale-105 active:scale-95 shadow-md shadow-indigo-500/20"
                         >
-                            <ArrowUp size={18} strokeWidth={2.5} />
+                            <ArrowUp size={18} className="2xl:w-7 2xl:h-7" strokeWidth={2.5} />
                         </button>
                     ) : (
                         <button
                             id="ai-build-globe-btn"
-                            className="bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 w-[36px] h-[36px] rounded-full flex items-center justify-center shrink-0 hover:bg-slate-800 dark:hover:bg-white transition-all hover:scale-105 active:scale-95 shadow-sm"
+                            className="bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 w-[36px] h-[36px] 2xl:w-[60px] 2xl:h-[60px] rounded-full flex items-center justify-center shrink-0 hover:bg-slate-800 dark:hover:bg-white transition-all hover:scale-105 active:scale-95 shadow-sm"
                         >
-                            <Globe size={18} strokeWidth={2.5} />
+                            <Globe size={18} className="2xl:w-7 2xl:h-7" strokeWidth={2.5} />
                         </button>
                     )}
                 </div>

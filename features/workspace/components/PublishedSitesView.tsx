@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Globe, Trash2, Plus, Search } from 'lucide-react';
+import { Globe, Trash2, Search } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useWorkspace } from '../hooks/useWorkspace';
 import PageHeader from '@/shared/ui/PageHeader';
@@ -34,7 +34,7 @@ export default function PublishedSitesView({ onBack }: { onBack?: () => void }) 
     const { actions } = useWorkspace();
 
     return (
-        <div className="flex-1 flex flex-col items-center justify-start px-6 pt-4 pb-12 w-full min-w-0 bg-[#ecfeff] dark:bg-[#02060D] text-gray-900 dark:text-white font-sans relative z-0 transition-colors duration-300">
+        <div className="flex-1 flex flex-col items-center justify-start px-4 sm:px-6 pt-4 pb-12 w-full min-w-0 bg-[#ecfeff] dark:bg-[#02060D] text-gray-900 dark:text-white font-sans relative z-0 transition-colors duration-300">
             {/* Ambient Theme Background */}
             <div className="fixed inset-0 w-[100dvw] h-[100dvh] z-0 pointer-events-none overflow-hidden bg-[#ecfeff] dark:bg-[#02060D] transition-colors duration-300">
                 <div className="absolute top-[-10%] left-[-10%] w-[40vw] h-[40vw] bg-cyan-600/5 dark:bg-cyan-600/10 rounded-full blur-[120px]" />
@@ -42,29 +42,30 @@ export default function PublishedSitesView({ onBack }: { onBack?: () => void }) 
                 <div className="absolute top-[20%] right-[20%] w-[30vw] h-[30vw] bg-indigo-600/2 dark:bg-indigo-600/5 rounded-full blur-[100px]" />
             </div>
 
-            <div className="w-full max-w-7xl relative z-10">
-                <div className="mb-8 text-center animate-in fade-in slide-in-from-top-4 duration-700">
-                    <h1 className="text-3xl lg:text-4xl font-black text-gray-900 dark:text-white mb-3">
+            <div className="w-full max-w-[1800px] relative z-10 px-4 2xl:px-8">
+                <div className="mb-8 2xl:mb-16 text-center animate-in fade-in slide-in-from-top-4 duration-700">
+                    <h1 className="text-3xl lg:text-4xl 2xl:text-6xl 3xl:text-8xl font-black text-gray-900 dark:text-white mb-3 2xl:mb-6">
                         Published <span className="bg-clip-text text-transparent bg-gradient-to-r from-green-500 to-emerald-500 dark:from-green-400 dark:to-emerald-400 italic font-serif">Websites</span>
                     </h1>
-                    <p className="text-gray-500 dark:text-gray-400 text-sm lg:text-base font-medium max-w-xl mx-auto mb-8">
+                    <p className="text-gray-500 dark:text-gray-400 text-sm lg:text-base 2xl:text-2xl 3xl:text-3xl font-medium max-w-xl 2xl:max-w-3xl mx-auto mb-8 2xl:mb-12">
                         Manage and monitor your live projects. You can view, share, or delete your published sites.
                     </p>
 
-                    <div className="relative max-w-2xl mx-auto group">
+                    <div className="relative max-w-2xl 2xl:max-w-4xl mx-auto group">
                         <div className="absolute inset-0 bg-green-500/10 blur-xl opacity-0 group-focus-within:opacity-100 transition-opacity" />
                         <div className="relative flex items-center">
-                            <Search className="absolute left-4 text-gray-400 dark:text-gray-500 group-focus-within:text-green-500 dark:group-focus-within:text-green-400 transition-colors" size={20} />
+                            <Search className="absolute left-4 2xl:left-6 text-gray-400 dark:text-gray-500 group-focus-within:text-green-500 dark:group-focus-within:text-green-400 transition-colors 2xl:w-6 2xl:h-6" size={20} />
                             <input 
                                 type="text"
                                 placeholder="Filter your live sites..."
                                 value={searchValue}
                                 onChange={(e) => setSearchValue(e.target.value)}
-                                className="w-full h-12 bg-cyan-50 dark:bg-white/[0.03] border border-cyan-200 dark:border-white/[0.08] rounded-2xl pl-12 pr-4 text-gray-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-gray-500 text-sm focus:outline-none focus:border-green-500/50 focus:bg-cyan-100 dark:focus:bg-white/[0.05] transition-all shadow-sm dark:shadow-none"
+                                className="w-full h-12 2xl:h-16 3xl:h-20 bg-cyan-50 dark:bg-white/[0.03] border border-cyan-200 dark:border-white/[0.08] rounded-2xl 2xl:rounded-3xl pl-12 2xl:pl-16 pr-4 text-gray-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-gray-500 text-sm 2xl:text-lg 3xl:text-xl focus:outline-none focus:border-green-500/50 focus:bg-cyan-100 dark:focus:bg-white/[0.05] transition-all shadow-sm dark:shadow-none"
                             />
                         </div>
                     </div>
                 </div>
+
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     {MOCK_SITES

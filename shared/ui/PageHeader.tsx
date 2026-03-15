@@ -51,23 +51,23 @@ export default function PageHeader({
                             <Icon size={24} />
                         </div>
                     )}
-                    <h1 className="text-3xl md:text-5xl font-bold text-white tracking-tight leading-tight">
+                    <h1 className="text-3xl md:text-5xl 2xl:text-6xl 3xl:text-8xl font-bold text-white tracking-tight leading-tight">
                         {title} {highlight && <span className="text-blue-400 underline decoration-blue-500/30 underline-offset-8">{highlight}</span>}
                     </h1>
                 </div>
-                <p className="text-gray-400 text-lg max-w-2xl">
+                <p className="text-gray-400 text-lg 2xl:text-2xl 3xl:text-3xl max-w-2xl 2xl:max-w-4xl">
                     {description}
                 </p>
             </div>
 
             <div className="relative group min-w-[280px]">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-blue-400 transition-colors" size={18} />
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-blue-400 transition-colors 2xl:w-6 2xl:h-6 2xl:left-4" size={18} />
                 <input 
                     type="text" 
                     placeholder={searchPlaceholder}
                     value={searchValue}
                     onChange={(e) => onSearchChange(e.target.value)}
-                    className="bg-[#2a2a2a] border border-[#3e3e3e] rounded-xl pl-10 pr-4 py-3 w-full text-sm focus:outline-none focus:border-blue-500/50 transition-all text-gray-200 placeholder:text-gray-500"
+                    className="bg-[#2a2a2a] border border-[#3e3e3e] rounded-xl pl-10 2xl:pl-14 pr-4 py-3 2xl:py-5 3xl:py-6 w-full text-sm 2xl:text-lg 3xl:text-xl focus:outline-none focus:border-blue-500/50 transition-all text-gray-200 placeholder:text-gray-500 shadow-sm"
                 />
             </div>
         </div>

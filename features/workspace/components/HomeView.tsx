@@ -32,15 +32,15 @@ const HomeView = () => {
     <div className="flex-1 w-full h-full bg-[#02060D] text-white font-sans overflow-y-auto overflow-x-hidden relative z-0 flex flex-col custom-scrollbar">
       
       {/* Background Section */}
-      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-        {/* The generated server room background */}
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden bg-[#02060D]">
+        {/* The generated unified cinematic background (Girl + Server Room) */}
         <div 
-          className="absolute inset-0 bg-cover bg-center opacity-30 mix-blend-screen scale-105"
-          style={{ backgroundImage: 'url("/home_bg.png")' }}
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: 'url("/home_hero_bg.png")' }}
         />
-        {/* Gradients to darken edges and make text pop */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#02060D] via-[#02060D]/50 to-[#02060D]/30" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#02060D]/90 via-transparent to-[#02060D]/80" />
+        {/* Gradients to darken edges and make text pop without obscuring the beautiful center details */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#02060D] via-transparent to-[#02060D]/60" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#02060D] via-transparent to-[#02060D]/90" />
       </div>
 
       {/* Main Content Container */}
@@ -61,27 +61,7 @@ const HomeView = () => {
         {/* 3-COLUMN LAYOUT (Chat, Girl, Gallery) */}
         <main className="flex-grow flex flex-row items-center justify-between relative z-20 w-full mb-10 h-[450px]">
           
-          {/* THE GIRL IN THE CENTER BACK */}
-          {/* Using mixBlendMode: 'screen' absolutely removes the black background generated earlier! */}
-          <div className="absolute bottom-[5%] left-[53%] -translate-x-1/2 w-[650px] h-[650px] 2xl:w-[750px] 2xl:h-[750px] z-0 pointer-events-none flex justify-center items-end opacity-95">
-             <img 
-              src="/home_girl_interacting.png" 
-              alt="AI Assistant" 
-              className="w-full h-full object-contain object-bottom"
-              style={{ 
-                mixBlendMode: 'screen', // MAGIC TRICK: Makes black background invisible!
-                WebkitMaskImage: 'linear-gradient(to top, transparent 0%, black 15%, black 100%)',
-                maskImage: 'linear-gradient(to top, transparent 0%, black 15%, black 100%)',
-                filter: 'contrast(1.2) brightness(1.2) hue-rotate(185deg) saturate(0.6)'
-              }}
-            />
-            {/* The little floating UI panel the girl is interacting with */}
-            <div className="absolute top-[40%] right-[15%] w-[140px] h-[80px] border border-cyan-400/30 bg-cyan-900/10 rounded-lg backdrop-blur-[2px] transform perspective-[1000px] -rotate-y-[25deg] rotate-x-[5deg] flex flex-col p-2.5 shadow-[0_0_15px_rgba(34,211,238,0.1)]">
-               <div className="w-full h-1.5 bg-cyan-400/50 rounded mb-2" />
-               <div className="w-2/3 h-1 bg-cyan-400/30 rounded mb-1" />
-               <div className="w-3/4 h-1 bg-cyan-400/30 rounded" />
-            </div>
-          </div>
+
 
           {/* LEFT COLUMN: Chat Interface */}
           <div className="w-[420px] relative z-20 flex items-center h-full"> 

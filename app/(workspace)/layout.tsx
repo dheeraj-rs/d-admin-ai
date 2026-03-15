@@ -4,6 +4,7 @@ import { useWorkspace } from '@/features/workspace/hooks/useWorkspace';
 import { Sidebar } from '@/features/navigation';
 import TopBar from '@/features/workspace/components/TopBar';
 import dynamic from 'next/dynamic';
+import { usePathname } from 'next/navigation';
 
 const AuthModal = dynamic(() => import('@/features/auth/components/AuthModal'), { ssr: false });
 const SettingsModal = dynamic(() => import('@/features/settings/components/SettingsModal'), { ssr: false });
@@ -15,10 +16,12 @@ export default function WorkspaceLayout({
     children: React.ReactNode;
 }) {
     const { state, actions } = useWorkspace();
+    const pathname = usePathname();
+    const isHome = pathname === '/';
     const { showLeftSidebar, isAuthOpen, isSettingsOpen, isHelpOpen, viewState, activeTab, isAgentOpen, isShareOpen, selectedAgent } = state;
 
     return (
-        <div className="h-[100dvh] w-full bg-[#212121] text-gray-200 flex font-sans selection:bg-blue-500/30 overflow-hidden relative">
+        <div className="h-[100dvh] w-full bg-[#02060D] text-gray-200 flex font-sans selection:bg-cyan-500/30 overflow-hidden relative">
             <AuthModal isOpen={isAuthOpen} onClose={() => actions.setIsAuthOpen(false)} />
             <SettingsModal isOpen={isSettingsOpen} onClose={() => actions.setIsSettingsOpen(false)} />
             <HelpModal isOpen={isHelpOpen} onClose={() => actions.setIsHelpOpen(false)} />
@@ -37,25 +40,53 @@ export default function WorkspaceLayout({
             </div>
 
             <div className="flex-1 flex flex-col relative overflow-hidden w-full">
-                <TopBar
-                    viewState={viewState}
-                    setViewState={actions.setViewState}
-                    activeTab={activeTab}
-                    setActiveTab={actions.setActiveTab}
-                    setShowLeftSidebar={actions.setShowLeftSidebar}
-                    isAgentOpen={isAgentOpen}
-                    setIsAgentOpen={actions.setIsAgentOpen}
-                    isShareOpen={isShareOpen}
-                    setIsShareOpen={actions.setIsShareOpen}
-                    setIsHelpOpen={actions.setIsHelpOpen}
-                    selectedAgent={selectedAgent}
-                    setSelectedAgent={actions.setSelectedAgent}
-                    showAIPanel={state.showAIPanel}
-                    setShowAIPanel={actions.setShowAIPanel}
-                />
-                <div className="flex-1 relative overflow-auto scrollbar-gutter-stable">
-                    {children}
-                </div>
+                {isHome ? (
+                    <>
+                        <div className="absolute top-0 left-0 right-0 z-50">
+                            <TopBar
+                                viewState={viewState}
+                                setViewState={actions.setViewState}
+                                activeTab={activeTab}
+                                setActiveTab={actions.setActiveTab}
+                                setShowLeftSidebar={actions.setShowLeftSidebar}
+                                isAgentOpen={isAgentOpen}
+                                setIsAgentOpen={actions.setIsAgentOpen}
+                                isShareOpen={isShareOpen}
+                                setIsShareOpen={actions.setIsShareOpen}
+                                setIsHelpOpen={actions.setIsHelpOpen}
+                                selectedAgent={selectedAgent}
+                                setSelectedAgent={actions.setSelectedAgent}
+                                showAIPanel={state.showAIPanel}
+                                setShowAIPanel={actions.setShowAIPanel}
+                            />
+                        </div>
+                        <div className="flex-1 relative overflow-auto scrollbar-gutter-stable w-full h-full">
+                            {children}
+                        </div>
+                    </>
+                ) : (
+                    <>
+                        <TopBar
+                            viewState={viewState}
+                            setViewState={actions.setViewState}
+                            activeTab={activeTab}
+                            setActiveTab={actions.setActiveTab}
+                            setShowLeftSidebar={actions.setShowLeftSidebar}
+                            isAgentOpen={isAgentOpen}
+                            setIsAgentOpen={actions.setIsAgentOpen}
+                            isShareOpen={isShareOpen}
+                            setIsShareOpen={actions.setIsShareOpen}
+                            setIsHelpOpen={actions.setIsHelpOpen}
+                            selectedAgent={selectedAgent}
+                            setSelectedAgent={actions.setSelectedAgent}
+                            showAIPanel={state.showAIPanel}
+                            setShowAIPanel={actions.setShowAIPanel}
+                        />
+                        <div className="flex-1 relative overflow-auto scrollbar-gutter-stable">
+                            {children}
+                        </div>
+                    </>
+                )}
             </div>
         </div>
     );

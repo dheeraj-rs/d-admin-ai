@@ -6,7 +6,7 @@ import { Sidebar } from '@/features/navigation';
 import TopBar from './TopBar';
 import { ChatHistory, ChatInputArea } from '@/features/chat';
 import { RightPanel, WorkbenchMock } from '@/features/editor';
-import HomeView from './HomeView';
+import ChatInitialView from './ChatInitialView';
 
 const AuthModal = dynamic(() => import('@/features/auth/components/AuthModal'), { ssr: false });
 const SettingsModal = dynamic(() => import('@/features/settings/components/SettingsModal'), { ssr: false });
@@ -34,7 +34,12 @@ export default function Workspace() {
                             </div>
                         </>
                     ) : viewState === 'initial' ? (
-                        <HomeView />
+                        <ChatInitialView
+                            inputValue={inputValue}
+                            setInputValue={actions.setInputValue}
+                            handleSubmit={actions.handleSubmit}
+                            setViewState={actions.setViewState}
+                        />
                     ) : (
                         <>
                             <div className="flex-1 overflow-y-auto w-full pt-20 scrollbar-gutter-stable">

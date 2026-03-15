@@ -38,7 +38,7 @@ export default function Sidebar({
     return (
         <>
             <div
-                className={`bg-[#171717] h-full transition-[width] duration-300 ease-in-out relative flex flex-col flex-shrink-0 ${isOpen ? 'w-64' : 'w-[68px]'}`}
+                className={`bg-[#02060D] border-r border-white/5 h-full transition-[width] duration-300 ease-in-out relative flex flex-col flex-shrink-0 ${isOpen ? 'w-64' : 'w-[68px]'}`}
             >
                 {/* Top Header Actions */}
                 <div className="flex items-center h-[60px] px-3 relative w-full shrink-0 group">

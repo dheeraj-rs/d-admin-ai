@@ -28,7 +28,7 @@ export default function EditorTopBar({
     setIsShareOpen,
 }: EditorTopBarProps) {
     return (
-        <div className="sticky top-0 h-14 flex items-center justify-between gap-2 backdrop-blur-md bg-[#1e1e1e]/80 border-b border-white/5 px-2 sm:px-4 shrink-0 transition-opacity w-full z-50">
+        <div className="sticky top-0 h-14 flex items-center justify-between gap-2 backdrop-blur-md bg-white/70 dark:bg-slate-950/80 border-b border-slate-200 dark:border-slate-800 px-2 sm:px-4 shrink-0 transition-opacity w-full z-50">
             <div className="flex items-center gap-2 sm:gap-4 flex-none sm:flex-1 min-w-0 sm:pr-4">
                 <button
                     onClick={() => setViewState('chat-with-code')}

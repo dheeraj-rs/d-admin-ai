@@ -23,19 +23,19 @@ export default function ChatInitialView({
             {/* ── Scrollable page content ── */}
             <main className="flex-1 relative z-10 w-full flex flex-col justify-center min-h-[80vh]">
                 <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 w-full -mt-20">
-                    
                     {/* Hero Section */}
-                    <section className="text-center pb-6 lg:pb-8 animate-in fade-in slide-in-from-top-4 duration-700">
-                        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/25 text-blue-400 text-[10px] font-bold uppercase tracking-widest mb-8">
+                    <section className="text-center pb-6 lg:pb-8 animate-in fade-in slide-in-from-top-4 duration-700 relative flex flex-col items-center">
+                        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/25 text-blue-400 text-[10px] font-bold uppercase tracking-widest mb-6 transition-all duration-300 hover:bg-blue-500/20">
                             <Sparkles size={10} className="animate-pulse" /> Introducing d-admin v2.0
                         </div>
-                        <h1 className="font-extrabold tracking-tight mb-3 leading-[1.08]">
+                        <h1 className="font-extrabold tracking-tight mb-4 leading-[1.08]">
                             <span className="block text-gray-900 dark:text-white text-[32px] sm:text-[44px] xl:text-[48px]">
                                 What do you want to build?
                             </span>
                         </h1>
-                        <p className="text-gray-500 dark:text-[#9CA3AF] text-[13px] sm:text-[15px] font-medium max-w-sm sm:max-w-md lg:max-w-lg mx-auto">
-                            Describe your idea, and we'll scaffold it in seconds.
+                        <p className="text-gray-500 dark:text-[#9CA3AF] text-[13px] sm:text-[15px] font-medium max-w-lg mx-auto leading-relaxed">
+                            Tell what website you want to build and the features you need.
+                            This AI helps create websites, not general chatting.
                         </p>
                     </section>
 

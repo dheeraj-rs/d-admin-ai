@@ -19,50 +19,43 @@ export default function GeneralSettings({ language, setLanguage }: GeneralSettin
 
     return (
         <>
-            <h2 className="text-lg font-medium text-gray-900 dark:text-gray-100 mb-6">General</h2>
-            <div className="flex flex-col">
-                <div className="flex items-center justify-between py-4 border-b border-gray-200 dark:border-[#2f2f2f]/60">
-                    <span className="text-[15px] text-gray-700 dark:text-gray-200">Appearance</span>
+            <h2 className="text-xl font-bold text-slate-900 dark:text-white tracking-tight mb-8">General</h2>
+            <div className="flex flex-col gap-2">
+                <div className="flex items-center justify-between p-4 rounded-2xl bg-slate-50 dark:bg-slate-950/30 border border-slate-200/50 dark:border-slate-800/50 transition-all hover:border-slate-300 dark:hover:border-slate-700">
+                    <span className="text-[15px] font-bold text-slate-800 dark:text-slate-200">Appearance</span>
                     <div className="relative">
                         <select
                             value={theme}
                             onChange={(e) => setTheme(e.target.value)}
-                            className="appearance-none bg-transparent text-[15px] text-gray-500 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors cursor-pointer outline-none pr-6 font-medium"
+                            className="appearance-none bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-1.5 pr-10 text-[13px] font-bold text-slate-700 dark:text-slate-200 hover:border-indigo-500/30 transition-all cursor-pointer outline-none shadow-sm"
                         >
-                            <option value="system" className="bg-white text-gray-900 dark:bg-[#2a2a2a] dark:text-gray-200">
-                                System
-                            </option>
-                            <option value="light" className="bg-white text-gray-900 dark:bg-[#2a2a2a] dark:text-gray-200">
-                                Light
-                            </option>
-                            <option value="dark" className="bg-white text-gray-900 dark:bg-[#2a2a2a] dark:text-gray-200">
-                                Dark
-                            </option>
+                            <option value="system">System</option>
+                            <option value="light">Light</option>
+                            <option value="dark">Dark</option>
                         </select>
                         <ChevronDown
-                            size={16}
-                            className="text-gray-500 absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none"
+                            size={14}
+                            className="text-slate-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none"
+                            strokeWidth={3}
                         />
                     </div>
                 </div>
-                <div className="flex items-center justify-between py-4 border-b border-gray-200 dark:border-[#2f2f2f]/60">
-                    <span className="text-[15px] text-gray-700 dark:text-gray-200">Language</span>
+
+                <div className="flex items-center justify-between p-4 rounded-2xl bg-slate-50 dark:bg-slate-950/30 border border-slate-200/50 dark:border-slate-800/50 transition-all hover:border-slate-300 dark:hover:border-slate-700">
+                    <span className="text-[15px] font-bold text-slate-800 dark:text-slate-200">Language</span>
                     <div className="relative">
                         <select
                             value={language}
                             onChange={(e) => setLanguage(e.target.value)}
-                            className="appearance-none bg-transparent text-[15px] text-gray-500 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors cursor-pointer outline-none pr-6 font-medium"
+                            className="appearance-none bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-1.5 pr-10 text-[13px] font-bold text-slate-700 dark:text-slate-200 hover:border-indigo-500/30 transition-all cursor-pointer outline-none shadow-sm"
                         >
-                            <option value="English" className="bg-white text-gray-900 dark:bg-[#2a2a2a] dark:text-gray-200">
-                                English
-                            </option>
-                            <option value="Hindi" className="bg-white text-gray-900 dark:bg-[#2a2a2a] dark:text-gray-200">
-                                Hindi
-                            </option>
+                            <option value="English">English</option>
+                            <option value="Hindi">Hindi</option>
                         </select>
                         <ChevronDown
-                            size={16}
-                            className="text-gray-500 absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none"
+                            size={14}
+                            className="text-slate-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none"
+                            strokeWidth={3}
                         />
                     </div>
                 </div>

@@ -5,19 +5,23 @@ export interface ApiKeyState {
     gemini: string[];
     openai: string[];
     claude: string[];
+    vercel: string[];
+    github: string[];
     // Track current index for rotation
     currentIndices: {
         gemini: number;
         openai: number;
         claude: number;
+        vercel: number;
+        github: number;
     };
 }
 
 interface SettingsState extends ApiKeyState {
-    addApiKey: (provider: keyof ApiKeyState & ('gemini' | 'openai' | 'claude'), key: string) => void;
-    removeApiKey: (provider: keyof ApiKeyState & ('gemini' | 'openai' | 'claude'), index: number) => void;
-    updateApiKey: (provider: keyof ApiKeyState & ('gemini' | 'openai' | 'claude'), index: number, key: string) => void;
-    getNextKey: (provider: keyof ApiKeyState & ('gemini' | 'openai' | 'claude')) => string | null;
+    addApiKey: (provider: keyof ApiKeyState & ('gemini' | 'openai' | 'claude' | 'vercel' | 'github'), key: string) => void;
+    removeApiKey: (provider: keyof ApiKeyState & ('gemini' | 'openai' | 'claude' | 'vercel' | 'github'), index: number) => void;
+    updateApiKey: (provider: keyof ApiKeyState & ('gemini' | 'openai' | 'claude' | 'vercel' | 'github'), index: number, key: string) => void;
+    getNextKey: (provider: keyof ApiKeyState & ('gemini' | 'openai' | 'claude' | 'vercel' | 'github')) => string | null;
 }
 
 export const useSettingsStore = create<SettingsState>()(
@@ -26,10 +30,14 @@ export const useSettingsStore = create<SettingsState>()(
             gemini: [],
             openai: [],
             claude: [],
+            vercel: [],
+            github: [],
             currentIndices: {
                 gemini: 0,
                 openai: 0,
                 claude: 0,
+                vercel: 0,
+                github: 0,
             },
 
             addApiKey: (provider, key) => {

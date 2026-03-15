@@ -58,6 +58,7 @@ export default function WorkspaceLayout({
                                 setSelectedAgent={actions.setSelectedAgent}
                                 showAIPanel={state.showAIPanel}
                                 setShowAIPanel={actions.setShowAIPanel}
+                                handleNewChat={actions.handleNewChat}
                             />
                         </div>
                         <div className="flex-1 relative overflow-auto scrollbar-gutter-stable w-full h-full">
@@ -72,15 +73,16 @@ export default function WorkspaceLayout({
                             activeTab={activeTab}
                             setActiveTab={actions.setActiveTab}
                             setShowLeftSidebar={actions.setShowLeftSidebar}
-                            isAgentOpen={isAgentOpen}
+                            isAgentOpen={state.isAgentOpen}
                             setIsAgentOpen={actions.setIsAgentOpen}
-                            isShareOpen={isShareOpen}
+                            isShareOpen={state.isShareOpen}
                             setIsShareOpen={actions.setIsShareOpen}
                             setIsHelpOpen={actions.setIsHelpOpen}
-                            selectedAgent={selectedAgent}
+                            selectedAgent={state.selectedAgent}
                             setSelectedAgent={actions.setSelectedAgent}
                             showAIPanel={state.showAIPanel}
                             setShowAIPanel={actions.setShowAIPanel}
+                            handleNewChat={actions.handleNewChat}
                         />
                         <div className="flex-1 relative overflow-auto scrollbar-gutter-stable">
                             {children}

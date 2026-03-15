@@ -28,54 +28,55 @@ const HomeView = () => {
   }, []);
 
   return (
-    <div className="flex-1 w-full min-h-[100dvh] dark:bg-[#02060D] text-gray-900 dark:text-white font-sans overflow-y-auto overflow-x-hidden relative z-0 flex flex-col custom-scrollbar transition-colors duration-300">
-        <div className="fixed inset-0 w-[100dvw] h-[100dvh] z-0 pointer-events-none overflow-hidden bg-[#dbeafe] dark:bg-[#02060D] transition-colors duration-300">
+    <div className="flex-1 w-full min-h-screen bg-[var(--bg-main)] text-[var(--text-main)] font-sans overflow-x-hidden overflow-y-auto relative z-0 flex flex-col transition-colors duration-300">
+        <div className="fixed inset-0 w-[100dvw] h-[100dvh] z-0 pointer-events-none overflow-hidden bg-[var(--bg-main)] transition-colors duration-300">
         <div 
           className="absolute inset-0 bg-cover bg-center transition-all duration-700 opacity-100"
           style={{ backgroundImage: 'url("/home_hero_bg.png")' }}
         />
         
-        {/* Cyan-blue edge fades — stronger at top/left to match sidebar and header blue */}
-        <div className="absolute inset-x-0 bottom-0 h-[30%] bg-gradient-to-t from-[#ecfeff] via-[#ecfeff]/60 dark:from-[#02060D] dark:via-transparent to-transparent transition-colors duration-300 pointer-events-none" />
-        <div className="absolute inset-x-0 top-0 h-[30%] bg-gradient-to-b from-[#a5f3fc]/80 via-[#cffafe]/40 dark:from-[#02060D]/60 dark:via-transparent to-transparent transition-colors duration-300 pointer-events-none" />
-        <div className="absolute inset-y-0 left-0 w-[40%] md:w-[30%] bg-gradient-to-r from-[#a5f3fc]/70 via-[#cffafe]/30 dark:from-[#02060D] dark:via-transparent to-transparent transition-colors duration-300 pointer-events-none" />
-        <div className="absolute inset-y-0 right-0 w-[30%] md:w-[20%] bg-gradient-to-l from-[#ecfeff]/70 via-[#ecfeff]/20 dark:from-[#02060D]/80 dark:via-transparent to-transparent transition-colors duration-300 pointer-events-none" />
+  <div className="absolute inset-x-0 bottom-0 h-[35%] bg-gradient-to-t from-slate-200/50 via-transparent dark:from-slate-950/80 dark:via-transparent to-transparent transition-colors duration-300 pointer-events-none" />
+<div className="absolute inset-x-0 top-0 h-[30%] bg-gradient-to-b from-slate-200/40 via-transparent dark:from-slate-950/60 dark:via-transparent to-transparent transition-colors duration-300 pointer-events-none" />
+<div className="absolute inset-y-0 left-0 w-[45%] md:w-[35%] bg-gradient-to-r from-slate-100/60 via-transparent dark:from-slate-950/80 dark:via-transparent to-transparent transition-colors duration-300 pointer-events-none" />
+<div className="absolute inset-y-0 right-0 w-[35%] md:w-[25%] bg-gradient-to-l from-slate-100/40 via-transparent dark:from-slate-950/80 dark:via-transparent to-transparent transition-colors duration-300 pointer-events-none" />
       </div>
 
-      <div className="relative z-10 flex flex-col w-full min-h-[100dvh] max-w-[1500px] mx-auto pt-[70px] px-6 lg:px-10 pb-4">
-        <header className="w-full relative z-30 pointer-events-none max-w-2xl mt-4 lg:mt-6 shrink-0">
-          <h1 className="text-3xl lg:text-[44px] font-extrabold leading-[1.05] mb-2 tracking-tight drop-shadow-sm dark:drop-shadow-2xl text-gray-900 dark:text-white">
+      <div className="relative z-10 flex flex-col w-full min-h-full max-w-[1600px] mx-auto pt-16 md:pt-16 px-4 md:px-8 lg:px-12 pb-6">
+        <header className="w-full relative z-30 pointer-events-none max-w-2xl shrink-0 mb-4 lg:mb-6 flex flex-col items-center md:items-start text-center md:text-left">
+          <h1 className="text-2xl md:text-4xl lg:text-[44px] font-extrabold leading-[1.1] mb-3 tracking-tight drop-shadow-sm text-[var(--text-main)] mx-auto md:mx-0">
             BUILD YOUR VISION<br/>
-            INSTANTLY. <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 to-cyan-400 dark:from-cyan-400 dark:to-cyan-200">THE AI WAY.</span>
+            INSTANTLY. <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-700 via-indigo-600 to-cyan-600 dark:from-indigo-400 dark:via-cyan-400 dark:to-cyan-200">THE AI WAY.</span>
           </h1>
-          <p className="text-gray-600 dark:text-gray-300 text-[13px] md:text-sm font-medium dark:font-light leading-relaxed drop-shadow-sm dark:drop-shadow-md max-w-lg">
-            Select your preferred creation experience. The AI builds it.<br />
-            Your stunning, futuristic website in seconds.
-          </p>
+          <div className="bg-white/40 dark:bg-slate-950/20 backdrop-blur-[2px] rounded-lg p-2 md:-ml-2 w-fit">
+            <p className="text-slate-800 dark:text-slate-100 text-[12px] md:text-[13.5px] font-semibold dark:font-medium leading-relaxed drop-shadow-sm max-w-lg">
+              Select your preferred creation experience. The AI builds it.<br />
+              Your stunning, futuristic website in seconds.
+            </p>
+          </div>
         </header>
 
-        <main className="my-auto flex flex-col items-center md:flex-row md:items-stretch justify-center md:justify-between relative z-20 w-full py-8 gap-8 md:gap-6 lg:gap-0">
-          <div className="w-full max-w-[380px] md:max-w-none md:flex-1 lg:flex-none lg:w-[410px] relative z-20 flex flex-col justify-center gap-4 shrink-0"> 
-            <div className="absolute left-[-170px] top-1/2 -translate-y-1/2 w-48 h-[300px] opacity-40 dark:opacity-80 pointer-events-none hidden 2xl:block z-0" style={{ perspective: '1200px' }}>
+        <main className="flex-1 flex flex-col items-center md:flex-row md:items-center justify-center md:justify-between relative z-20 w-full gap-8 md:gap-6 lg:gap-8 xl:gap-10 my-1">
+          <div className="w-full max-w-[380px] md:max-w-[420px] lg:max-w-[460px] md:flex-1 relative z-20 flex flex-col justify-center gap-3 shrink-0"> 
+          <div className="absolute left-[-170px] top-1/2 -translate-y-1/2 w-48 h-[300px] opacity-40 dark:opacity-80 pointer-events-none hidden 3xl:block z-0" style={{ perspective: '1200px' }}>
                 <div className="relative w-full h-full transition-transform duration-1000" style={{ transformStyle: 'preserve-3d', transform: 'rotateY(35deg) rotateX(5deg)' }}>
-                  <div className="absolute top-0 left-0 w-44 h-[200px] bg-white/80 dark:bg-[#061022]/80 backdrop-blur-md border border-cyan-500/20 dark:border-cyan-500/40 rounded-xl p-3 flex flex-col gap-2 shadow-[0_0_20px_rgba(34,211,238,0.1)] dark:shadow-[0_0_20px_rgba(34,211,238,0.2)]" style={{ transform: 'translateZ(-30px)' }}>
-                     <div className="text-[7.5px] text-cyan-600 dark:text-cyan-400 font-mono tracking-widest uppercase">NEURAL TEMPLATE 7</div>
-                     <div className="w-full flex-grow bg-gradient-to-br from-cyan-100/60 to-blue-100/60 dark:from-cyan-900/60 dark:to-blue-900/60 rounded flex items-center justify-center border border-cyan-400/20"><Hexagon className="text-cyan-600 dark:text-cyan-400 w-6 h-6 opacity-40" /></div>
-                     <div className="h-1 w-3/4 bg-cyan-200 dark:bg-cyan-900 rounded" />
-                     <div className="h-1 w-1/2 bg-cyan-200 dark:bg-cyan-900 rounded" />
+                  <div className="absolute top-0 left-0 w-44 h-[200px] bg-white/90 dark:bg-slate-900/80 backdrop-blur-md border border-indigo-500/10 dark:border-indigo-500/30 rounded-xl p-3 flex flex-col gap-2 shadow-sm" style={{ transform: 'translateZ(-30px)' }}>
+                     <div className="text-[7.5px] text-indigo-600 dark:text-indigo-400 font-mono tracking-widest uppercase">NEURAL TEMPLATE 7</div>
+                     <div className="w-full flex-grow bg-gradient-to-br from-indigo-50 to-indigo-100/30 dark:from-indigo-950/40 dark:to-indigo-900/40 rounded flex items-center justify-center border border-indigo-500/10"><Hexagon className="text-indigo-600 dark:text-indigo-400 w-6 h-6 opacity-40" /></div>
+                     <div className="h-1 w-3/4 bg-indigo-100 dark:bg-indigo-900 rounded" />
+                     <div className="h-1 w-1/2 bg-indigo-100 dark:bg-indigo-900 rounded" />
                   </div>
-                  <div className="absolute top-24 left-10 w-44 h-[200px] bg-white/80 dark:bg-[#0A1225]/80 backdrop-blur-md border border-purple-500/20 dark:border-purple-500/40 rounded-xl p-3 flex flex-col gap-2 shadow-[0_0_20px_rgba(168,85,247,0.1)] dark:shadow-[0_0_20px_rgba(168,85,247,0.2)]" style={{ transform: 'translateZ(40px) rotateY(-8deg)' }}>
+                  <div className="absolute top-24 left-10 w-44 h-[200px] bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border border-purple-500/10 dark:border-purple-500/30 rounded-xl p-3 flex flex-col gap-2 shadow-sm" style={{ transform: 'translateZ(40px) rotateY(-8deg)' }}>
                      <div className="text-[7.5px] text-purple-600 dark:text-purple-400 font-mono tracking-widest uppercase">BIOMETRIC PORTFOLIO</div>
-                     <div className="w-full flex-grow bg-gradient-to-r from-purple-100/40 to-indigo-100/40 dark:from-purple-900/40 dark:to-indigo-900/40 rounded border border-purple-400/20"></div>
+                     <div className="w-full flex-grow bg-gradient-to-r from-purple-50 to-purple-100/30 dark:from-purple-950/40 dark:to-purple-900/40 rounded border border-purple-500/10"></div>
                      <div className="flex gap-1.5 h-14">
-                       <div className="flex-1 bg-gray-100/60 dark:bg-gray-800/60 rounded border border-black/5 dark:border-white/5"></div>
-                       <div className="flex-1 bg-gray-100/60 dark:bg-gray-800/60 rounded border border-black/5 dark:border-white/5"></div>
+                       <div className="flex-1 bg-slate-100 dark:bg-slate-800 rounded border border-slate-200/50 dark:border-white/5"></div>
+                       <div className="flex-1 bg-slate-100 dark:bg-slate-800 rounded border border-slate-200/50 dark:border-white/5"></div>
                      </div>
                   </div>
                 </div>
              </div>
 
-             <div className="absolute left-[-150px] top-[30%] lg:top-[35%] w-[150px] h-[120px] hidden 2xl:flex flex-col justify-center gap-[4px] opacity-40 pointer-events-none z-10" style={{ perspective: '800px', transform: 'rotateY(10deg)' }}>
+             <div className="absolute left-[-150px] top-[30%] lg:top-[35%] w-[150px] h-[120px] hidden 3xl:flex flex-col justify-center gap-[4px] opacity-40 pointer-events-none z-10" style={{ perspective: '800px', transform: 'rotateY(10deg)' }}>
                 {Array.from({ length: 15 }).map((_, i) => (
                   <div 
                     key={i} 
@@ -85,22 +86,22 @@ const HomeView = () => {
                 ))}
              </div>
 
-             <div className="w-full relative z-30 mb-2">
-                <div className="absolute -top-[8px] -left-[8px] w-8 h-8 border-t-[1.5px] border-l-[1.5px] border-cyan-500/30 dark:border-cyan-400/50 rounded-tl-2xl pointer-events-none opacity-90 shadow-[-4px_-4px_10px_rgba(34,211,238,0.1)] dark:shadow-[-4px_-4px_10px_rgba(34,211,238,0.2)] z-10"></div>
-                <div className="absolute -bottom-[8px] -right-[8px] w-8 h-8 border-b-[1.5px] border-r-[1.5px] border-cyan-500/30 dark:border-cyan-400/50 rounded-br-2xl pointer-events-none opacity-90 shadow-[4px_4px_10px_rgba(34,211,238,0.1)] dark:shadow-[4px_4px_10px_rgba(34,211,238,0.2)] z-10"></div>
-                <div className="w-full bg-cyan-50/60 dark:bg-[#06101E]/40 backdrop-blur-xl border-[1.5px] border-cyan-200/60 dark:border-cyan-400/50 rounded-xl p-5 shadow-[0_8px_32px_rgba(6,182,212,0.1),inset_0_0_15px_rgba(165,243,252,0.3)] dark:shadow-[0_0_30px_rgba(34,211,238,0.2),inset_0_0_15px_rgba(34,211,238,0.1)] flex flex-col relative z-20 transition-colors duration-300">
+              <div className="w-full relative z-30 mb-2">
+                <div className="absolute -top-[8px] -left-[8px] w-8 h-8 border-t-[1.5px] border-l-[1.5px] border-indigo-500/30 dark:border-indigo-400/50 rounded-tl-2xl pointer-events-none opacity-90 shadow-[-4px_-4px-10px_rgba(79,70,229,0.1)] dark:shadow-[-4px_-4px-10px_rgba(79,70,229,0.2)] z-10"></div>
+                <div className="absolute -bottom-[8px] -right-[8px] w-8 h-8 border-b-[1.5px] border-r-[1.5px] border-indigo-500/30 dark:border-indigo-400/50 rounded-br-2xl pointer-events-none opacity-90 shadow-[4px_4px_10px_rgba(79,70,229,0.1)] dark:shadow-[4px_4px-10px_rgba(79,70,229,0.2)] z-10"></div>
+                <div className="w-full bg-white/60 dark:bg-slate-900/40 backdrop-blur-xl border-[1.5px] border-indigo-200/60 dark:border-indigo-500/30 rounded-xl p-5 shadow-[0_8px_32px_rgba(74,70,229,0.06),inset_0_0_15px_rgba(255,255,255,0.3)] dark:shadow-[0_0_30px_rgba(79,70,229,0.1),inset_0_0_15px_rgba(79,70,229,0.05)] flex flex-col relative z-20 transition-colors duration-300">
                   <div className="flex items-center gap-3 mb-4 pl-1">
-                    <div className="w-8 h-8 rounded-lg bg-cyan-50 dark:bg-[#0b1b36] border border-cyan-500/30 dark:border-cyan-400/60 flex items-center justify-center shadow-[0_0_8px_rgba(34,211,238,0.15)] dark:shadow-[0_0_12px_rgba(34,211,238,0.3)]">
-                      <span className="text-cyan-600 dark:text-cyan-400 font-bold text-[12px] font-mono tracking-widest">AI</span>
+                    <div className="w-8 h-8 rounded-lg bg-indigo-50 dark:bg-slate-800 border border-indigo-500/20 dark:border-indigo-400/40 flex items-center justify-center shadow-sm">
+                      <span className="text-indigo-600 dark:text-indigo-400 font-bold text-[12px] font-mono tracking-widest">AI</span>
                     </div>
-                    <span className="text-[14px] font-medium text-gray-800 dark:text-gray-200 tracking-wide">Describe your website...</span>
+                    <span className="text-[14px] font-medium text-[var(--text-main)] tracking-wide">Describe your website...</span>
                   </div>
-                  <div className="bg-gray-50/90 dark:bg-[#030711]/90 rounded-xl p-4 min-h-[110px] lg:min-h-[130px] border border-gray-200 dark:border-cyan-700/60 relative shadow-[inset_0_2px_8px_rgba(0,0,0,0.02)] dark:shadow-[inset_0_0_15px_rgba(0,0,0,0.5)] flex flex-col justify-between group transition-colors duration-300">
-                    <p className="text-gray-700 dark:text-gray-300 font-medium dark:font-light text-[14px] leading-[1.6]">
+                  <div className="bg-white/80 dark:bg-slate-950/80 rounded-xl p-4 min-h-[110px] lg:min-h-[130px] border border-slate-200 dark:border-slate-800 relative shadow-[inset_0_2px_8px_rgba(0,0,0,0.02)] dark:shadow-[inset_0_0_15px_rgba(0,0,0,0.5)] flex flex-col justify-between group transition-colors duration-300">
+                    <p className="text-[var(--text-main)] font-medium dark:font-light text-[14px] leading-[1.6]">
                       {typedText}
-                      <span className="inline-block w-[2px] h-3.5 ml-1 bg-cyan-500 dark:bg-cyan-400 animate-pulse align-middle" />
+                      <span className="inline-block w-[2px] h-3.5 ml-1 bg-indigo-500 dark:bg-indigo-400 animate-pulse align-middle" />
                     </p>
-                    <div className="self-end mt-2 text-gray-400 dark:text-gray-500 cursor-pointer hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors">
+                    <div className="self-end mt-2 text-slate-400 dark:text-slate-500 cursor-pointer hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
                       <Send size={15} className="dark:drop-shadow-[0_0_5px_rgba(255,255,255,0.1)]" />
                     </div>
                   </div>
@@ -108,13 +109,32 @@ const HomeView = () => {
              </div>
              <button 
                 onClick={() => router.push('/ai-chat-builder')}
-                className="w-full py-4 rounded-[12px] bg-gradient-to-r from-cyan-400 via-cyan-300 to-[#b28cff] text-gray-900 font-extrabold text-[13px] tracking-widest shadow-[0_0_20px_rgba(34,211,238,0.4)] hover:shadow-[0_0_30px_rgba(34,211,238,0.6)] transition-all flex items-center justify-center transform hover:scale-[1.02] z-30"
+                className="w-full py-4 rounded-[12px] bg-gradient-to-r from-indigo-600 via-indigo-500 to-cyan-500 text-white font-extrabold text-[13px] tracking-widest shadow-[0_8px_20px_rgba(79,70,229,0.25)] hover:shadow-[0_12px_25px_rgba(79,70,229,0.4)] transition-all flex items-center justify-center transform hover:scale-[1.01] z-30"
              >
                 START WITH AI CONVERSATION
              </button>
           </div>
 
-          <div className="w-full max-w-[400px] md:max-w-none md:flex-1 lg:flex-none lg:w-[420px] relative z-20 flex flex-col justify-center gap-3 shrink-0">
+          <div className="w-full max-w-[380px] md:max-w-[420px] lg:max-w-[480px] md:flex-1 relative z-20 flex flex-col justify-center gap-3 shrink-0">
+            {/* Right Symmetric 3D Decorative Cards */}
+            <div className="absolute right-[-170px] top-1/2 -translate-y-1/2 w-48 h-[300px] opacity-40 dark:opacity-80 pointer-events-none hidden 3xl:block z-0" style={{ perspective: '1200px' }}>
+                <div className="relative w-full h-full transition-transform duration-1000" style={{ transformStyle: 'preserve-3d', transform: 'rotateY(-35deg) rotateX(5deg)' }}>
+                  <div className="absolute top-0 right-0 w-44 h-[200px] bg-white/90 dark:bg-slate-900/80 backdrop-blur-md border border-cyan-500/10 dark:border-cyan-500/30 rounded-xl p-3 flex flex-col gap-2 shadow-sm" style={{ transform: 'translateZ(-30px)' }}>
+                     <div className="text-[7.5px] text-cyan-600 dark:text-cyan-400 font-mono tracking-widest uppercase">QUANTUM CORE</div>
+                     <div className="w-full flex-grow bg-gradient-to-br from-cyan-50 to-cyan-100/30 dark:from-cyan-950/40 dark:to-cyan-900/40 rounded flex items-center justify-center border border-cyan-500/10"><CloudLightning className="text-cyan-600 dark:text-cyan-400 w-6 h-6 opacity-40" /></div>
+                     <div className="h-1 w-3/4 bg-cyan-100 dark:bg-slate-800 rounded" />
+                     <div className="h-1 w-1/2 bg-cyan-100 dark:bg-slate-800 rounded" />
+                  </div>
+                  <div className="absolute top-24 right-10 w-44 h-[200px] bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border border-indigo-500/10 dark:border-indigo-500/30 rounded-xl p-3 flex flex-col gap-2 shadow-sm" style={{ transform: 'translateZ(40px) rotateY(8deg)' }}>
+                     <div className="text-[7.5px] text-indigo-600 dark:text-indigo-400 font-mono tracking-widest uppercase">NEURAL INTERFACE</div>
+                     <div className="w-full flex-grow bg-gradient-to-r from-indigo-50 to-indigo-100/30 dark:from-indigo-950/40 dark:to-indigo-900/40 rounded border border-indigo-500/10"></div>
+                     <div className="flex gap-1.5 h-14">
+                       <div className="flex-1 bg-slate-100 dark:bg-slate-800 rounded border border-slate-200/50 dark:border-white/5"></div>
+                       <div className="flex-1 bg-slate-100 dark:bg-slate-800 rounded border border-slate-200/50 dark:border-white/5"></div>
+                     </div>
+                  </div>
+                </div>
+             </div>
             <div className="w-full relative z-30 mb-2">
                 <div className="absolute -top-[8px] -left-[8px] w-8 h-8 border-t-[1.5px] border-l-[1.5px] border-cyan-500/30 dark:border-cyan-400/50 rounded-tl-2xl pointer-events-none opacity-90 shadow-[-4px_-4px_10px_rgba(34,211,238,0.1)] dark:shadow-[-4px_-4px_10px_rgba(34,211,238,0.2)] z-10"></div>
                 <div className="absolute -bottom-[8px] -right-[8px] w-8 h-8 border-b-[1.5px] border-r-[1.5px] border-purple-500/30 dark:border-purple-400/50 rounded-br-2xl pointer-events-none opacity-90 shadow-[4px_4px_10px_rgba(168,85,247,0.1)] dark:shadow-[4px_4px_10px_rgba(168,85,247,0.2)] z-10"></div>
@@ -179,58 +199,58 @@ const HomeView = () => {
                 START WITH TEMPLATE GALLERY
              </button>
 
-             <div className="flex items-center gap-3 px-2 opacity-70 mt-1">
-                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=150&auto=format&fit=crop" alt="User" className="w-6 h-6 rounded-full border border-gray-600 object-cover grayscale" />
-                <p className="text-[9px] text-gray-400 font-light italic leading-relaxed tracking-wide flex-1">
+             <div className="flex items-center gap-3 px-3 py-2 mt-2 transition-all">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=150&auto=format&fit=crop" alt="User" className="w-8 h-8 rounded-full object-cover shadow-sm" />
+                <p className="text-[10px] text-slate-900 dark:text-slate-200 font-medium italic leading-relaxed tracking-wide flex-1">
                   "Trusted by innovators like Janeanthe, who used this to build future platforms..."
                 </p>
              </div>
           </div>
         </main>
 
-        <footer className="shrink-0 border-t border-gray-200 dark:border-white/10 pt-4 lg:pt-6 z-20 w-full relative mt-4 transition-colors duration-300">
-          <div className="flex flex-wrap justify-center items-center gap-4 md:gap-12 lg:gap-20 w-full mb-2">
+        <footer className="shrink-0 border-t border-slate-200/10 dark:border-slate-800/10 pt-2 z-20 w-full relative mt-auto transition-colors duration-300">
+          <div className="flex flex-wrap justify-center items-center gap-6 md:gap-10 lg:gap-14 w-full pb-2">
             <div className="flex items-center gap-3 group cursor-default scale-90 lg:scale-100">
               <div className="w-[38px] h-[38px] flex items-center gap-1 justify-center transition-colors">
-                 <div className="w-[10px] h-[20px] bg-cyan-200 dark:bg-cyan-700/50 border border-cyan-400/40 rounded-[2px]" />
-                 <div className="w-[14px] h-[20px] bg-cyan-200 dark:bg-cyan-700/50 border border-cyan-400/40 rounded-[2px] flex items-center justify-center">
-                    <div className="w-0 h-0 border-t-4 border-t-transparent border-b-4 border-b-transparent border-l-[6px] border-l-cyan-600 dark:border-l-cyan-400/80" />
+                 <div className="w-[10px] h-[20px] bg-indigo-500 dark:bg-indigo-400 border border-indigo-600 dark:border-indigo-300 rounded-[2px] shadow-[0_0_10px_rgba(79,70,229,0.3)]" />
+                 <div className="w-[14px] h-[20px] bg-indigo-500 dark:bg-indigo-400 border border-indigo-600 dark:border-indigo-300 rounded-[2px] flex items-center justify-center shadow-[0_0_10px_rgba(79,70,229,0.3)]">
+                    <div className="w-0 h-0 border-t-4 border-t-transparent border-b-4 border-b-transparent border-l-[6px] border-l-white dark:border-l-white" />
                  </div>
-                 <div className="w-[10px] h-[20px] bg-cyan-200 dark:bg-cyan-700/50 border border-cyan-400/40 rounded-[2px]" />
+                 <div className="w-[10px] h-[20px] bg-indigo-500 dark:bg-indigo-400 border border-indigo-600 dark:border-indigo-300 rounded-[2px] shadow-[0_0_10px_rgba(79,70,229,0.3)]" />
               </div>
               <div className="flex flex-col">
-                <span className="font-extrabold text-[13px] text-gray-800 dark:text-gray-200 tracking-wider">INTERACT</span>
-                <span className="text-[9px] text-gray-500 tracking-[0.2em] uppercase mt-0.5">Templates</span>
+                <span className="font-extrabold text-[13px] text-slate-900 dark:text-white tracking-wider">INTERACT</span>
+                <span className="text-[9px] text-indigo-600 dark:text-indigo-400 font-bold tracking-[0.2em] uppercase mt-0.5">Templates</span>
               </div>
             </div>
 
             <div className="flex items-center gap-3 group cursor-default scale-90 lg:scale-100">
               <div className="w-[38px] h-[38px] rounded-lg flex items-center justify-center transition-colors">
-                <BrainCircuit className="text-cyan-500 dark:text-cyan-400 w-7 h-7 drop-shadow-[0_0_8px_rgba(34,211,238,0.3)] dark:drop-shadow-[0_0_8px_rgba(34,211,238,0.5)]" strokeWidth={1.5} />
+                <BrainCircuit className="text-indigo-600 dark:text-indigo-400 w-7 h-7 drop-shadow-[0_0_5px_rgba(79,70,229,0.3)]" strokeWidth={2} />
               </div>
                <div className="flex flex-col">
-                <span className="font-extrabold text-[13px] text-gray-800 dark:text-gray-200 tracking-wider">D-ADMIN</span>
-                <span className="text-[9px] text-gray-500 tracking-[0.2em] uppercase mt-0.5">AI Engine</span>
+                <span className="font-extrabold text-[13px] text-slate-900 dark:text-white tracking-wider">D-ADMIN</span>
+                <span className="text-[9px] text-indigo-600 dark:text-indigo-400 font-bold tracking-[0.2em] uppercase mt-0.5">AI Engine</span>
               </div>
             </div>
 
             <div className="flex items-center gap-3 group cursor-default scale-90 lg:scale-100">
               <div className="w-[38px] h-[38px] flex items-center justify-center transition-colors">
-                <CloudLightning className="text-cyan-500 dark:text-cyan-400 w-7 h-7 drop-shadow-[0_0_8px_rgba(34,211,238,0.3)] dark:drop-shadow-[0_0_8px_rgba(34,211,238,0.5)]" strokeWidth={1.5} />
+                <CloudLightning className="text-indigo-600 dark:text-indigo-400 w-7 h-7 drop-shadow-[0_0_5px_rgba(79,70,229,0.3)]" strokeWidth={2} />
               </div>
                <div className="flex flex-col">
-                <span className="font-extrabold text-[13px] text-gray-800 dark:text-gray-200 tracking-wider">INSTANT</span>
-                <span className="text-[9px] text-gray-500 tracking-[0.2em] uppercase mt-0.5">Deploy</span>
+                <span className="font-extrabold text-[13px] text-slate-900 dark:text-white tracking-wider">INSTANT</span>
+                <span className="text-[9px] text-indigo-600 dark:text-indigo-400 font-bold tracking-[0.2em] uppercase mt-0.5">Deploy</span>
               </div>
             </div>
 
             <div className="flex items-center gap-3 group cursor-default scale-90 lg:scale-100">
               <div className="w-[38px] h-[38px] flex items-center justify-center transition-colors">
-                <Settings2 className="text-cyan-500 dark:text-cyan-400 w-7 h-7 drop-shadow-[0_0_8px_rgba(34,211,238,0.3)] dark:drop-shadow-[0_0_8px_rgba(34,211,238,0.5)]" strokeWidth={1.5} />
+                <Settings2 className="text-indigo-600 dark:text-indigo-400 w-7 h-7 drop-shadow-[0_0_5px_rgba(79,70,229,0.3)]" strokeWidth={2} />
               </div>
               <div className="flex flex-col">
-                <span className="font-extrabold text-[13px] text-gray-800 dark:text-gray-200 tracking-wider">FULL</span>
-                <span className="text-[9px] text-gray-500 tracking-[0.2em] uppercase mt-0.5">Customization</span>
+                <span className="font-extrabold text-[13px] text-slate-900 dark:text-white tracking-wider">FULL</span>
+                <span className="text-[9px] text-indigo-600 dark:text-indigo-400 font-bold tracking-[0.2em] uppercase mt-0.5">Customization</span>
               </div>
             </div>
           </div>

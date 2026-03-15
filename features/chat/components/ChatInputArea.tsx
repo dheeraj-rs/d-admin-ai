@@ -23,10 +23,10 @@ export default function ChatInputArea({
 
     return (
         <div
-            className={`absolute bottom-0 w-full bg-gradient-to-t from-gray-50 dark:from-[#212121] via-gray-50 dark:via-[#212121] to-transparent ${isSidebar ? 'pt-8 pb-4 sm:pb-6 px-4' : 'pt-6 pb-4 sm:pb-6 px-4'} pointer-events-none z-10 transition-colors duration-300`}
+            className={`absolute bottom-0 w-full bg-gradient-to-t from-transparent via-transparent to-transparent ${isSidebar ? 'pt-8 pb-4 sm:pb-6 px-4' : 'pt-6 pb-4 sm:pb-6 px-4'} pointer-events-none z-10 transition-colors duration-300`}
         >
             <div className={`${isSidebar ? 'w-full' : 'max-w-3xl mx-auto'} pointer-events-auto`}>
-                <div className="relative flex items-center bg-white dark:bg-[#2f2f2f] border border-gray-200 dark:border-transparent rounded-[32px] p-2 pl-3 pr-3 shadow-lg transition-colors duration-300">
+                <div className="relative flex items-center bg-black/20 dark:bg-white/[0.03] backdrop-blur-xl border border-white/5 rounded-[32px] p-2 pl-3 pr-3 shadow-2xl transition-colors duration-300 ring-1 ring-white/5">
                     <PlusActionMenu />
                     <input
                         type="text"

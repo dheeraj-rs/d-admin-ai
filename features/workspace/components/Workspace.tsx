@@ -15,7 +15,7 @@ const HelpModal = dynamic(() => import('@/features/help/components/HelpModal'), 
 
 export default function Workspace() {
     const { state, actions } = useWorkspace();
-    const { viewState, activeTab, showLeftSidebar, inputValue, isAuthOpen, isSettingsOpen, isHelpOpen, isAgentOpen, isShareOpen, selectedAgent } = state;
+    const { viewState, activeTab, showLeftSidebar, inputValue, isAuthOpen, isSettingsOpen, isHelpOpen, isAgentOpen, isShareOpen, selectedAgent, messages } = state;
 
     return (
         <div className="flex-1 flex overflow-hidden relative h-full">
@@ -24,7 +24,12 @@ export default function Workspace() {
                             <div className={`w-full lg:w-[450px] shrink-0 border-r border-[#2f2f2f] bg-[#212121] flex flex-col relative ${activeTab === 'chat' ? 'flex' : 'hidden lg:flex'}`}>
                                 <div className="flex-1 overflow-y-auto w-full pt-6 scrollbar-gutter-stable">
                                     <div className="px-4 pb-40 flex flex-col max-w-3xl mx-auto w-full">
-                                        <ChatHistory viewState={viewState} setViewState={actions.setViewState} setActiveTab={actions.setActiveTab} />
+                                        <ChatHistory 
+                                            messages={messages}
+                                            viewState={viewState} 
+                                            setViewState={actions.setViewState} 
+                                            setActiveTab={actions.setActiveTab} 
+                                        />
                                     </div>
                                 </div>
                                 <ChatInputArea inputValue={inputValue} setInputValue={actions.setInputValue} handleSubmit={actions.handleSubmit} isSidebar={true} />
@@ -44,7 +49,12 @@ export default function Workspace() {
                         <>
                             <div className="flex-1 overflow-y-auto w-full pt-20 scrollbar-gutter-stable">
                                 <div className="px-4 pb-40 flex flex-col gap-8 max-w-3xl mx-auto w-full">
-                                    <ChatHistory viewState={viewState} setViewState={actions.setViewState} setActiveTab={actions.setActiveTab} />
+                                    <ChatHistory 
+                                        messages={messages}
+                                        viewState={viewState} 
+                                        setViewState={actions.setViewState} 
+                                        setActiveTab={actions.setActiveTab} 
+                                    />
                                 </div>
                             </div>
                             <ChatInputArea inputValue={inputValue} setInputValue={actions.setInputValue} handleSubmit={actions.handleSubmit} isSidebar={false} />

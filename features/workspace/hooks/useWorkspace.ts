@@ -20,9 +20,12 @@ export function useWorkspace() {
             isHelpOpen: store.isHelpOpen,
             selectedAgent: store.selectedAgent,
             showAIPanel: store.showAIPanel,
+            messages: store.messages,
+            projectSummary: store.projectSummary,
         },
         actions: {
             setShowLeftSidebar: store.setShowLeftSidebar,
+            handleNewChat: store.handleNewChat,
             setViewState: store.setViewState,
             setInputValue: store.setInputValue,
             setActiveTab: store.setActiveTab,
@@ -33,7 +36,6 @@ export function useWorkspace() {
             setIsHelpOpen: store.setIsHelpOpen,
             setSelectedAgent: store.setSelectedAgent,
             setShowAIPanel: store.setShowAIPanel,
-            handleNewChat: store.handleNewChat,
             handleSubmit: store.handleSubmit,
         },
     };

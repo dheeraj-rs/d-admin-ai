@@ -1,11 +1,13 @@
 import { useState } from 'react';
-import { X, Settings, Link as LinkIcon, Edit3, ChevronRight, ArrowLeft } from 'lucide-react';
+import { X, Settings, Link2, User, ChevronRight, ArrowLeft, Plug, Github, LayoutGrid } from 'lucide-react';
 import GeneralSettings from './GeneralSettings';
 import ApiSettings from './ApiSettings';
 import AgentSettings from './AgentSettings';
+import VercelSettings from './VercelSettings';
+import GitHubSettings from './GitHubSettings';
 
 export default function SettingsModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
-    const [activeTab, setActiveTab] = useState<'general' | 'api' | 'agent'>('general');
+    const [activeTab, setActiveTab] = useState<'general' | 'api' | 'agent' | 'vercel' | 'github'>('general');
     const [mobileView, setMobileView] = useState<'menu' | 'content'>('menu');
     const [agentRole, setAgentRole] = useState('');
 
@@ -15,8 +17,10 @@ export default function SettingsModal({ isOpen, onClose }: { isOpen: boolean; on
 
     const tabs = [
         { id: 'general', label: 'General', icon: Settings, component: GeneralSettings },
-        { id: 'api', label: 'API Settings', icon: LinkIcon, component: ApiSettings },
-        { id: 'agent', label: 'Customize Agent', icon: Edit3, component: AgentSettings },
+        { id: 'api', label: 'Agent Connection', icon: Plug, component: ApiSettings },
+        { id: 'agent', label: 'Customize Agent', icon: User, component: AgentSettings },
+        { id: 'vercel', label: 'Vercel Connection', icon: LayoutGrid, component: VercelSettings },
+        { id: 'github', label: 'GitHub Connection', icon: Github, component: GitHubSettings },
     ] as const;
 
     const handleTabClick = (tabId: typeof activeTab) => {
@@ -27,42 +31,43 @@ export default function SettingsModal({ isOpen, onClose }: { isOpen: boolean; on
     return (
         <div className="fixed inset-0 z-[100] flex items-center justify-center pointer-events-auto">
             {/* Backdrop */}
-            <div className="absolute inset-0 bg-black/60 transition-opacity" onClick={onClose} />
+            <div className="absolute inset-0 bg-slate-950/40 backdrop-blur-[2px] transition-opacity duration-300" onClick={onClose} />
 
             {/* Modal */}
-            <div className="relative w-full sm:w-full sm:max-w-[700px] h-full sm:h-[480px] bg-white dark:bg-[#212121] sm:rounded-2xl shadow-2xl flex flex-col sm:flex-row overflow-hidden animate-in sm:zoom-in-95 slide-in-from-bottom-2 sm:slide-in-from-bottom-0 duration-200">
+            <div className="relative w-full sm:w-full sm:max-w-[850px] h-full sm:h-[600px] bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl sm:rounded-3xl shadow-2xl flex flex-col sm:flex-row overflow-hidden animate-in sm:zoom-in-95 slide-in-from-bottom-2 sm:slide-in-from-bottom-0 duration-300 border border-slate-200/50 dark:border-slate-800/50">
                 
                 {/* Mobile Menu View */}
                 {mobileView === 'menu' && (
-                    <div className="flex sm:hidden flex-col w-full h-full bg-white dark:bg-[#212121]">
-                        <div className="flex justify-between items-center p-4 border-b border-gray-200 dark:border-[#2f2f2f]/60">
-                            <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100 italic tracking-tight flex items-center gap-2">
-                                <Settings className="text-blue-500" size={20} />
+                    <div className="flex sm:hidden flex-col w-full h-full">
+                        <div className="flex justify-between items-center p-5 border-b border-slate-200/50 dark:border-slate-800/50">
+                            <h2 className="text-xl font-bold text-slate-900 dark:text-white tracking-tight flex items-center gap-2.5">
+                                <div className="p-2 bg-indigo-500/10 rounded-xl">
+                                    <Settings className="text-indigo-600 dark:text-indigo-400" size={20} />
+                                </div>
                                 Settings
                             </h2>
                             <button
                                 onClick={onClose}
-                                className="group relative p-2 text-gray-400 hover:text-white transition-all transform hover:rotate-90 duration-300"
+                                className="p-2 text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-all"
                                 aria-label="Close"
                             >
-                                <div className="absolute inset-0 bg-white/5 rounded-full scale-0 group-hover:scale-100 transition-transform duration-300" />
-                                <X size={22} className="relative z-10" />
+                                <X size={22} />
                             </button>
                         </div>
-                        <div className="flex flex-col p-2 space-y-1">
+                        <div className="flex flex-col p-3 space-y-1.5">
                             {tabs.map((tab) => (
                                 <button
                                     key={tab.id}
                                     onClick={() => handleTabClick(tab.id)}
-                                    className="flex items-center justify-between w-full p-4 rounded-xl hover:bg-gray-50 dark:hover:bg-[#2a2a2a] transition-colors group"
+                                    className="flex items-center justify-between w-full p-4 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-all border border-transparent hover:border-slate-200/50 dark:hover:border-slate-700/50 group"
                                 >
                                     <div className="flex items-center gap-4">
-                                        <div className="w-10 h-10 rounded-xl bg-gray-100 dark:bg-[#2f2f2f] flex items-center justify-center text-gray-500 dark:text-gray-400 group-hover:text-blue-500 dark:group-hover:text-blue-400 group-hover:bg-blue-50 dark:group-hover:bg-blue-500/10 transition-colors">
-                                            <tab.icon size={20} />
+                                        <div className="w-11 h-11 rounded-2xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500 dark:text-slate-400 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 group-hover:bg-indigo-50 dark:group-hover:bg-indigo-500/10 transition-all">
+                                            <tab.icon size={22} />
                                         </div>
-                                        <span className="text-[16px] font-medium text-gray-900 dark:text-gray-200">{tab.label}</span>
+                                        <span className="text-base font-semibold text-slate-900 dark:text-slate-100">{tab.label}</span>
                                     </div>
-                                    <ChevronRight size={18} className="text-gray-400 dark:text-gray-500" />
+                                    <ChevronRight size={18} className="text-slate-400 group-hover:translate-x-1 transition-transform" />
                                 </button>
                             ))}
                         </div>
@@ -71,81 +76,85 @@ export default function SettingsModal({ isOpen, onClose }: { isOpen: boolean; on
 
                 {/* Mobile Content View (sub-pages) */}
                 {mobileView === 'content' && (
-                    <div className="flex sm:hidden flex-col w-full h-full bg-white dark:bg-[#212121]">
-                        <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-[#2f2f2f]/60 bg-white dark:bg-[#212121] sticky top-0 z-10">
-                            <div className="flex items-center gap-3">
+                    <div className="flex sm:hidden flex-col w-full h-full">
+                        <div className="flex items-center justify-between p-5 border-b border-slate-200/50 dark:border-slate-800/50 sticky top-0 z-10 bg-inherit backdrop-blur-md">
+                            <div className="flex items-center gap-4">
                                 <button
                                     onClick={() => setMobileView('menu')}
-                                    className="p-2 -ml-2 text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-[#2f2f2f] rounded-full transition-colors"
+                                    className="p-2.5 -ml-2 text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-all"
                                 >
                                     <ArrowLeft size={22} />
                                 </button>
-                                <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+                                <h2 className="text-lg font-bold text-slate-900 dark:text-white">
                                     {tabs.find(t => t.id === activeTab)?.label}
                                 </h2>
                             </div>
                             <button
                                 onClick={onClose}
-                                className="group relative p-2 text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-all transform hover:rotate-90 duration-300"
+                                className="p-2.5 text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-all"
                                 aria-label="Close"
                             >
-                                <div className="absolute inset-0 bg-black/5 dark:bg-white/5 rounded-full scale-0 group-hover:scale-100 transition-transform duration-300" />
-                                <X size={22} className="relative z-10" />
+                                <X size={22} />
                             </button>
                         </div>
-                        <div className="flex-1 overflow-y-auto p-4">
-                            {activeTab === 'general' && (
-                                <GeneralSettings
-                                    language={language}
-                                    setLanguage={setLanguage}
-                                />
-                            )}
+                        <div className="flex-1 overflow-y-auto p-5">
+                            {activeTab === 'general' && <GeneralSettings language={language} setLanguage={setLanguage} />}
                             {activeTab === 'api' && <ApiSettings />}
                             {activeTab === 'agent' && <AgentSettings agentRole={agentRole} setAgentRole={setAgentRole} />}
+                            {activeTab === 'vercel' && <VercelSettings />}
+                            {activeTab === 'github' && <GitHubSettings />}
                         </div>
                     </div>
                 )}
 
-                <div className="hidden sm:flex w-[200px] bg-gray-50 dark:bg-[#212121] flex-col pt-3 px-3 h-full shrink-0 border-r border-gray-200 dark:border-[#2f2f2f]/50">
-                    <button
-                        onClick={onClose}
-                        className="group relative p-2 w-max text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-all transform hover:rotate-90 duration-300 mb-4"
-                        aria-label="Close"
-                    >
-                        <div className="absolute inset-0 bg-black/5 dark:bg-white/5 rounded-full scale-0 group-hover:scale-100 transition-transform duration-300" />
-                        <X size={20} className="relative z-10" />
-                    </button>
+                {/* Desktop Sidebar */}
+                <div className="hidden sm:flex w-[230px] bg-slate-50/50 dark:bg-slate-950/20 flex-col pt-6 px-4 h-full shrink-0 border-r border-slate-200/50 dark:border-slate-800/50">
+                    <div className="flex items-center justify-between mb-8 px-1">
+                        <span className="text-[11px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.2em] italic">Settings</span>
+                        <div className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse" />
+                    </div>
 
-                    <div className="flex flex-col gap-0.5 mt-2">
+                    <div className="flex flex-col gap-1.5">
                         {tabs.map((tab) => (
                             <button
                                 key={tab.id}
                                 onClick={() => setActiveTab(tab.id)}
-                                className={`flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium w-full transition-colors ${activeTab === tab.id ? 'bg-gray-200/50 dark:bg-[#2f2f2f] text-gray-900 dark:text-gray-100' : 'text-gray-500 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-[#2a2a2a] hover:bg-gray-100'}`}
+                                className={`flex items-center gap-3 px-3.5 py-3 rounded-2xl text-[13px] font-bold w-full transition-all duration-300 border ${
+                                    activeTab === tab.id 
+                                        ? 'bg-white dark:bg-slate-800 text-indigo-600 dark:text-indigo-400 shadow-sm border-slate-200 dark:border-slate-700' 
+                                        : 'text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white border-transparent hover:bg-slate-100/50 dark:hover:bg-slate-800/30'
+                                }`}
                             >
                                 <tab.icon
-                                    size={15}
-                                    className={`${activeTab === tab.id ? 'text-gray-900 dark:text-gray-300' : 'text-gray-400'}`}
-                                    strokeWidth={2}
+                                    size={18}
+                                    className={`${activeTab === tab.id ? 'text-indigo-600 dark:text-indigo-400' : 'text-slate-400'}`}
+                                    strokeWidth={activeTab === tab.id ? 2.5 : 2}
                                 />
                                 {tab.label}
                             </button>
                         ))}
                     </div>
+
+                    <div className="mt-auto pb-6">
+                        <button
+                            onClick={onClose}
+                            className="flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl text-[13px] font-bold text-slate-400 hover:text-slate-900 dark:hover:text-white transition-all w-full"
+                        >
+                            <X size={16} />
+                            Close
+                        </button>
+                    </div>
                 </div>
 
                 {/* Desktop Content Area */}
-                <div className="hidden sm:block flex-1 overflow-y-auto px-6 py-6 bg-white dark:bg-[#212121]">
-                    {activeTab === 'general' && (
-                        <GeneralSettings
-                            language={language}
-                            setLanguage={setLanguage}
-                        />
-                    )}
-
-                    {activeTab === 'api' && <ApiSettings />}
-
-                    {activeTab === 'agent' && <AgentSettings agentRole={agentRole} setAgentRole={setAgentRole} />}
+                <div className="hidden sm:block flex-1 overflow-y-auto px-8 py-8">
+                    <div className="max-w-[500px] mx-auto">
+                        {activeTab === 'general' && <GeneralSettings language={language} setLanguage={setLanguage} />}
+                        {activeTab === 'api' && <ApiSettings />}
+                        {activeTab === 'agent' && <AgentSettings agentRole={agentRole} setAgentRole={setAgentRole} />}
+                        {activeTab === 'vercel' && <VercelSettings />}
+                        {activeTab === 'github' && <GitHubSettings />}
+                    </div>
                 </div>
             </div>
         </div>

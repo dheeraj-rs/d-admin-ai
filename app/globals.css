@@ -4,29 +4,45 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-    --color-primary: #3b82f6;
+    --color-primary: #4f46e5; /* indigo-600 */
+    --color-accent: #0ea5e9; /* sky-500 */
+    --color-surface: #ffffff;
+    --color-surface-hover: #f8fafc; /* slate-50 */
+    --color-border-subtle: rgba(226, 232, 240, 0.8); /* slate-200/80 */
+    
     --breakpoint-xs: 400px;
     --breakpoint-xss: 340px;
 }
 
-/* Base Resets */
+/* Base Resets & Professional Palette */
 :root {
-    background-color: #ecfeff;
-    color: #111827;
+    --bg-main: #fcfcfd; /* Premium off-white */
+    --text-main: #0f172a; /* Slate-900 */
+    --text-muted: #64748b; /* Slate-500 */
+    --border-main: rgba(226, 232, 240, 0.8);
+    
+    background-color: var(--bg-main);
+    color: var(--text-main);
     font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
 }
 
 .dark {
-    background-color: #212121;
-    color: #ececec;
+    --bg-main: #020617; /* Slate-950 */
+    --text-main: #f1f5f9; /* Slate-100 */
+    --text-muted: #94a3b8; /* Slate-400 */
+    --border-main: rgba(30, 41, 59, 0.7); /* Slate-800/70 */
+    
+    background-color: var(--bg-main);
+    color: var(--text-main);
 }
 
 html,
 body {
-    height: 100dvh;
+    min-height: 100dvh;
     margin: 0;
     padding: 0;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 /* Custom Scrollbar */

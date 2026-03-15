@@ -16,6 +16,7 @@ interface TopBarProps {
     setSelectedAgent: (s: string) => void;
     showAIPanel: boolean;
     setShowAIPanel: (v: boolean) => void;
+    handleNewChat: () => void;
 }
 
 export default function TopBar({
@@ -33,6 +34,7 @@ export default function TopBar({
     setSelectedAgent,
     showAIPanel,
     setShowAIPanel,
+    handleNewChat,
 }: TopBarProps) {
     if (viewState === 'fullscreen-editor') {
         return (
@@ -57,6 +59,7 @@ export default function TopBar({
             setSelectedAgent={setSelectedAgent}
             showAIPanel={showAIPanel}
             setShowAIPanel={setShowAIPanel}
+            handleNewChat={handleNewChat}
         />
     );
 }

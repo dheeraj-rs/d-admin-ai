@@ -38,7 +38,7 @@ export default function UserProfileMenu({ isOpen, onOpenSettings }: UserProfileM
 
             {/* Expanded Profile Menu */}
             {isProfileOpen && (
-                <div className="absolute mb-2 bg-white/80 dark:bg-[#2d2d2d]/80 backdrop-blur-2xl rounded-[16px] p-1.5 shadow-xl dark:shadow-2xl border border-black/5 dark:border-[#3e3e3e] font-sans z-50 w-[220px] bottom-[58px] left-[10px] animate-in fade-in zoom-in-95">
+                <div className="absolute mb-2 bg-cyan-50/80 dark:bg-[#2d2d2d]/80 backdrop-blur-2xl rounded-[16px] p-1.5 shadow-xl dark:shadow-2xl border border-cyan-200/50 dark:border-[#3e3e3e] font-sans z-50 w-[220px] bottom-[58px] left-[10px] animate-in fade-in zoom-in-95">
                     <div className="flex items-center gap-2.5 px-2.5 py-1.5">
                         <div className="w-7 h-7 rounded-full bg-[#f29f05] text-white flex items-center justify-center font-semibold text-[11px] shrink-0 tracking-wide shadow-sm">
                             DS

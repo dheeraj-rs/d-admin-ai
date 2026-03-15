@@ -16,7 +16,7 @@ export default function AIBuildPanel({ inputValue, setInputValue, handleSubmit, 
     return (
         <div className="w-full flex flex-col gap-4 animate-in fade-in slide-in-from-bottom-3 duration-400">
             {/* Input box */}
-            <div className="relative flex items-center bg-sky-50/80 dark:bg-[#2a2a2a] rounded-[28px] p-2 pl-3 pr-3 shadow-sm dark:shadow-xl w-full group focus-within:ring-2 focus-within:ring-blue-500/40 transition-all border border-sky-200/60 dark:border-white/[0.05]">
+            <div className="relative flex items-center bg-cyan-50/70 dark:bg-[#2a2a2a] backdrop-blur-md rounded-[28px] p-2 pl-3 pr-3 shadow-sm dark:shadow-xl w-full group focus-within:ring-2 focus-within:ring-cyan-500/40 transition-all border border-cyan-200/60 dark:border-white/[0.05]">
                 <PlusActionMenu />
                 <input
                     id="ai-build-input"

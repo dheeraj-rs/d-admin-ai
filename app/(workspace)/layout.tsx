@@ -21,7 +21,7 @@ export default function WorkspaceLayout({
     const { showLeftSidebar, isAuthOpen, isSettingsOpen, isHelpOpen, viewState, activeTab, isAgentOpen, isShareOpen, selectedAgent } = state;
 
     return (
-        <div className="h-[100dvh] w-full bg-[#f0f9ff] dark:bg-[#02060D] text-gray-900 dark:text-gray-200 flex font-sans selection:bg-cyan-500/30 overflow-hidden relative transition-colors duration-300">
+        <div className="h-[100dvh] w-full bg-[#ecfeff] dark:bg-[#02060D] text-gray-900 dark:text-gray-200 flex font-sans selection:bg-cyan-500/30 overflow-hidden relative transition-colors duration-300">
             <AuthModal isOpen={isAuthOpen} onClose={() => actions.setIsAuthOpen(false)} />
             <SettingsModal isOpen={isSettingsOpen} onClose={() => actions.setIsSettingsOpen(false)} />
             <HelpModal isOpen={isHelpOpen} onClose={() => actions.setIsHelpOpen(false)} />

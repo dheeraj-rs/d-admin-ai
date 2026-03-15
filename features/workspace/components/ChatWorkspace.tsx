@@ -13,10 +13,10 @@ export default function ChatWorkspace() {
     const { viewState, activeTab, inputValue } = state;
 
     return (
-        <div className="flex-1 flex overflow-hidden relative h-full bg-[#f0f9ff] dark:bg-[#02060D] text-gray-900 dark:text-white font-sans z-0 transition-colors duration-300">
+        <div className="flex-1 flex overflow-hidden relative h-full bg-[#ecfeff] dark:bg-[#02060D] text-gray-900 dark:text-white font-sans z-0 transition-colors duration-300">
             {/* Ambient Theme Background for Chat Builder */}
             {viewState !== 'fullscreen-editor' && (
-                <div className="fixed inset-0 w-[100dvw] h-[100dvh] z-0 pointer-events-none overflow-hidden bg-[#f0f9ff] dark:bg-[#02060D] transition-colors duration-300">
+                <div className="fixed inset-0 w-[100dvw] h-[100dvh] z-0 pointer-events-none overflow-hidden bg-[#ecfeff] dark:bg-[#02060D] transition-colors duration-300">
                     <div className="absolute top-[-10%] left-[-10%] w-[40vw] h-[40vw] bg-cyan-600/5 dark:bg-cyan-600/10 rounded-full blur-[120px]" />
                     <div className="absolute bottom-[-10%] right-[-10%] w-[40vw] h-[40vw] bg-blue-600/5 dark:bg-blue-600/10 rounded-full blur-[120px]" />
                     <div className="absolute top-[20%] right-[20%] w-[30vw] h-[30vw] bg-indigo-600/2 dark:bg-indigo-600/5 rounded-full blur-[100px]" />
@@ -33,7 +33,7 @@ export default function ChatWorkspace() {
                         </div>
                         <ChatInputArea inputValue={inputValue} setInputValue={actions.setInputValue} handleSubmit={actions.handleSubmit} isSidebar={true} />
                     </div>
-                    <div className={`flex-1 bg-[#f0f9ff] dark:bg-[#1e1e1e] relative flex flex-col transition-colors duration-300 ${activeTab === 'chat' ? 'hidden lg:flex' : 'flex'}`}>
+                    <div className={`flex-1 bg-[#ecfeff] dark:bg-[#1e1e1e] relative flex flex-col transition-colors duration-300 ${activeTab === 'chat' ? 'hidden lg:flex' : 'flex'}`}>
                         {activeTab === 'code' ? <WorkbenchMock /> : <RightPanel />}
                     </div>
                 </>

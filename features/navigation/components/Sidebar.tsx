@@ -40,7 +40,7 @@ export default function Sidebar({
     return (
         <>
             <div
-                className={`bg-white/60 dark:bg-[#02060D]/60 backdrop-blur-3xl border-r border-black/5 dark:border-white/5 h-full transition-all duration-300 ease-in-out relative flex flex-col flex-shrink-0 ${isOpen ? 'w-64' : 'w-[68px]'}`}
+                className={`bg-blue-100/70 dark:bg-[#02060D]/60 backdrop-blur-3xl border-r border-blue-200/50 dark:border-white/5 h-full transition-all duration-300 ease-in-out relative flex flex-col flex-shrink-0 ${isOpen ? 'w-64' : 'w-[68px]'}`}
             >
                 {/* Top Header Actions */}
                 <div className="flex items-center h-[60px] px-3 relative w-full shrink-0 group">

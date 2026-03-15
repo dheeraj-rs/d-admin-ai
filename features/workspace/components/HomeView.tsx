@@ -35,10 +35,10 @@ const HomeView = () => {
           style={{ backgroundImage: 'url("/home_hero_bg.png")' }}
         />
         
-        {/* Very subtle cyan-tinted edge fade — keeps image visible while blending with the blue theme */}
+        {/* Cyan-blue edge fades — stronger at top/left to match sidebar and header blue */}
         <div className="absolute inset-x-0 bottom-0 h-[30%] bg-gradient-to-t from-[#dbeafe]/90 via-[#dbeafe]/40 dark:from-[#02060D] dark:via-transparent to-transparent transition-colors duration-300 pointer-events-none" />
-        <div className="absolute inset-x-0 top-0 h-[15%] bg-gradient-to-b from-[#bfdbfe]/60 dark:from-[#02060D]/60 dark:via-transparent to-transparent transition-colors duration-300 pointer-events-none" />
-        <div className="absolute inset-y-0 left-0 w-[35%] md:w-[25%] bg-gradient-to-r from-[#dbeafe]/80 via-[#dbeafe]/30 dark:from-[#02060D] dark:via-transparent to-transparent transition-colors duration-300 pointer-events-none" />
+        <div className="absolute inset-x-0 top-0 h-[30%] bg-gradient-to-b from-[#93c5fd]/80 via-[#bfdbfe]/40 dark:from-[#02060D]/60 dark:via-transparent to-transparent transition-colors duration-300 pointer-events-none" />
+        <div className="absolute inset-y-0 left-0 w-[40%] md:w-[30%] bg-gradient-to-r from-[#93c5fd]/70 via-[#dbeafe]/30 dark:from-[#02060D] dark:via-transparent to-transparent transition-colors duration-300 pointer-events-none" />
         <div className="absolute inset-y-0 right-0 w-[30%] md:w-[20%] bg-gradient-to-l from-[#dbeafe]/70 via-[#dbeafe]/20 dark:from-[#02060D]/80 dark:via-transparent to-transparent transition-colors duration-300 pointer-events-none" />
       </div>
 

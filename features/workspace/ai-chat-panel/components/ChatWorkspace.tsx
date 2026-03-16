@@ -8,16 +8,12 @@ import AIChatLandingPage from './AIChatLandingPage';
 export default function ChatWorkspace() {
     const { state, actions } = useWorkspace();
     const { viewState, activeTab, inputValue } = state;
-    const { handleNewChat } = actions;
-
     return (
         <div className="flex-1 flex overflow-hidden relative h-full bg-white dark:bg-[#02060D] text-gray-900 dark:text-white font-sans z-0 transition-colors duration-300">
-            {/* Ambient Theme Background for Chat Builder - Removed light blobs */}
             {viewState !== 'fullscreen-editor' && (
                 <div className="fixed inset-0 w-[100dvw] h-[100dvh] z-0 pointer-events-none overflow-hidden bg-white dark:bg-[#02060D] transition-colors duration-300">
-                    {/* Subtle dark ambient glows only */}
-                    <div className="absolute top-[-10%] left-[-10%] w-[40vw] h-[40vw] bg-cyan-600/5 rounded-full blur-[120px]" />
-                    <div className="absolute bottom-[-10%] right-[-10%] w-[40vw] h-[40vw] bg-blue-600/5 rounded-full blur-[120px]" />
+                    <div className="absolute top-[-10%] left-[-10%] w-[40dvw] h-[40dvw] bg-cyan-600/5 rounded-full blur-[120px]" />
+                    <div className="absolute bottom-[-10%] right-[-10%] w-[40dvw] h-[40dvw] bg-blue-600/5 rounded-full blur-[120px]" />
                 </div>
             )}
             

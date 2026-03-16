@@ -19,7 +19,7 @@ export default function AIChatLandingPage({
 }: AIChatLandingPageProps) {
     return (
         <div className="flex-1 flex flex-col overflow-y-auto custom-scrollbar relative h-full z-10 font-sans">
-            <main className="flex-1 relative z-10 w-full flex flex-col justify-center min-h-[80vh] 2xl:min-h-[90vh]">
+            <main className="flex-1 relative z-10 w-full flex flex-col justify-center min-h-[80dvh] 2xl:min-h-[90dvh]">
                 <div className="max-w-3xl 2xl:max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
                     <section className="text-center pb-6 lg:pb-8 animate-in fade-in slide-in-from-top-4 duration-700 relative flex flex-col items-center">
                         <div className="inline-flex items-center gap-1.5 px-3 py-1 2xl:px-6 2xl:py-3 rounded-full bg-blue-500/10 border border-blue-500/25 text-blue-400 text-[10px] 2xl:text-[18px] font-bold uppercase tracking-widest mb-6 2xl:mb-12 transition-all duration-300 hover:bg-blue-500/20">

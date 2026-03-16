@@ -4,7 +4,7 @@ import { useSettingsStore } from '../store/useSettingsStore';
 import { ProviderSection } from './ProviderSection';
 
 export default function GitHubSettings() {
-    const { github, addApiKey, removeApiKey, updateApiKey } = useSettingsStore();
+    const { github } = useSettingsStore();
     const [expanded, setExpanded] = useState<{ [key: string]: boolean }>({ github: true });
     const [tutorial, setTutorial] = useState<{ isOpen: boolean; url: string }>({ isOpen: false, url: '' });
 
@@ -74,9 +74,6 @@ export default function GitHubSettings() {
                     expanded={!!expanded.github}
                     onToggle={() => toggleExpand('github')}
                     onHelp={openTutorial}
-                    addApiKey={addApiKey}
-                    removeApiKey={removeApiKey}
-                    updateApiKey={updateApiKey}
                 />
             </div>
 

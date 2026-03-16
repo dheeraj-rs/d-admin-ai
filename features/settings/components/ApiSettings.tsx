@@ -4,7 +4,7 @@ import { useSettingsStore } from '../store/useSettingsStore';
 import { ProviderSection } from './ProviderSection';
 
 export default function ApiSettings() {
-    const { gemini, openai, claude, addApiKey, removeApiKey, updateApiKey } = useSettingsStore();
+    const { gemini, openai, claude } = useSettingsStore();
     const [expanded, setExpanded] = useState<{ [key: string]: boolean }>({ gemini: true });
     const [tutorial, setTutorial] = useState<{ isOpen: boolean; url: string }>({ isOpen: false, url: '' });
 
@@ -36,9 +36,6 @@ export default function ApiSettings() {
                     videoUrl="https://www.youtube.com/embed/prrb0hsfI60"
                     onToggle={() => toggleExpand('gemini')}
                     onHelp={openTutorial}
-                    addApiKey={addApiKey}
-                    removeApiKey={removeApiKey}
-                    updateApiKey={updateApiKey}
                 />
 
                 <ProviderSection
@@ -51,9 +48,6 @@ export default function ApiSettings() {
                     expanded={!!expanded.openai}
                     onToggle={() => toggleExpand('openai')}
                     onHelp={openTutorial}
-                    addApiKey={addApiKey}
-                    removeApiKey={removeApiKey}
-                    updateApiKey={updateApiKey}
                 />
 
                 <ProviderSection
@@ -66,9 +60,6 @@ export default function ApiSettings() {
                     expanded={!!expanded.claude}
                     onToggle={() => toggleExpand('claude')}
                     onHelp={openTutorial}
-                    addApiKey={addApiKey}
-                    removeApiKey={removeApiKey}
-                    updateApiKey={updateApiKey}
                 />
             </div>
 

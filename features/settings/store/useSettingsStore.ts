@@ -16,7 +16,18 @@ export interface ApiKeyState {
     };
 }
 
+export type TabId = 'general' | 'api' | 'agent' | 'vercel' | 'github';
+export type ProviderId = 'gemini' | 'openai' | 'claude' | 'vercel' | 'github';
+
 interface SettingsState extends ApiKeyState {
+    activeTab: TabId;
+    mobileView: 'menu' | 'content';
+    agentRole: string;
+    language: string;
+    setActiveTab: (tabId: TabId) => void;
+    setMobileView: (view: 'menu' | 'content') => void;
+    setAgentRole: (role: string) => void;
+    setLanguage: (lang: string) => void;
     addApiKey: (provider: keyof ApiKeyState & ('gemini' | 'openai' | 'claude' | 'vercel' | 'github'), key: string) => void;
     removeApiKey: (provider: keyof ApiKeyState & ('gemini' | 'openai' | 'claude' | 'vercel' | 'github'), index: number) => void;
     updateApiKey: (provider: keyof ApiKeyState & ('gemini' | 'openai' | 'claude' | 'vercel' | 'github'), index: number, key: string) => void;
@@ -38,6 +49,15 @@ export const useSettingsStore = create<SettingsState>()(
                 vercel: 0,
                 github: 0,
             },
+            activeTab: 'general',
+            mobileView: 'menu',
+            agentRole: '',
+            language: 'English',
+
+            setActiveTab: (tabId) => set({ activeTab: tabId }),
+            setMobileView: (view) => set({ mobileView: view }),
+            setAgentRole: (role) => set({ agentRole: role }),
+            setLanguage: (lang) => set({ language: lang }),
 
             addApiKey: (provider, key) => {
                 set((state) => ({

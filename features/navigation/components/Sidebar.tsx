@@ -7,13 +7,14 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useWorkspace } from '@/features/workspace';
 import UserProfileMenu from './UserProfileMenu';
 
 const NAV_ITEMS = [
     { icon: LayoutDashboard, label: 'Home', href: '/' },
-    { icon: SquarePen, label: 'New chat', shortcut: '⇧⌘O', href: '/ai-chat-builder' },
+    { icon: SquarePen, label: 'AI Chat Panel', shortcut: '⇧⌘O', href: '/ai-chat-panel' },
     { icon: LayoutTemplate, label: 'Templates', href: '/templates' },
-    { icon: Globe, label: 'Published website', href: '/published-sites' },
+    { icon: Globe, label: 'Live Websites', href: '/live-websites' },
 ];
 
 const RECENT_CHATS = [
@@ -22,17 +23,12 @@ const RECENT_CHATS = [
     'GitHub Auth Callback URL',
 ];
 
-export default function Sidebar({
-    isOpen,
-    toggleSidebar,
-    onNewChat,
-    onOpenSettings,
-}: {
-    isOpen: boolean;
-    toggleSidebar: () => void;
-    onNewChat?: () => void;
-    onOpenSettings?: () => void;
-}) {
+export default function Sidebar() {
+    const { state, actions } = useWorkspace();
+    const { showLeftSidebar: isOpen } = state;
+    const { setShowLeftSidebar: toggleSidebar, handleNewChat: onNewChat, setIsSettingsOpen } = actions;
+    const onOpenSettings = () => setIsSettingsOpen(true);
+    
     const pathname = usePathname();
     return (
         <>
@@ -43,7 +39,7 @@ export default function Sidebar({
                     <div className="absolute left-2 right-2 inset-y-2 rounded-xl transition-colors duration-300" />
                     <div className="w-16 h-full flex items-center justify-center shrink-0 z-10">
                         <button
-                            onClick={toggleSidebar}
+                            onClick={() => toggleSidebar(!isOpen)}
                             className={`w-10 h-10 rounded-full bg-slate-900 dark:bg-gradient-to-br from-indigo-600 to-indigo-700 text-white dark:text-white flex items-center justify-center transition-all duration-300 shadow-xl shadow-indigo-500/40 border border-white/10 hover:scale-105 active:scale-90 group cursor-pointer z-20 cursor-pointer`}
                             title={isOpen ? "Collapse sidebar" : "Expand sidebar"}
                         >
@@ -67,6 +63,9 @@ export default function Sidebar({
                                     className={`absolute inset-0 flex items-center transition-all duration-300 ease-in-out font-sans overflow-hidden whitespace-nowrap cursor-pointer px-0`}
                                     onClick={() => {
                                         if (item.label === 'New chat') onNewChat?.();
+                                        if (typeof window !== 'undefined' && window.innerWidth < 1024) {
+                                            toggleSidebar(false);
+                                        }
                                     }}
                                 >
                                     <div className={`absolute transition-all duration-300 ease-in-out rounded-full ${
@@ -89,7 +88,7 @@ export default function Sidebar({
                                 </Link>
 
                                 {!isOpen && (
-                                    <div className="absolute left-full top-1/2 -translate-y-1/2 ml-3 px-3 py-2 bg-[#ecfeff] dark:bg-[#1e1e1e] text-gray-900 dark:text-white text-[12px] font-bold rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-200 z-[70] flex items-center shadow-xl dark:shadow-2xl border border-cyan-200 dark:border-white/[0.1] pointer-events-none whitespace-nowrap translate-x-1 group-hover:translate-x-0">
+                                    <div className="absolute left-full top-1/2 -translate-y-1/2 ml-3 px-3 py-2 bg-[#ecfeff] dark:bg-[#1e1e1e] text-gray-900 dark:text-white text-[12px] font-bold rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-200 z-[70] hidden lg:flex items-center shadow-xl dark:shadow-2xl border border-cyan-200 dark:border-white/[0.1] pointer-events-none whitespace-nowrap translate-x-1 group-hover:translate-x-0">
                                         {item.label}
                                         {item.shortcut && (
                                             <span className="text-gray-500 text-[10px] ml-3 tracking-widest font-black flex items-center bg-black/[0.05] dark:bg-white/[0.05] px-1.5 py-0.5 rounded-lg">
@@ -108,7 +107,15 @@ export default function Sidebar({
                     <div className="px-5 py-2 text-[10px] font-black text-gray-400 dark:text-gray-500 uppercase tracking-[0.2em]">Recent active</div>
                     <div className="px-3 space-y-1 w-[240px]">
                         {RECENT_CHATS.map((chat, idx) => (
-                            <div key={idx} className="group/chat flex items-center gap-2 p-2 px-3 rounded-xl hover:bg-black/[0.04] dark:hover:bg-white/[0.04] cursor-pointer text-[13px] text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 transition-all truncate border border-transparent hover:border-black/[0.05] dark:hover:border-white/[0.05]">
+                            <div 
+                                key={idx} 
+                                onClick={() => {
+                                    if (typeof window !== 'undefined' && window.innerWidth < 1024) {
+                                        toggleSidebar(false);
+                                    }
+                                }}
+                                className="group/chat flex items-center gap-2 p-2 px-3 rounded-xl hover:bg-black/[0.04] dark:hover:bg-white/[0.04] cursor-pointer text-[13px] text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 transition-all truncate border border-transparent hover:border-black/[0.05] dark:hover:border-white/[0.05]"
+                            >
                                 <div className="w-1 h-1 rounded-full bg-blue-500 opacity-0 group-hover/chat:opacity-100 transition-opacity" />
                                 <span className="truncate font-medium">{chat}</span>
                             </div>

@@ -1,9 +1,7 @@
-interface AgentSettingsProps {
-    agentRole: string;
-    setAgentRole: (val: string) => void;
-}
+import { useSettingsStore } from '../store/useSettingsStore';
 
-export default function AgentSettings({ agentRole, setAgentRole }: AgentSettingsProps) {
+export default function AgentSettings() {
+    const { agentRole, setAgentRole } = useSettingsStore();
     return (
         <>
             <h2 className="text-xl font-bold text-slate-900 dark:text-white tracking-tigh mb-8">Customize Agent</h2>

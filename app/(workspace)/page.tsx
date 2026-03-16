@@ -1,5 +1,5 @@
-import { HomeView } from '@/features/workspace';
+import { HomeMainView } from '@/features/workspace';
 
 export default function WorkspaceHome() {
-    return <HomeView />;
+    return <HomeMainView />;
 }

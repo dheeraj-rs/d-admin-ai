@@ -1,22 +1,6 @@
 import { create } from 'zustand';
 import type { ViewState, ActiveTab, Message, ProjectSummary } from '../types/index';
-
-interface WorkspaceState {
-    showLeftSidebar: boolean;
-    viewState: ViewState;
-    inputValue: string;
-    activeTab: ActiveTab;
-    isShareOpen: boolean;
-    isAgentOpen: boolean;
-    isSettingsOpen: boolean;
-    isAuthOpen: boolean;
-    isHelpOpen: boolean;
-    selectedAgent: string;
-    showAIPanel: boolean;
-    showTerminal: boolean;
-    messages: Message[];
-    projectSummary: ProjectSummary;
-}
+import { INITIAL_STATE, type WorkspaceState } from './workspace-store.constants';
 
 interface WorkspaceActions {
     setShowLeftSidebar: (v: boolean) => void;
@@ -39,28 +23,6 @@ interface WorkspaceActions {
 
 export type WorkspaceStore = WorkspaceState & WorkspaceActions;
 
-const INITIAL_STATE: WorkspaceState = {
-    showLeftSidebar: false,
-    viewState: 'initial',
-    inputValue: '',
-    activeTab: 'code',
-    isShareOpen: false,
-    isAgentOpen: false,
-    isSettingsOpen: false,
-    isAuthOpen: true,
-    isHelpOpen: false,
-    selectedAgent: 'auto',
-    showAIPanel: false,
-    showTerminal: false,
-    messages: [],
-    projectSummary: {
-        branding: '',
-        pages: [],
-        features: [],
-        techStack: ['Next.js', 'Tailwind CSS', 'Lucide React'],
-    },
-};
-
 export const useWorkspaceStore = create<WorkspaceStore>((set, get) => ({
     ...INITIAL_STATE,
 
@@ -76,38 +38,28 @@ export const useWorkspaceStore = create<WorkspaceStore>((set, get) => ({
     setSelectedAgent: (v) => set({ selectedAgent: v }),
     setShowAIPanel: (v) => set({ showAIPanel: v }),
     setShowTerminal: (v) => set({ showTerminal: v }),
-
     addMessage: (msg) => set((state) => ({ messages: [...state.messages, msg] })),
     updateProjectSummary: (summary) => set((state) => ({ projectSummary: { ...state.projectSummary, ...summary } })),
 
     handleNewChat: () => {
-        set({ ...INITIAL_STATE, isAuthOpen: false }); // Keep auth closed on new chat if already in
-        if (typeof window !== 'undefined' && window.innerWidth < 1024) {
-            set({ showLeftSidebar: false });
-        }
+        set({ ...INITIAL_STATE, isAuthOpen: false });
+        if (typeof window !== 'undefined' && window.innerWidth < 1024) set({ showLeftSidebar: false });
     },
 
     handleSubmit: () => {
-        const { inputValue, messages, addMessage, updateProjectSummary } = get();
+        const { inputValue, addMessage, updateProjectSummary } = get();
         if (!inputValue.trim()) return;
 
-        const userMsg: Message = {
-            id: Date.now().toString(),
-            role: 'user',
-            content: inputValue,
-            timestamp: Date.now(),
-        };
-
+        const userMsg: Message = { id: Date.now().toString(), role: 'user', content: inputValue, timestamp: Date.now() };
         addMessage(userMsg);
         set({ inputValue: '' });
 
-        // Simulate AI response
         setTimeout(() => {
             const lower = userMsg.content.toLowerCase();
             let aiResponse = "I understand. I'm working on setting up your project based on your requirements.";
             
             if (lower.includes('portfolio') || lower.includes('website')) {
-                aiResponse = "That sounds like a great project! I'll help you build a professional portfolio website. I've updated the project summary with these details.";
+                aiResponse = "That sounds like a great project! I'll help you build a professional portfolio website.";
                 updateProjectSummary({ 
                     branding: userMsg.content.length > 20 ? userMsg.content.substring(0, 20) + "..." : userMsg.content,
                     pages: ['Home', 'Projects', 'About', 'Contact'],
@@ -115,16 +67,9 @@ export const useWorkspaceStore = create<WorkspaceStore>((set, get) => ({
                 });
             }
 
-            const assistantMsg: Message = {
-                id: (Date.now() + 1).toString(),
-                role: 'assistant',
-                content: aiResponse,
-                timestamp: Date.now(),
-            };
-            addMessage(assistantMsg);
-            
-            const nextView: ViewState = lower.includes('code') || lower.includes('portfolio') ? 'chat-with-code' : 'chat';
-            set({ viewState: nextView });
+            addMessage({ id: (Date.now() + 1).toString(), role: 'assistant', content: aiResponse, timestamp: Date.now() });
+            set({ viewState: lower.includes('code') || lower.includes('portfolio') ? 'chat-with-code' : 'chat' });
         }, 600);
     },
 }));
+

@@ -3,10 +3,7 @@ import { useEffect, useState } from 'react';
 
 import CustomSelect from '@/shared/ui/CustomSelect';
 
-interface GeneralSettingsProps {
-    language: string;
-    setLanguage: (val: string) => void;
-}
+import { useSettingsStore } from '../store/useSettingsStore';
 
 const THEME_OPTIONS = [
     { label: 'System', value: 'system' },
@@ -16,7 +13,8 @@ const THEME_OPTIONS = [
 
 const LANGUAGE_OPTIONS = [{ label: 'English', value: 'English' }];
 
-export default function GeneralSettings({ language, setLanguage }: GeneralSettingsProps) {
+export default function GeneralSettings() {
+    const { language, setLanguage } = useSettingsStore();
     const { theme, setTheme } = useTheme();
     const [mounted, setMounted] = useState(false);
 

@@ -32,7 +32,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
     return (
         <div
             className="fixed inset-0 bg-slate-950/60 z-[100] flex items-center justify-center p-4 backdrop-blur-md animate-in fade-in duration-200"
-            onClick={onClose}
+            onClick={() => onClose()}
         >
             <div
                 className="bg-slate-900/90 dark:bg-[#0B0B0D]/90 w-full max-w-[420px] max-h-[90dvh] rounded-[28px] shadow-[0_0_50px_rgba(0,0,0,0.5)] flex flex-col animate-in zoom-in-95 duration-200 border border-white/10 dark:border-indigo-500/20 backdrop-blur-xl overflow-hidden"
@@ -40,7 +40,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
             >
                 <div className="flex justify-end p-4 pb-0 shrink-0">
                     <button
-                        onClick={onClose}
+                        onClick={() => onClose()}
                         className="text-slate-400 hover:text-white transition-all rounded-lg p-2 hover:bg-white/5 border border-transparent hover:border-white/10 active:scale-95"
                     >
                         <X size={20} />

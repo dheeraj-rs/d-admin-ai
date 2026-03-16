@@ -4,7 +4,7 @@ import { useSettingsStore } from '../store/useSettingsStore';
 import { ProviderSection } from './ProviderSection';
 
 export default function VercelSettings() {
-    const { vercel, addApiKey, removeApiKey, updateApiKey } = useSettingsStore();
+    const { vercel } = useSettingsStore();
     const [expanded, setExpanded] = useState<{ [key: string]: boolean }>({ vercel: true });
     const [tutorial, setTutorial] = useState<{ isOpen: boolean; url: string }>({ isOpen: false, url: '' });
 
@@ -29,7 +29,6 @@ export default function VercelSettings() {
             </div>
 
             <div className="space-y-8">
-                {/* Direct Connection Section */}
                 <div className="group relative overflow-hidden bg-slate-950 rounded-2xl p-3 border border-slate-800/50 shadow-2xl">
                     <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-500/10 blur-[80px] -mr-16 -mt-16 group-hover:bg-indigo-500/20 transition-all duration-700" />
 
@@ -81,9 +80,6 @@ export default function VercelSettings() {
                     expanded={!!expanded.vercel}
                     onToggle={() => toggleExpand('vercel')}
                     onHelp={openTutorial}
-                    addApiKey={addApiKey}
-                    removeApiKey={removeApiKey}
-                    updateApiKey={updateApiKey}
                 />
             </div>
 

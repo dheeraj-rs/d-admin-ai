@@ -1,11 +1,15 @@
 import eslintPluginImport from 'eslint-plugin-import';
+import nextPlugin from '@next/eslint-plugin-next';
 
 const eslintConfig = [
   {
     plugins: {
       import: eslintPluginImport,
+      '@next/next': nextPlugin,
     },
     rules: {
+      ...nextPlugin.configs.recommended.rules,
+      ...nextPlugin.configs['core-web-vitals'].rules,
       'max-lines': ['error', { max: 250 }],
       'max-lines-per-function': ['error', { max: 150 }],
       'import/order': [

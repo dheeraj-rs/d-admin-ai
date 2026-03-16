@@ -3,7 +3,6 @@ import type { ViewState, ActiveTab } from '../types/index';
 
 export type { ViewState, ActiveTab };
 
-/** Thin adapter — keeps the existing { state, actions } shape so no consumers need to change. */
 export function useWorkspace() {
     const store = useWorkspaceStore();
 

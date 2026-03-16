@@ -1,5 +1,6 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, memo } from 'react';
 import { LucideIcon, ExternalLink } from 'lucide-react';
+import Image from 'next/image';
 
 interface ItemCardProps {
     title: string;
@@ -13,7 +14,7 @@ interface ItemCardProps {
     secondaryAction?: ReactNode;
 }
 
-export default function ItemCard({
+function ItemCard({
     title,
     description,
     image,
@@ -28,10 +29,12 @@ export default function ItemCard({
         <div className="flex flex-col group cursor-pointer animate-in fade-in zoom-in-95 duration-500">
             <div className="aspect-[16/10] rounded-2xl bg-[#1a1a1a] border border-[#2f2f2f] overflow-hidden relative mb-4 group-hover:border-blue-500/30 transition-all duration-300">
                 {image ? (
-                    <img 
+                    <Image 
                         src={image} 
                         alt={title} 
-                        className="w-full h-full object-cover opacity-60 group-hover:opacity-80 group-hover:scale-105 transition-all duration-700"
+                        fill
+                        className="object-cover opacity-60 group-hover:opacity-80 group-hover:scale-105 transition-all duration-700"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
                 ) : (
                     <div className="w-full h-full flex items-center justify-center bg-[#242424] group-hover:bg-[#2a2a2a] transition-colors">
@@ -88,3 +91,5 @@ export default function ItemCard({
         </div>
     );
 }
+
+export default memo(ItemCard);

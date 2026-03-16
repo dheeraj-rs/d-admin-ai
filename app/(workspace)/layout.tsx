@@ -1,6 +1,6 @@
 'use client';
 
-import { useWorkspace } from '@/features/workspace/hooks/useWorkspace';
+import { useWorkspace } from '@/features/workspace';
 import { Sidebar } from '@/features/navigation';
 import { TopBar } from '@/features/workspace';
 import dynamic from 'next/dynamic';
@@ -18,7 +18,7 @@ export default function WorkspaceLayout({
     const { state, actions } = useWorkspace();
     const pathname = usePathname();
     const isHome = pathname === '/';
-    const { showLeftSidebar, isAuthOpen, isSettingsOpen, isHelpOpen, viewState, activeTab, isAgentOpen, isShareOpen, selectedAgent } = state;
+    const { showLeftSidebar, isAuthOpen, isSettingsOpen, isHelpOpen, viewState } = state;
 
     return (
         <div className="h-[100dvh] w-full bg-[#ecfeff] dark:bg-[#02060D] text-gray-900 dark:text-gray-200 flex font-sans selection:bg-cyan-500/30 overflow-hidden relative transition-colors duration-300">
@@ -31,40 +31,18 @@ export default function WorkspaceLayout({
             )}
 
             <div className={`fixed lg:relative z-[60] h-full transform transition-transform duration-300 ${showLeftSidebar ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}`}>
-                <Sidebar
-                    isOpen={showLeftSidebar}
-                    toggleSidebar={() => actions.setShowLeftSidebar(!showLeftSidebar)}
-                    onNewChat={actions.handleNewChat}
-                    onOpenSettings={() => actions.setIsSettingsOpen(true)}
-                />
+                <Sidebar />
             </div>
 
             <div className="flex-1 flex flex-col relative overflow-hidden w-full">
+                <div className={`${isHome ? 'absolute top-0 left-0 right-0' : ''} z-50`}>
+                    <TopBar />
+                </div>
+                
                 {isHome ? (
-                    <>
-                        <div className="absolute top-0 left-0 right-0 z-50">
-                            <TopBar
-                                viewState={viewState}
-                                setViewState={actions.setViewState}
-                                activeTab={activeTab}
-                                setActiveTab={actions.setActiveTab}
-                                setShowLeftSidebar={actions.setShowLeftSidebar}
-                                isAgentOpen={isAgentOpen}
-                                setIsAgentOpen={actions.setIsAgentOpen}
-                                isShareOpen={isShareOpen}
-                                setIsShareOpen={actions.setIsShareOpen}
-                                setIsHelpOpen={actions.setIsHelpOpen}
-                                selectedAgent={selectedAgent}
-                                setSelectedAgent={actions.setSelectedAgent}
-                                showAIPanel={state.showAIPanel}
-                                setShowAIPanel={actions.setShowAIPanel}
-                                handleNewChat={actions.handleNewChat}
-                            />
-                        </div>
-                        <div className="flex-1 relative overflow-auto w-full h-full">
-                            {children}
-                        </div>
-                    </>
+                    <div className="flex-1 relative overflow-auto w-full h-full">
+                        {children}
+                    </div>
                 ) : (
                     <>
                         {viewState === 'fullscreen-editor' && (
@@ -74,23 +52,6 @@ export default function WorkspaceLayout({
                                 <div className="absolute bottom-[-10%] left-[30%] w-[50%] h-[250px] bg-cyan-600/10 rounded-full blur-[110px] animate-pulse" style={{ animationDelay: '2s' }} />
                             </div>
                         )}
-                        <TopBar
-                            viewState={viewState}
-                            setViewState={actions.setViewState}
-                            activeTab={activeTab}
-                            setActiveTab={actions.setActiveTab}
-                            setShowLeftSidebar={actions.setShowLeftSidebar}
-                            isAgentOpen={state.isAgentOpen}
-                            setIsAgentOpen={actions.setIsAgentOpen}
-                            isShareOpen={state.isShareOpen}
-                            setIsShareOpen={actions.setIsShareOpen}
-                            setIsHelpOpen={actions.setIsHelpOpen}
-                            selectedAgent={state.selectedAgent}
-                            setSelectedAgent={actions.setSelectedAgent}
-                            showAIPanel={state.showAIPanel}
-                            setShowAIPanel={actions.setShowAIPanel}
-                            handleNewChat={actions.handleNewChat}
-                        />
                         <div className="flex-1 relative overflow-auto z-10">
                             {children}
                         </div>

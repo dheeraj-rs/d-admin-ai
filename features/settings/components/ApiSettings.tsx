@@ -5,7 +5,7 @@ import { ProviderSection } from './ProviderSection';
 
 export default function ApiSettings() {
     const { gemini, openai, claude, addApiKey, removeApiKey, updateApiKey } = useSettingsStore();
-    const [expanded, setExpanded] = useState<{ [key: string]: boolean }>({});
+    const [expanded, setExpanded] = useState<{ [key: string]: boolean }>({ gemini: true });
     const [tutorial, setTutorial] = useState<{ isOpen: boolean; url: string }>({ isOpen: false, url: '' });
 
     const toggleExpand = (provider: string) => {

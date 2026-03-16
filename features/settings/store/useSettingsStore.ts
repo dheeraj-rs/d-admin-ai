@@ -7,7 +7,6 @@ export interface ApiKeyState {
     claude: string[];
     vercel: string[];
     github: string[];
-    // Track current index for rotation
     currentIndices: {
         gemini: number;
         openai: number;

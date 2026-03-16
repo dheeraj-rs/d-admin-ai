@@ -1,9 +1,5 @@
 import {
-    Cloud,
-    Undo2,
-    Redo2,
     Share2,
-    X,
     Github,
     Download,
     Upload,

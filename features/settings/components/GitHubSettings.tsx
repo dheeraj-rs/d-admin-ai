@@ -30,22 +30,29 @@ export default function GitHubSettings() {
 
             <div className="space-y-8">
                 {/* Direct Connection Section */}
-                <div className="group relative overflow-hidden bg-slate-950 rounded-[32px] p-8 border border-slate-800/50 shadow-2xl">
+                <div className="group relative overflow-hidden bg-slate-950 rounded-2xl p-3 border border-slate-800/50 shadow-2xl">
                     <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-500/10 blur-[80px] -mr-16 -mt-16 group-hover:bg-indigo-500/20 transition-all duration-700" />
-                    
-                    <div className="flex flex-col items-center text-center gap-6 relative z-10">
-                        <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center shadow-xl mb-2">
-                             <Github size={32} className="text-black" />
+
+                    <div className="flex items-center justify-between gap-4 relative z-10">
+                        <div className="flex items-center gap-4">
+                            <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-xl shrink-0">
+                                <Github size={20} className="text-black" />
+                            </div>
+                            <div className="flex flex-col">
+                                <h3 className="text-[13.5px] font-bold text-white tracking-tight">
+                                    Connect with GitHub
+                                </h3>
+                                <p className="text-[10px] text-slate-400 max-w-[200px] leading-tight italic line-clamp-2">
+                                    Link your account to enable automated commits and private repository generation.
+                                </p>
+                            </div>
                         </div>
-                        <div className="space-y-2">
-                            <h3 className="text-lg font-bold text-white tracking-tight">Connect with GitHub</h3>
-                            <p className="text-[13px] text-slate-400 max-w-[280px] leading-relaxed italic">
-                                Link your account to enable automated commits and private repository generation.
-                            </p>
-                        </div>
-                        <button className="w-full py-4 bg-white hover:bg-slate-100 text-black font-black text-[13px] uppercase tracking-widest rounded-2xl transition-all shadow-xl shadow-white/5 flex items-center justify-center gap-2 group/btn">
-                            Connect Account
-                            <ArrowRight size={16} className="group-hover/btn:translate-x-1 transition-transform" />
+                        <button className="px-5 py-2 bg-white hover:bg-slate-100 text-black font-black text-[11px] uppercase tracking-wider rounded-xl transition-all shadow-xl shadow-white/5 flex items-center justify-center gap-2 group/btn active:scale-95 whitespace-nowrap">
+                            Connect
+                            <ArrowRight
+                                size={12}
+                                className="group-hover/btn:translate-x-0.5 transition-transform"
+                            />
                         </button>
                     </div>
                 </div>

@@ -147,7 +147,7 @@ export default function SettingsModal({ isOpen, onClose }: { isOpen: boolean; on
                 </div>
 
                 {/* Desktop Content Area */}
-                <div className="hidden sm:block flex-1 overflow-y-auto px-8 py-8">
+                <div className="hidden sm:block flex-1 overflow-y-auto px-8 py-8 no-scrollbar">
                     <div className="max-w-[500px] mx-auto">
                         {activeTab === 'general' && <GeneralSettings language={language} setLanguage={setLanguage} />}
                         {activeTab === 'api' && <ApiSettings />}

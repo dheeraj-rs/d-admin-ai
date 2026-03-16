@@ -53,7 +53,7 @@ export default function DefaultTopBar({
             <div className="flex items-center gap-1.5 pointer-events-auto">
                 <button
                     id="topbar-sidebar-toggle"
-                    className="w-10 h-10 flex items-center justify-center text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/[0.06] rounded-lg transition-all focus:outline-none active:scale-95"
+                    className="w-10 h-10 flex items-center justify-center text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/[0.06] rounded-lg transition-all focus:outline-none active:scale-95 lg:hidden"
                     onClick={() => setShowLeftSidebar(true)}
                     aria-label="Open sidebar"
                 >
@@ -70,7 +70,7 @@ export default function DefaultTopBar({
                             <ArrowLeft size={18} />
                         </button>
                     )}
-                    <span className="text-gray-900 dark:text-white text-[16px] font-black tracking-tightest hidden sm:inline-block">D-Admin</span>
+                    <span className="text-gray-900 dark:text-white text-[16px] font-black tracking-tightest hidden sm:inline-block lg:ml-4">D-Admin</span>
                     
                     {shouldShowAgentPicker && (
                         <div className="flex items-center gap-1.5">

@@ -21,11 +21,8 @@ export default function WorkbenchMock({
     return (
         <div className="w-full h-full bg-[#0B0B0D] flex flex-col text-gray-300 font-sans relative overflow-hidden p-0.5 sm:p-2.5 lg:p-3.5 max-w-full">
             <div className="flex-1 flex flex-col relative h-full min-h-0 bg-[#151517] rounded-lg sm:rounded-2xl border border-[#2A2A2C] overflow-hidden shadow-2xl max-w-full">
-                
-                {/* Unified Sub-header / Path Bar */}
                 <div className="h-10 flex items-center justify-between px-4 bg-[#1A1A1C] border-b border-[#2A2A2C] shrink-0">
                     <div className="flex items-center gap-6">
-                        {/* Segmented Toggle for Code/Preview (Hidden on Mobile) */}
                         <div className="hidden md:flex bg-[#0B0B0D] p-1 rounded-lg border border-[#2A2A2C] scale-95 origin-left">
                             <button 
                                 onClick={() => setActiveTab?.('code')}

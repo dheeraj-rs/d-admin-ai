@@ -39,16 +39,15 @@ export default function Sidebar({
             <div
                 className={`bg-white/60 dark:bg-[#02060D] backdrop-blur-3xl border-r border-black/5 dark:border-white/5 h-full transition-all duration-300 ease-in-out relative flex flex-col flex-shrink-0 ${isOpen ? 'w-64' : 'w-16'}`}
             >
-                {/* Top Header Actions */}
                 <div className="flex items-center h-[60px] relative w-full shrink-0">
                     <div className="absolute left-2 right-2 inset-y-2 rounded-xl transition-colors duration-300" />
                     <div className="w-16 h-full flex items-center justify-center shrink-0 z-10">
                         <button
                             onClick={toggleSidebar}
-                            className={`w-9 h-9 rounded-full bg-gray-900 dark:bg-white text-white dark:text-black flex items-center justify-center transition-all duration-300 shadow-md hover:shadow-lg active:scale-95 group`}
+                            className={`w-10 h-10 rounded-full bg-slate-900 dark:bg-gradient-to-br from-indigo-600 to-indigo-700 text-white dark:text-white flex items-center justify-center transition-all duration-300 shadow-xl shadow-indigo-500/40 border border-white/10 hover:scale-105 active:scale-90 group cursor-pointer z-20 cursor-pointer`}
                             title={isOpen ? "Collapse sidebar" : "Expand sidebar"}
                         >
-                            <PanelLeft size={18} className={`transition-transform duration-300 ${!isOpen ? 'rotate-180' : ''}`} />
+                            <PanelLeft size={22} className={`transition-transform duration-300 ${!isOpen ? 'rotate-180' : ''}`} />
                         </button>
                     </div>
                     {isOpen && (
@@ -58,8 +57,6 @@ export default function Sidebar({
                         </div>
                     )}
                 </div>
-
-                {/* Navigation Items */}
                 <div className="mt-4 flex-shrink-0 flex flex-col items-start gap-1 w-full">
                     {NAV_ITEMS.map((item, idx) => {
                         const isActive = item.href === '/' ? pathname === '/' : pathname.startsWith(item.href);
@@ -72,21 +69,20 @@ export default function Sidebar({
                                         if (item.label === 'New chat') onNewChat?.();
                                     }}
                                 >
-                                    {/* Link Highlight Pill */}
-                                    <div className={`absolute left-2 right-2 inset-y-0.5 rounded-xl transition-all duration-300 ${
+                                    <div className={`absolute transition-all duration-300 ease-in-out rounded-full ${
+                                        isOpen 
+                                            ? 'left-2.5 right-2.5 inset-y-0.5' 
+                                            : 'left-[12px] right-[12px] inset-y-0.5'
+                                    } ${
                                         isActive 
                                             ? 'bg-gradient-to-r from-indigo-600/10 to-blue-600/10 dark:from-indigo-600/20 dark:to-blue-600/20 border border-indigo-500/20 shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]' 
                                             : 'group-hover:bg-black/[0.05] dark:group-hover:bg-white/[0.05] border border-transparent group-hover:border-black/[0.05] dark:group-hover:border-white/[0.05]'
                                     }`} />
-
-                                    {/* Icon Container - Fixed at 64px width (center 32px) */}
                                     <div className="absolute left-0 w-16 h-full flex items-center justify-center shrink-0 z-10">
-                                        <div className={`flex items-center justify-center p-1.5 rounded-lg transition-all ${isActive ? 'bg-indigo-500/10 dark:bg-indigo-500/20 text-indigo-600 dark:text-indigo-400 shadow-[0_0_15px_-3px_rgba(79,70,229,0.3)] dark:shadow-[0_0_15px_-3px_rgba(79,70,229,0.5)]' : 'text-gray-500 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-gray-200'}`}>
-                                            <item.icon size={18} strokeWidth={isActive ? 2.5 : 2} />
+                                        <div className={`flex items-center justify-center rounded-lg transition-all ${isActive ? 'text-indigo-600 dark:text-indigo-400' : 'text-gray-500 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-gray-200'}`}>
+                                            <item.icon size={20} strokeWidth={isActive ? 2.5 : 2} />
                                         </div>
                                     </div>
-
-                                    {/* Label - Positioned after the 64px icon area */}
                                     <span className={`absolute left-16 font-bold text-[13.5px] tracking-tight transition-all duration-300 ${isOpen ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'}`}>
                                         {item.label}
                                     </span>

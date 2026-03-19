@@ -1,3 +1,6 @@
+"use client";
+
+import { signIn } from "next-auth/react";
 import { Github, X } from 'lucide-react';
 
 const GoogleLogo = ({ className }: { className?: string }) => (
@@ -74,12 +77,18 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                     </div>
 
                     <div className="w-full flex flex-col gap-3">
-                        <button className="w-full h-12 min-h-[48px] flex items-center justify-center gap-3 bg-white text-black hover:bg-gray-100 rounded-xl font-bold transition-all transform active:scale-95 shadow-lg">
+                        <button
+                            onClick={() => signIn("github")}
+                            className="w-full h-12 min-h-[48px] flex items-center justify-center gap-3 bg-white text-black hover:bg-gray-100 rounded-xl font-bold transition-all transform active:scale-95 shadow-lg"
+                        >
                             <Github size={18} strokeWidth={2.5} />
                             Continue with GitHub
                         </button>
 
-                        <button className="w-full h-12 min-h-[48px] flex items-center justify-center gap-3 bg-white/5 text-white hover:bg-white/10 rounded-xl font-bold transition-all border border-white/10 active:scale-95">
+                        <button
+                            onClick={() => signIn("google")}
+                            className="w-full h-12 min-h-[48px] flex items-center justify-center gap-3 bg-white/5 text-white hover:bg-white/10 rounded-xl font-bold transition-all border border-white/10 active:scale-95"
+                        >
                             <GoogleLogo className="w-[18px] h-[18px]" />
                             Continue with Google
                         </button>

@@ -2,6 +2,7 @@ import { Inter } from 'next/font/google';
 import ServiceWorkerRegistrar from '@/shared/ui/ServiceWorkerRegistrar';
 import { JsonLd } from '@/shared/ui/JsonLd';
 import { ThemeProvider } from '@/shared/providers/ThemeProvider';
+import { AuthProvider } from '@/shared/providers/AuthProvider';
 import './globals.css';
 
 export { metadata, viewport } from './metadata';
@@ -22,7 +23,8 @@ export default function RootLayout({
             <head>
                 <JsonLd />
             </head>
-            <body className="antialiased dark:bg-[#121212] bg-white dark:text-gray-100 text-gray-900 transition-colors duration-300">
+            <body className="antialiased dark:bg-[#121212] bg-white dark:text-gray-100 text-gray-900 transition-colors duration-300" suppressHydrationWarning>
+                <AuthProvider>
                 <ThemeProvider
                     attribute="class"
                     defaultTheme="dark"
@@ -32,6 +34,7 @@ export default function RootLayout({
                     <ServiceWorkerRegistrar />
                     {children}
                 </ThemeProvider>
+                </AuthProvider>
             </body>
         </html>
     );

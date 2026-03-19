@@ -1,6 +1,7 @@
 "use client";
 
-import { signIn } from "next-auth/react";
+import { useEffect } from "react";
+import { signIn, useSession } from "next-auth/react";
 import { Github, X } from 'lucide-react';
 
 const GoogleLogo = ({ className }: { className?: string }) => (
@@ -30,7 +31,16 @@ interface AuthModalProps {
 }
 
 export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
+    const { status } = useSession();
+
+    useEffect(() => {
+        if (status === "authenticated" && isOpen) {
+            onClose();
+        }
+    }, [status, isOpen, onClose]);
+
     if (!isOpen) return null;
+    if (status === "loading" || status === "authenticated") return null;
 
     return (
         <div

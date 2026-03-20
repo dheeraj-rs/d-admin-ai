@@ -17,7 +17,7 @@ export default function Suggestions({ onSelect }: { onSelect: (text: string) => 
                     <button
                         key={idx}
                         onClick={() => onSelect(sug.title)}
-                        className="flex items-center gap-1.5 2xl:gap-3 px-3 py-1.5 2xl:px-6 2xl:py-3 bg-white/5 dark:bg-white/[0.03] border border-gray-200 dark:border-white/10 hover:bg-gray-100 dark:hover:bg-white/[0.08] hover:border-gray-300 dark:hover:border-white/20 rounded-lg 2xl:rounded-2xl transition-all duration-200 cursor-pointer group shadow-sm text-left"
+                        className="flex items-center gap-1.5 2xl:gap-3 px-3 py-1.5 2xl:px-6 2xl:py-3 bg-white/40 dark:bg-white/[0.03] border border-white/60 dark:border-white/10 hover:bg-white/60 dark:hover:bg-white/[0.08] hover:border-white/80 dark:hover:border-white/20 rounded-lg 2xl:rounded-2xl transition-all duration-200 cursor-pointer group shadow-sm text-left"
                     >
                         <sug.icon
                             size={14}

@@ -30,12 +30,14 @@ export default function TemplatesFilter({
                     <button 
                         key={cat}
                         onClick={() => setSelectedCategory(cat)}
-                        className={`px-4 py-1.5 2xl:px-8 2xl:py-3 rounded-full text-sm 2xl:text-xl font-medium transition-all whitespace-nowrap ${
-                            cat === selectedCategory ? 'bg-blue-600 dark:bg-blue-500 text-white shadow-lg shadow-blue-500/20' : 'bg-gray-100 dark:bg-[#2a2a2a] text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-[#333333] hover:text-gray-900 dark:hover:text-gray-200 border border-gray-200 dark:border-[#3e3e3e]'
+                        className={`px-4 py-1.5 2xl:px-8 2xl:py-3 rounded-full text-sm 2xl:text-xl font-bold transition-all whitespace-nowrap border ${
+                            cat === selectedCategory 
+                            ? 'bg-blue-600 dark:bg-blue-500 text-white shadow-[0_4px_15px_rgba(37,99,235,0.3)] border-transparent' 
+                            : 'bg-blue-500/5 dark:bg-blue-400/5 backdrop-blur-xl text-blue-600 dark:text-blue-400 border-blue-500/30 dark:border-blue-400/20 hover:bg-blue-500/10 dark:hover:bg-blue-400/10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.5)] dark:shadow-none'
                         }`}
                     >
                         {cat === 'SAVED PROJECTS' ? (
-                            <span className="flex items-center gap-2 uppercase text-[12px] 2xl:text-base tracking-wider"><Folder size={16} className="2xl:w-5 2xl:h-5" /> SAVED PROJECTS</span>
+                            <span className="flex items-center gap-2 uppercase text-[12px] 2xl:text-base tracking-widest font-black"><Folder size={16} className="2xl:w-5 2xl:h-5" /> SAVED PROJECTS</span>
                         ) : cat}
                     </button>
                 ))}
@@ -45,7 +47,7 @@ export default function TemplatesFilter({
             <div className="sm:hidden relative">
                 <button 
                     onClick={() => setIsFilterOpen(!isFilterOpen)}
-                    className="flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 sm:px-4 sm:py-2 bg-gray-100 dark:bg-[#1a1a1a] text-gray-700 dark:text-gray-200 rounded-xl border border-gray-200 dark:border-white/10 font-bold text-[13px] sm:text-sm"
+                    className="flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 sm:px-4 sm:py-2 bg-white/5 dark:bg-white/5 backdrop-blur-xl text-gray-700 dark:text-gray-200 rounded-xl border border-white/60 dark:border-white/10 font-bold text-[13px] sm:text-sm shadow-[inset_0_1px_2px_rgba(255,255,255,0.4)]"
                 >
                     <Filter size={16} />
                     <span>{selectedCategory}</span>
@@ -55,7 +57,7 @@ export default function TemplatesFilter({
                 {isFilterOpen && (
                     <>
                         <div className="fixed inset-0 z-40" onClick={() => setIsFilterOpen(false)} />
-                        <div className="absolute top-full left-0 mt-2 w-48 bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-white/10 rounded-2xl shadow-2xl z-50 overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+                        <div className="absolute top-full left-0 mt-2 w-48 bg-white/40 dark:bg-[#1a1a1a]/80 backdrop-blur-2xl border border-white/40 dark:border-white/10 rounded-2xl shadow-2xl z-50 overflow-hidden animate-in fade-in zoom-in-95 duration-200">
                             {CATEGORIES.map((cat) => (
                                 <button
                                     key={cat}
@@ -63,8 +65,8 @@ export default function TemplatesFilter({
                                         setSelectedCategory(cat);
                                         setIsFilterOpen(false);
                                     }}
-                                    className={`w-full text-left px-4 py-3 text-sm font-medium transition-colors ${
-                                        cat === selectedCategory ? 'bg-blue-500/10 text-blue-500' : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-[#222]'
+                                    className={`w-full text-left px-4 py-3 text-sm font-bold transition-colors ${
+                                        cat === selectedCategory ? 'bg-blue-500/10 text-blue-600 dark:text-blue-400' : 'text-gray-700 dark:text-gray-400 hover:bg-white/20 dark:hover:bg-[#222]'
                                     }`}
                                 >
                                     {cat}
@@ -77,7 +79,7 @@ export default function TemplatesFilter({
 
             <button 
                 onClick={() => router.push('/builder')}
-                className="flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 sm:px-5 sm:py-2.5 2xl:px-10 2xl:py-5 bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-500 dark:to-indigo-500 text-white rounded-xl 2xl:rounded-2xl font-bold text-[13px] sm:text-sm 2xl:text-2xl hover:scale-[1.02] hover:shadow-[0_8px_25px_rgba(37,99,235,0.4)] transition-all active:scale-[0.98] whitespace-nowrap group shrink-0"
+                className="flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 sm:px-5 sm:py-3 2xl:px-10 2xl:py-6 bg-blue-500/5 dark:bg-blue-400/5 backdrop-blur-xl text-blue-600 dark:text-blue-400 border border-blue-500/30 dark:border-blue-400/20 rounded-xl 2xl:rounded-2xl font-black text-[13px] sm:text-sm 2xl:text-2xl hover:bg-blue-500/10 dark:hover:bg-blue-400/10 hover:scale-[1.02] transition-all active:scale-[0.98] whitespace-nowrap group shrink-0 shadow-[inset_0_1px_1px_rgba(255,255,255,0.5)] dark:shadow-none"
             >
                 <Plus size={18} className="2xl:w-8 2xl:h-8 group-hover:rotate-90 transition-transform duration-300" />
                 <span>Start from scratch</span>

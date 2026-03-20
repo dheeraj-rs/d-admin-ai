@@ -1,98 +1,211 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
-/* Enable class-based dark mode that can be overridden locally */
+/* 
+  Next.js App Router Global Styles (Tailwind v4) 
+  Precision-built for d-admin-ai v3.
+*/
+
 @variant dark (&:where(.dark, .dark *):not(:where(.light, .light *)));
 
 @theme {
-    --color-primary: #4f46e5; /* indigo-600 */
-    --color-accent: #0ea5e9; /* sky-500 */
-    --color-surface: #ffffff;
-    --color-surface-hover: #f8fafc; /* slate-50 */
-    --color-border-subtle: rgba(226, 232, 240, 0.8); /* slate-200/80 */
-    
-    --breakpoint-xs: 400px;
-    --breakpoint-xss: 340px;
+  --color-primary: #6366f1;
+  --color-accent: #06b6d4;
+  --color-surface: #ffffff;
+  --breakpoint-xs: 400px;
 }
 
-/* Base Resets & Professional Palette */
 :root {
-    --bg-main: #fcfcfd; /* Premium off-white */
-    --text-main: #0f172a; /* Slate-900 */
-    --text-muted: #64748b; /* Slate-500 */
-    --border-main: rgba(226, 232, 240, 0.8);
-    
-    background-color: var(--bg-main);
-    color: var(--text-main);
-    font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
-
-    /* Builder Legacy Aliases */
-    --d-admin-primary: #4f46e5;
-    --d-admin-primary-color: #4f46e5;
-    --d-admin-surface-ground: var(--bg-main);
-    --d-admin-surface-section: #ffffff;
-    --d-admin-surface-border: var(--border-main);
-    --d-admin-surface-hover: var(--color-surface-hover);
-    --d-admin-text-color: var(--text-main);
-    --d-admin-text-color-secondary: var(--text-muted);
-    --d-admin-blue-600: #4f46e5;
-    --d-admin-blue-700: #4338ca;
+  --bg-main: #f8fafc;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --border-main: rgba(203, 213, 225, 0.5);
+  --glass-bg: rgba(255, 255, 255, 0.45);
+  --glass-border: rgba(255, 255, 255, 0.3);
+  
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
 .dark {
-    --bg-main: #020617; /* Slate-950 */
-    --text-main: #f1f5f9; /* Slate-100 */
-    --text-muted: #94a3b8; /* Slate-400 */
-    --border-main: rgba(30, 41, 59, 0.7); /* Slate-800/70 */
-    
-    background-color: var(--bg-main);
-    color: var(--text-main);
-
-    /* Builder Legacy Aliases */
-    --d-admin-surface-ground: var(--bg-main);
-    --d-admin-surface-section: rgba(30, 41, 59, 0.3); /* Transparent panel */
-    --d-admin-surface-border: var(--border-main);
-    --d-admin-surface-hover: rgba(51, 65, 85, 0.5); /* Slate-700/50 */
-    --d-admin-text-color: var(--text-main);
-    --d-admin-text-color-secondary: var(--text-muted);
+  --bg-main: #050507;
+  --text-main: #ffffff !important;
+  --text-muted: #94a3b8;
+  --border-main: rgba(30, 41, 59, 0.7);
+  --glass-bg: rgba(15, 23, 42, 0.4);
+  --glass-border: rgba(99, 102, 241, 0.25);
 }
 
-html,
-body {
-    min-height: 100dvh;
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-    overflow-y: auto;
+/* ── Base ── */
+html, body {
+  min-height: 100dvh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background-color: var(--bg-main);
 }
+
+/* ── Premium Glass Card Utility ── */
+.glass-card-premium {
+  @apply backdrop-blur-3xl transition-all duration-500 overflow-visible;
+  background: var(--glass-bg);
+  border: 1.5px solid var(--glass-border);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 0 20px rgba(255, 255, 255, 0.05);
+}
+
+.dark .glass-card-premium {
+  box-shadow: 
+    0 10px 40px rgba(0, 0, 0, 0.25),
+    0 0 20px rgba(99, 102, 241, 0.1),
+    inset 0 0 15px rgba(99, 102, 241, 0.02);
+}
+
+.glass-card-premium:hover {
+  transform: translateY(-2px);
+  border-color: rgba(99, 102, 241, 0.4);
+  box-shadow: 
+    0 15px 50px rgba(0, 0, 0, 0.3),
+    0 0 30px rgba(99, 102, 241, 0.2);
+}
+
+/* ── Splash Screen (Bulletproof Hydration) ── */
+.d-splash-root {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: var(--bg-main);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: background-color 0.5s ease;
+}
+
+/* Decorative Decorations (Client-Only) */
+.d-splash-decoration {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  animation: dFadeIn 1.5s 0.2s forwards;
+}
+
+.d-splash-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+}
+.d-splash-orb-1 {
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+  top: -10%; left: -10%;
+  animation: dFloat 10s infinite;
+}
+.d-splash-orb-2 {
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.1) 0%, transparent 70%);
+  bottom: -5%; right: -5%;
+  animation: dFloat 12s infinite reverse;
+}
+
+.dark .d-splash-orb-1 {
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.25) 0%, transparent 70%);
+}
+.dark .d-splash-orb-2 {
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.2) 0%, transparent 70%);
+}
+
+.d-splash-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  animation: dScaleUp 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.d-splash-logo-box {
+  width: 90px; height: 90px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 24px;
+  border: 1px solid var(--glass-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+
+.dark .d-splash-logo-box {
+  background: #111113;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.d-splash-title {
+  font-size: 32px;
+  font-weight: 900;
+  letter-spacing: -1.5px;
+  color: var(--text-main);
+  text-transform: uppercase;
+  font-style: italic;
+  background: linear-gradient(90deg, var(--text-main), #6366f1, #06b6d4, var(--text-main));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: dShimmer 3s linear infinite;
+}
+
+.d-splash-progress-container {
+    width: 240px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    margin-top: 0.5rem; /* Reduced to avoid pushing off-screen */
+}
+
+.d-splash-progress-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 120px;
+    background: #ffffff; /* Solid fallback */
+    background: linear-gradient(90deg, transparent, #ffffff, #6366f1, #06b6d4, transparent);
+    animation: dProgressMove 1.5s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+    box-shadow: 0 0 15px rgba(99, 102, 241, 1);
+    filter: blur(0.5px);
+}
+
+/* Animations */
+@keyframes dFadeIn { to { opacity: 1; } }
+@keyframes dScaleUp { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+@keyframes dFloat {
+  0%, 100% { transform: translate(0,0); }
+  50% { transform: translate(20px, 15px); }
+}
+@keyframes dShimmer {
+  to { background-position: 200% center; }
+}
+@keyframes dProgressMove {
+  0% { transform: translateX(-150%); }
+  100% { transform: translateX(250%); }
+}
+
+/* ── Typography & Consistency ── */
+h1, h2, h3, h4, h5 { font-weight: 700; letter-spacing: -0.025em; }
+p { line-height: 1.6; }
 
 /* Custom Scrollbar */
-::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-}
-::-webkit-scrollbar-track {
-    background: transparent;
-}
-::-webkit-scrollbar-thumb {
-    background: #cbd5e1; /* gray-300 */
-    border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-    background: #94a3b8; /* gray-400 */
-}
-
-.dark ::-webkit-scrollbar-thumb {
-    background: #424242;
-}
-.dark ::-webkit-scrollbar-thumb:hover {
-    background: #505050;
-}
-
-/* Hide scrollbar utility */
-.no-scrollbar::-webkit-scrollbar {
-    display: none;
-}
-.no-scrollbar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #444; }

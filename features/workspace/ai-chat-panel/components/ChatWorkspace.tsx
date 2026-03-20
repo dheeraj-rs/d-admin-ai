@@ -3,18 +3,16 @@
 import { useWorkspace } from '@/features/workspace';
 import { ChatHistory, ChatInputArea } from '@/features/workspace/ai-chat-panel';
 import { WorkbenchMock } from '@/features/workspace/code-editor';
+import { WorkspaceViewBackground } from '@/features/home';
 import AIChatLandingPage from './AIChatLandingPage';
 
 export default function ChatWorkspace() {
     const { state, actions } = useWorkspace();
     const { viewState, activeTab, inputValue } = state;
     return (
-        <div className="flex-1 flex overflow-hidden relative h-full bg-white dark:bg-[#02060D] text-gray-900 dark:text-white font-sans z-0 transition-colors duration-300">
+        <div className="flex-1 flex overflow-hidden relative h-full bg-[#ecfeff] dark:bg-[#02060D] text-gray-900 dark:text-white font-sans z-0 transition-colors duration-300">
             {viewState !== 'fullscreen-editor' && (
-                <div className="fixed inset-0 w-[100dvw] h-[100dvh] z-0 pointer-events-none overflow-hidden bg-white dark:bg-[#02060D] transition-colors duration-300">
-                    <div className="absolute top-[-10%] left-[-10%] w-[40dvw] h-[40dvw] bg-cyan-600/5 rounded-full blur-[120px]" />
-                    <div className="absolute bottom-[-10%] right-[-10%] w-[40dvw] h-[40dvw] bg-blue-600/5 rounded-full blur-[120px]" />
-                </div>
+                <WorkspaceViewBackground />
             )}
             
             {viewState === 'fullscreen-editor' ? (

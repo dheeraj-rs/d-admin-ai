@@ -30,7 +30,7 @@ const fetchImageAsBase64 = async (imageUrl: string): Promise<string> => {
     });
   } catch (error) {
     console.error(`Failed to fetch image: ${imageUrl}`, error);
-    return imageUrl;
+    return '';
   }
 };
 

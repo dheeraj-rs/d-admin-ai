@@ -22,7 +22,7 @@ export default function RootLayout({
             <head>
                 <JsonLd />
             </head>
-            <body className="antialiased dark:bg-[#121212] bg-white dark:text-gray-100 text-gray-900 transition-colors duration-300" suppressHydrationWarning>
+            <body className="antialiased dark:bg-[#050505] dark:text-gray-100 text-gray-900 transition-colors duration-300" suppressHydrationWarning>
                 <AppProviders>
                     <ServiceWorkerRegistrar />
                     {children}

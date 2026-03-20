@@ -20,6 +20,7 @@ export interface Project {
   likes?: number;
   views?: number;
   ownerEmail?: string;
+  lastPushedAt?: number;
 }
 
 export interface Template {

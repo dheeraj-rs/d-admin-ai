@@ -40,7 +40,7 @@ export default function Sidebar() {
                     <div className="w-16 h-full flex items-center justify-center shrink-0 z-10">
                         <button
                             onClick={() => toggleSidebar(!isOpen)}
-                            className={`w-10 h-10 rounded-full bg-slate-900 dark:bg-gradient-to-br from-indigo-600 to-indigo-700 text-white dark:text-white flex items-center justify-center transition-all duration-300 shadow-xl shadow-indigo-500/40 border border-white/10 hover:scale-105 active:scale-90 group cursor-pointer z-20 cursor-pointer`}
+                            className={`w-10 h-10 rounded-full bg-white/40 dark:bg-gradient-to-br dark:from-indigo-600 dark:to-indigo-700 text-slate-900 dark:text-white flex items-center justify-center transition-all duration-300 shadow-lg shadow-indigo-500/10 dark:shadow-indigo-500/40 border border-indigo-200/50 dark:border-white/10 hover:scale-105 active:scale-90 group cursor-pointer z-20 backdrop-blur-md`}
                             title={isOpen ? "Collapse sidebar" : "Expand sidebar"}
                         >
                             <PanelLeft size={22} className={`transition-transform duration-300 ${!isOpen ? 'rotate-180' : ''}`} />
@@ -49,7 +49,7 @@ export default function Sidebar() {
                     {isOpen && (
                         <div className="flex items-center gap-2 overflow-hidden animate-in fade-in slide-in-from-left-2 duration-300">
                              <div className="h-4 w-[1px] bg-slate-200 dark:bg-slate-800" />
-                             <span className="text-[11px] font-bold text-slate-400 dark:text-slate-500 tracking-widest uppercase">Navigation</span>
+                             <span className="text-[11px] font-bold text-slate-500 dark:text-slate-500 tracking-widest uppercase">Navigation</span>
                         </div>
                     )}
                 </div>
@@ -104,17 +104,16 @@ export default function Sidebar() {
                 </div>
 
                 <div className={`flex-1 overflow-y-auto overflow-x-hidden mt-6 transition-opacity duration-300 ${isOpen ? 'opacity-100 delay-100' : 'opacity-0 pointer-events-none delay-0'}`}>
-                    <div className="px-5 py-2 text-[10px] font-black text-gray-400 dark:text-gray-500 uppercase tracking-[0.2em]">Recent active</div>
+                    <div className="px-5 py-2 text-[10px] font-black text-slate-500 dark:text-gray-500 uppercase tracking-[0.2em]">Recent active</div>
                     <div className="px-3 space-y-1 w-[240px]">
                         {RECENT_CHATS.map((chat, idx) => (
-                            <div 
-                                key={idx} 
-                                onClick={() => {
-                                    if (typeof window !== 'undefined' && window.innerWidth < 1024) {
-                                        toggleSidebar(false);
-                                    }
-                                }}
-                                className="group/chat flex items-center gap-2 p-2 px-3 rounded-xl hover:bg-black/[0.04] dark:hover:bg-white/[0.04] cursor-pointer text-[13px] text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 transition-all truncate border border-transparent hover:border-black/[0.05] dark:hover:border-white/[0.05]"
+                            <div                                 key={idx} 
+                                 onClick={() => {
+                                     if (typeof window !== 'undefined' && window.innerWidth < 1024) {
+                                         toggleSidebar(false);
+                                     }
+                                 }}
+                                 className="group/chat flex items-center gap-2 p-2 px-3 rounded-xl hover:bg-black/[0.04] dark:hover:bg-white/[0.04] cursor-pointer text-[13px] text-slate-700 dark:text-gray-400 hover:text-slate-950 dark:hover:text-gray-200 transition-all truncate border border-transparent hover:border-black/[0.05] dark:hover:border-white/[0.05]"
                             >
                                 <div className="w-1 h-1 rounded-full bg-blue-500 opacity-0 group-hover/chat:opacity-100 transition-opacity" />
                                 <span className="truncate font-medium">{chat}</span>

@@ -1,5 +1,6 @@
 'use client';
-
+ 
+import React, { useState, useEffect } from 'react';
 import { Upload, Globe, PanelLeft, ArrowLeft, MessageSquarePlus } from 'lucide-react';
 import { usePathname, useRouter } from 'next/navigation';
 import { useWorkspace } from '@/features/workspace';
@@ -10,14 +11,19 @@ export default function StandardTopBar() {
     const { viewState, showAIPanel } = state;
     const { setShowLeftSidebar, setIsHelpOpen, handleNewChat, setShowAIPanel } = actions;
 
+    const [mounted, setMounted] = React.useState(false);
     const pathname = usePathname();
     const router = useRouter();
+
+    React.useEffect(() => {
+        setMounted(true);
+    }, []);
 
     const isChatBuilder = pathname === '/ai-chat-panel';
     const isHome = pathname === '/';
     const isSpecializedRoute = pathname !== '/' && pathname !== '/ai-chat-panel';
-    const shouldShowBackButton = showAIPanel || isSpecializedRoute || isChatBuilder;
-    const shouldShowAgentPicker = (viewState !== 'initial' || showAIPanel || isChatBuilder) && !isHome;
+    const shouldShowBackButton = (showAIPanel || isSpecializedRoute || isChatBuilder) && mounted;
+    const shouldShowAgentPicker = (viewState !== 'initial' || showAIPanel || isChatBuilder) && !isHome && mounted;
 
     const handleBack = () => {
         if (isSpecializedRoute || isChatBuilder) {
@@ -28,7 +34,7 @@ export default function StandardTopBar() {
     };
 
     return (
-        <div className="sticky top-0 z-50 w-full flex items-center justify-between px-2 lg:px-8 h-14 pointer-events-none">
+        <div className="sticky top-0 z-50 w-full flex items-center justify-between px-2 h-14 pointer-events-none">
             {/* LEFT — sidebar toggle + agent picker */}
             <div className="flex items-center gap-1.5 pointer-events-auto">
                 <button
@@ -50,7 +56,7 @@ export default function StandardTopBar() {
                             <ArrowLeft size={18} />
                         </button>
                     )}
-                    <span className="text-gray-900 dark:text-white text-[16px] font-black tracking-tightest hidden sm:inline-block lg:ml-4">D-Admin</span>
+                    <span className="text-white text-[16px] font-black tracking-tightest hidden sm:inline-block lg:ml-4">D-Admin</span>
                     
                     {shouldShowAgentPicker && (
                         <div className="flex items-center gap-1.5">
@@ -86,7 +92,7 @@ export default function StandardTopBar() {
                     <button
                         id="topbar-how-it-works-btn"
                         onClick={() => setIsHelpOpen(true)}
-                        className="group flex items-center gap-1.5 px-3 h-10 text-black dark:text-gray-400 hover:text-gray-900 dark:hover:text-white text-[13px] font-medium rounded-lg hover:bg-black/5 dark:hover:bg-white/[0.06] border border-transparent hover:border-gray-200 dark:hover:border-white/10 transition-all focus:outline-none whitespace-nowrap cursor-pointer"
+                        className="group flex items-center gap-1.5 px-3 h-10 text-white dark:text-gray-400 hover:text-white/90 dark:hover:text-white text-[13px] font-medium rounded-lg hover:bg-white/5 dark:hover:bg-white/[0.06] border border-transparent hover:border-white/10 transition-all focus:outline-none whitespace-nowrap cursor-pointer"
                     >
                         <Globe size={15} className="group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors" />
                         <span className="hidden sm:inline">How it works?</span>

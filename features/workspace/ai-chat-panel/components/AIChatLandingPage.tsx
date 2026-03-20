@@ -23,7 +23,7 @@ export default function AIChatLandingPage({
                 <div className="max-w-3xl 2xl:max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
                     <section className="text-center pb-6 lg:pb-8 animate-in fade-in slide-in-from-top-4 duration-700 relative flex flex-col items-center">
                         <div className="inline-flex items-center gap-1.5 px-3 py-1 2xl:px-6 2xl:py-3 rounded-full bg-blue-500/10 border border-blue-500/25 text-blue-400 text-[10px] 2xl:text-[18px] font-bold uppercase tracking-widest mb-6 2xl:mb-12 transition-all duration-300 hover:bg-blue-500/20">
-                            <Sparkles size={10} className="animate-pulse 2xl:w-5 2xl:h-5" /> Introducing d-admin v2.0
+                            <Sparkles size={10} className="animate-pulse 2xl:w-5 2xl:h-5" /> Introducing d-admin AI
                         </div>
                         <h1 className="font-extrabold tracking-tight mb-4 2xl:mb-8 leading-[1.08]">
                             <span className="block text-gray-900 dark:text-white text-[32px] sm:text-[44px] xl:text-[48px] 2xl:text-[84px] 3xl:text-[110px]">

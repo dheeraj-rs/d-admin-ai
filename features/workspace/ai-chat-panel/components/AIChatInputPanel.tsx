@@ -16,7 +16,7 @@ export default function AIChatInputPanel({ inputValue, setInputValue, handleSubm
     return (
         <div className="w-full flex flex-col gap-4 animate-in fade-in slide-in-from-bottom-3 duration-400">
             {/* Input box */}
-            <div className="relative flex items-center bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm rounded-[28px] 2xl:rounded-[40px] p-2 2xl:p-4 pl-3 pr-3 2xl:pl-5 2xl:pr-5 shadow-sm dark:shadow-[0_8px_32px_rgba(0,0,0,0.5)] w-full group focus-within:ring-2 focus-within:ring-indigo-500/30 transition-all border border-slate-200 dark:border-slate-800">
+            <div className="relative flex items-center bg-white/40 dark:bg-white/[0.05] backdrop-blur-xl rounded-[28px] 2xl:rounded-[40px] p-2 2xl:p-4 pl-3 pr-3 2xl:pl-5 2xl:pr-5 shadow-sm dark:shadow-none w-full group focus-within:border-blue-500/50 dark:focus-within:border-blue-400/50 transition-all border border-white/60 dark:border-white/10">
                 <PlusActionMenu />
                 <input
                     id="ai-build-input"

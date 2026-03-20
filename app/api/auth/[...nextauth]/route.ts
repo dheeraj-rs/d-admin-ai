@@ -36,24 +36,8 @@ const authOptions: NextAuthOptions = {
     },
     callbacks: {
         async signIn({ user }) {
-            try {
-                await connectDB();
-                if (user.email) {
-                    await UserModel.findOneAndUpdate(
-                        { email: user.email },
-                        {
-                            email: user.email,
-                            name: user.name || undefined,
-                            image: user.image || undefined,
-                        },
-                        { upsert: true, new: true }
-                    );
-                }
-                return true;
-            } catch (error) {
-                console.error('Error syncing user to DB:', error);
-                return true;
-            }
+            // Temporarily disabling DB sync to debug OAuthCallback issue
+            return true;
         },
         async jwt({ token, account, user }) {
             if (account && user) {
@@ -82,7 +66,7 @@ const authOptions: NextAuthOptions = {
             return session;
         },
     },
-    debug: process.env.NODE_ENV === 'development',
+    debug: true,
 };
 
 const handler = NextAuth(authOptions);

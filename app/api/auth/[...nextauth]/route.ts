@@ -4,7 +4,7 @@ import GoogleProvider from 'next-auth/providers/google';
 import connectDB from '@/shared/lib/db';
 import { UserModel as User } from '@/features/builder/services/models';
 
-const authOptions: AuthOptions = {
+export const authOptions: AuthOptions = {
   providers: [
     GithubProvider({
       clientId: process.env.GITHUB_CLIENT_ID ?? '',
@@ -100,12 +100,12 @@ const authOptions: AuthOptions = {
     async session({ session, token }) {
       // Add custom fields to session
       if (session.user) {
-        (session.user as any).id = token.sub as string;
-        (session.user as any).email = token.email as string;
-        (session.user as any).name = token.name as string;
-        (session.user as any).image = token.picture as string;
-        (session as any).accessToken = token.accessToken as string;
-        (session as any).provider = token.provider as string;
+        session.user.id = token.sub as string;
+        session.user.email = token.email as string;
+        session.user.name = token.name as string;
+        session.user.image = token.picture as string;
+        session.accessToken = token.accessToken as string;
+        session.provider = token.provider as string;
 
         // Add GitHub specific fields if they exist
         if (token.githubAccessToken) {
@@ -154,4 +154,3 @@ const authOptions: AuthOptions = {
 const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST };
-export const dynamic = 'force-dynamic';

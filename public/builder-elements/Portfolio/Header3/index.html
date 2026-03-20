@@ -1,0 +1,79 @@
+<header data-component-name="Header3" class="w-full relative z-50 bg-[#0a0a0a]/90 backdrop-blur-md border-b-2 border-[#22d3ee]/20 font-mono transition-all duration-300">
+  
+  <!-- Glowing Top Line -->
+  <div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#22d3ee] to-transparent shadow-[0_0_15px_#22d3ee]"></div>
+
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="flex items-center justify-between h-20">
+      
+      <!-- Logo -->
+      <div class="flex-shrink-0 animate-pulse">
+        <a href="#" class="flex items-center gap-3">
+          <span class="w-3 h-3 bg-[#22d3ee] shadow-[0_0_8px_#22d3ee]"></span>
+          <span class="text-white font-bold text-xl tracking-widest uppercase">SYS<span class="text-[#a855f7]">.INIT</span></span>
+        </a>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center space-x-10">
+        <a href="#core" class="text-xs font-semibold text-[#a3a3a3] hover:text-[#22d3ee] uppercase tracking-[0.2em] transition-colors relative group">
+          <span class="hidden group-hover:inline absolute -left-4 text-[#22d3ee]">&gt;</span> Core
+        </a>
+        <a href="#modules" class="text-xs font-semibold text-[#a3a3a3] hover:text-[#22d3ee] uppercase tracking-[0.2em] transition-colors relative group">
+          <span class="hidden group-hover:inline absolute -left-4 text-[#22d3ee]">&gt;</span> Modules
+        </a>
+        <a href="#records" class="text-xs font-semibold text-[#a3a3a3] hover:text-[#22d3ee] uppercase tracking-[0.2em] transition-colors relative group">
+          <span class="hidden group-hover:inline absolute -left-4 text-[#22d3ee]">&gt;</span> Records
+        </a>
+      </nav>
+
+      <!-- Desktop CTA -->
+      <div class="hidden md:flex items-center">
+        <a href="#connect" class="group relative px-6 py-2 bg-transparent border border-[#22d3ee] text-[#22d3ee] font-bold uppercase tracking-[0.2em] text-[10px] overflow-hidden hover:text-[#0a0a0a] transition-colors duration-300">
+          <span class="absolute inset-0 bg-[#22d3ee] -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-300 ease-out z-0"></span>
+          <span class="relative z-10">Connect</span>
+        </a>
+      </div>
+
+      <!-- Mobile menu button -->
+      <div class="md:hidden flex items-center">
+        <button id="h3-mobile-btn" class="text-[#22d3ee] hover:text-white focus:outline-none p-2 border border-[#22d3ee]/30 hover:bg-[#22d3ee]/10 transition-colors">
+          <svg class="h-5 w-5" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+            <path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M4 7h16M4 12h16M4 17h16"></path>
+          </svg>
+        </button>
+      </div>
+      
+    </div>
+  </div>
+
+  <!-- Mobile Navigation Menu -->
+  <div id="h3-mobile-menu" class="hidden md:hidden bg-[#0a0a0a] border-b border-[#22d3ee]/20 absolute w-full left-0 top-20 shadow-[0_10px_30px_rgba(34,211,238,0.1)]">
+    <div class="px-6 py-6 space-y-4">
+      <a href="#core" class="block text-sm font-semibold text-[#a3a3a3] hover:text-[#22d3ee] uppercase tracking-[0.2em]">
+        <span class="text-[#22d3ee] mr-2">&gt;</span> Core
+      </a>
+      <a href="#modules" class="block text-sm font-semibold text-[#a3a3a3] hover:text-[#22d3ee] uppercase tracking-[0.2em]">
+        <span class="text-[#22d3ee] mr-2">&gt;</span> Modules
+      </a>
+      <a href="#records" class="block text-sm font-semibold text-[#a3a3a3] hover:text-[#22d3ee] uppercase tracking-[0.2em]">
+        <span class="text-[#22d3ee] mr-2">&gt;</span> Records
+      </a>
+      <div class="pt-6 mt-4 border-t border-[#22d3ee]/20">
+        <a href="#connect" class="block text-center px-4 py-3 bg-[#22d3ee]/10 border border-[#22d3ee] text-[#22d3ee] font-bold uppercase tracking-[0.2em] text-[10px]">
+          Connect
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  const h3Btn = document.getElementById('h3-mobile-btn');
+  const h3Menu = document.getElementById('h3-mobile-menu');
+  if(h3Btn && h3Menu) {
+    h3Btn.addEventListener('click', () => {
+      h3Menu.classList.toggle('hidden');
+    });
+  }
+</script>

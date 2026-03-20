@@ -1,7 +1,7 @@
 @import 'tailwindcss';
 
-/* Enable class-based dark mode for next-themes */
-@custom-variant dark (&:is(.dark *));
+/* Enable class-based dark mode that can be overridden locally */
+@variant dark (&:where(.dark, .dark *):not(:where(.light, .light *)));
 
 @theme {
     --color-primary: #4f46e5; /* indigo-600 */
@@ -24,6 +24,18 @@
     background-color: var(--bg-main);
     color: var(--text-main);
     font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+
+    /* Builder Legacy Aliases */
+    --d-admin-primary: #4f46e5;
+    --d-admin-primary-color: #4f46e5;
+    --d-admin-surface-ground: var(--bg-main);
+    --d-admin-surface-section: #ffffff;
+    --d-admin-surface-border: var(--border-main);
+    --d-admin-surface-hover: var(--color-surface-hover);
+    --d-admin-text-color: var(--text-main);
+    --d-admin-text-color-secondary: var(--text-muted);
+    --d-admin-blue-600: #4f46e5;
+    --d-admin-blue-700: #4338ca;
 }
 
 .dark {
@@ -34,6 +46,14 @@
     
     background-color: var(--bg-main);
     color: var(--text-main);
+
+    /* Builder Legacy Aliases */
+    --d-admin-surface-ground: var(--bg-main);
+    --d-admin-surface-section: rgba(30, 41, 59, 0.3); /* Transparent panel */
+    --d-admin-surface-border: var(--border-main);
+    --d-admin-surface-hover: rgba(51, 65, 85, 0.5); /* Slate-700/50 */
+    --d-admin-text-color: var(--text-main);
+    --d-admin-text-color-secondary: var(--text-muted);
 }
 
 html,

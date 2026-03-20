@@ -1,0 +1,269 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+:root {
+    --header-height: 56px;
+    --chat-min-width: 600px;
+    --chat-max-width: 800px;
+    --workbench-width: min(calc(100% - 600px), 2000px);
+    --workbench-inner-width: var(--workbench-width);
+    --workbench-left: calc(100% - var(--workbench-width));
+    --cm-backgroundColor: var(--surface-e);
+    --cm-textColor: var(--d-admin-text-color);
+    --cm-cursor-width: 2px;
+    --cm-cursor-backgroundColor: var(--d-admin-text-color);
+    --cm-selection-backgroundColorFocused: var(--d-admin-primary-color);
+    --cm-selection-backgroundOpacityFocused: 0.3;
+    --cm-selection-backgroundColorBlured: var(--surface-400);
+    --cm-selection-backgroundOpacityBlured: 0.2;
+    --cm-matching-bracket: var(--surface-200);
+    --cm-activeLineBackgroundColor: var(--surface-b);
+    --cm-gutter-backgroundColor: var(--surface-b);
+    --cm-gutter-textColor: var(--d-admin-text-color-secondary);
+    --cm-gutter-activeLineTextColor: var(--d-admin-text-color);
+    --cm-foldGutter-textColor: var(--surface-500);
+    --cm-foldGutter-textColorHover: var(--d-admin-text-color-secondary);
+
+    /* Panels */
+    --cm-panels-borderColor: var(--d-admin-surface-border);
+
+    /* Search */
+    --cm-search-backgroundColor: var(--surface-e);
+    --cm-search-textColor: var(--d-admin-text-color);
+    --cm-search-button-backgroundColor: var(--d-admin-surface-c);
+    --cm-search-button-borderColor: var(--d-admin-surface-border);
+    --cm-search-button-textColor: var(--d-admin-text-color-secondary);
+    --cm-search-button-textColorHover: var(--d-admin-text-color);
+    --cm-search-button-borderColorFocused: var(--d-admin-primary-color);
+    --cm-search-button-backgroundColorHover: var(--d-admin-surface-d);
+    --cm-search-button-borderColorHover: var(--surface-400);
+    --cm-search-closeButton-backgroundColor: transparent;
+    --cm-search-closeButton-textColor: var(--d-admin-text-color-secondary);
+    --cm-search-closeButton-textColorHover: var(--d-admin-text-color);
+    --cm-search-closeButton-backgroundColorHover: var(--d-admin-surface-c);
+    --cm-search-input-backgroundColor: var(--surface-0);
+    --cm-search-input-borderColor: var(--d-admin-surface-border);
+    --cm-search-input-textColor: var(--d-admin-text-color);
+    --cm-search-input-borderColorFocused: var(--d-admin-primary-color);
+
+    /* Tooltip */
+    --cm-tooltip-backgroundColor: var(--d-admin-surface-overlay);
+    --cm-tooltip-borderColor: var(--d-admin-surface-border);
+    --cm-tooltip-textColor: var(--d-admin-text-color);
+    --cm-tooltip-backgroundColorSelected: var(--d-admin-primary-color);
+    --cm-tooltip-textColorSelected: var(--d-admin-primary-color-text);
+
+    /* Search Match */
+    --cm-searchMatch-backgroundColor: var(--highlight-bg);
+
+    /* Builder Elements - Mapped to Theme Variables */
+    --dev-elements-bg-depth-1: var(--surface-0);
+    --dev-elements-bg-depth-2: var(--surface-b);
+    --dev-elements-bg-depth-3: var(--d-admin-surface-c);
+    --dev-elements-bg-depth-4: var(--d-admin-surface-d);
+
+    --dev-elements-borderColor: var(--d-admin-surface-border);
+    --dev-elements-borderColorActive: var(--d-admin-primary-color);
+    --dev-elements-borderColorHover: var(--surface-400);
+
+    --dev-elements-textPrimary: var(--d-admin-text-color);
+    --dev-elements-textSecondary: var(--d-admin-text-color-secondary);
+    --dev-elements-textTertiary: var(--surface-500);
+
+    --dev-elements-button-primary-background: var(--d-admin-primary-color);
+    --dev-elements-button-primary-backgroundHover: var(--d-admin-primary-600);
+    --dev-elements-button-primary-text: var(--d-admin-primary-color-text);
+
+    --dev-elements-button-secondary-background: var(--d-admin-surface-c);
+    --dev-elements-button-secondary-backgroundHover: var(--d-admin-surface-d);
+    --dev-elements-button-secondary-text: var(--d-admin-text-color);
+
+    --dev-elements-button-danger-background: var(--d-admin-red-500);
+    --dev-elements-button-danger-backgroundHover: var(--d-admin-red-600);
+    --dev-elements-button-danger-text: #ffffff;
+
+    --dev-elements-icon-success: var(--d-admin-green-500);
+    --dev-elements-icon-error: var(--d-admin-red-500);
+    --dev-elements-icon-warning: var(--d-admin-yellow-500);
+    --dev-elements-icon-info: var(--d-admin-blue-500);
+
+    --dev-elements-preview-text: var(--d-admin-text-color);
+    --dev-elements-terminals-background: var(--surface-900);
+    --dev-elements-terminals-text: var(--surface-50);
+
+    --dev-elements-actions-background: var(--surface-0);
+    --dev-elements-actions-code-background: var(--surface-b);
+
+    --dev-elements-artifacts-background: var(--surface-0);
+    --dev-elements-artifacts-backgroundHover: var(--surface-b);
+    --dev-elements-artifacts-borderColor: var(--d-admin-surface-border);
+
+    --dev-elements-messages-background: var(--surface-0);
+    --dev-elements-messages-linkColor: var(--d-admin-primary-color);
+    --dev-elements-messages-code-background: var(--d-admin-surface-c);
+
+    --dev-elements-item-contentDefault: var(--d-admin-text-color-secondary);
+    --dev-elements-item-contentActive: var(--d-admin-text-color);
+    --dev-elements-item-contentAccent: var(--d-admin-primary-color);
+    --dev-elements-item-contentDanger: var(--d-admin-red-500);
+
+    --dev-elements-item-backgroundDefault: transparent;
+    --dev-elements-item-backgroundActive: var(--d-admin-surface-c);
+    --dev-elements-item-backgroundAccent: var(--highlight-bg);
+    --dev-elements-item-backgroundDanger: var(--d-admin-red-50);
+}
+
+/* Utility Classes - Background Colors */
+.bg-surface-0 {
+    background-color: var(--surface-0) !important;
+}
+
+.bg-surface-a {
+    background-color: var(--surface-a) !important;
+}
+
+.bg-surface-b {
+    background-color: var(--surface-b) !important;
+}
+
+.bg-surface-c {
+    background-color: var(--d-admin-surface-c) !important;
+}
+
+.bg-surface-d {
+    background-color: var(--d-admin-surface-d) !important;
+}
+
+.bg-surface-e {
+    background-color: var(--surface-e) !important;
+}
+
+.bg-surface-overlay {
+    background-color: var(--d-admin-surface-overlay) !important;
+}
+
+.bg-primary {
+    background-color: var(--d-admin-primary-color) !important;
+}
+
+.bg-primary\/10 {
+    background-color: color-mix(in srgb, var(--d-admin-primary-color) 10%, transparent) !important;
+}
+
+.bg-primary-50 {
+    background-color: var(--primary-50) !important;
+}
+
+.bg-transparent {
+    background-color: transparent !important;
+}
+
+/* Utility Classes - Text Colors */
+.text-primary {
+    color: var(--d-admin-primary-color) !important;
+}
+
+.text-text-secondary {
+    color: var(--d-admin-text-color-secondary) !important;
+}
+
+.text-text {
+    color: var(--d-admin-text-color) !important;
+}
+
+.text-surface-500 {
+    color: var(--surface-500) !important;
+}
+
+.text-surface-600 {
+    color: var(--surface-600) !important;
+}
+
+/* Utility Classes - Border Colors */
+.border-surface {
+    border-color: var(--d-admin-surface-border) !important;
+}
+
+.border-primary {
+    border-color: var(--d-admin-primary-color) !important;
+}
+
+.border-surface-400 {
+    border-color: var(--surface-400) !important;
+}
+
+/* Utility Classes - Hover States */
+.hover\:bg-surface-b:hover {
+    background-color: var(--surface-b) !important;
+}
+
+.hover\:bg-surface-c:hover {
+    background-color: var(--d-admin-surface-c) !important;
+}
+
+.hover\:bg-surface-d:hover {
+    background-color: var(--d-admin-surface-d) !important;
+}
+
+.hover\:text-text:hover {
+    color: var(--d-admin-text-color) !important;
+}
+
+.hover\:border-primary:hover {
+    border-color: var(--d-admin-primary-color) !important;
+}
+
+/* Utility Classes - Focus States */
+.focus\:border-primary:focus {
+    border-color: var(--d-admin-primary-color) !important;
+}
+
+.focus\:text-text:focus {
+    color: var(--d-admin-text-color) !important;
+}
+
+.focus-within\:border-primary:focus-within {
+    border-color: var(--d-admin-primary-color) !important;
+}
+
+.focus-within\:text-text:focus-within {
+    color: var(--d-admin-text-color) !important;
+}
+
+/* Resize Handle Styles */
+[data-resize-handle] {
+    position: relative;
+    outline: none;
+}
+
+[data-resize-handle][data-panel-group-direction='horizontal']:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -2px;
+    right: -2px;
+    z-index: 10;
+    cursor: col-resize;
+}
+
+[data-resize-handle][data-panel-group-direction='vertical']:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -2px;
+    bottom: -2px;
+    z-index: 10;
+    cursor: row-resize;
+}
+
+[data-resize-handle][data-resize-handle-state='hover']:after,
+[data-resize-handle][data-resize-handle-state='drag']:after {
+    background-color: transparent;
+}
+
+/* Force pointer cursor for links in the editor */
+#editor a {
+    cursor: pointer !important;
+}

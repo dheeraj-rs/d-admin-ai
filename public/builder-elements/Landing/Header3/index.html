@@ -1,0 +1,66 @@
+<header class="font-sans relative">
+  <!-- Top Bar -->
+  <div class="bg-blue-900 text-white text-xs py-2 px-4 lg:px-8">
+    <div class="mx-auto max-w-7xl flex justify-between items-center">
+      <div class="flex gap-4">
+        <span><span class="font-bold">Support:</span> +1 (555) 123-4567</span>
+        <span class="hidden sm:inline"><span class="font-bold">Email:</span> contact@enterprise.com</span>
+      </div>
+      <div class="flex gap-4">
+        <a href="#" class="hover:text-blue-200">Help Center</a>
+        <a href="#" class="hover:text-blue-200">Careers</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Bar -->
+  <div class="bg-white border-b border-gray-200 px-4 py-4 lg:px-8 shadow-sm relative z-50">
+    <div class="mx-auto max-w-7xl flex items-center justify-between">
+      <div class="flex items-center gap-12">
+        <a href="#" class="flex items-center gap-2">
+            <div class="h-8 w-8 bg-blue-900 rounded flex items-center justify-center text-white font-bold text-lg">E</div>
+            <span class="font-bold text-xl text-gray-900 tracking-tight">Enterprise</span>
+        </a>
+        <div class="hidden lg:flex gap-8">
+            <a href="#" class="text-sm font-semibold text-gray-700 hover:text-blue-900">Solutions</a>
+            <a href="#" class="text-sm font-semibold text-gray-700 hover:text-blue-900">Industries</a>
+            <a href="#" class="text-sm font-semibold text-gray-700 hover:text-blue-900">Pricing</a>
+            <a href="#" class="text-sm font-semibold text-gray-700 hover:text-blue-900">Resources</a>
+        </div>
+      </div>
+      
+      <div class="flex items-center gap-4">
+        <div class="hidden lg:flex items-center gap-4">
+            <a href="#" class="text-sm font-semibold text-gray-700 hover:text-blue-900">Sign In</a>
+            <a href="#" class="text-sm font-bold text-white bg-blue-900 px-5 py-2.5 rounded hover:bg-blue-800 transition-colors">Request Demo</a>
+        </div>
+
+        <!-- Mobile Toggle -->
+        <button type="button" 
+            class="lg:hidden -m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700 hover:bg-gray-100"
+            data-collapse-toggle="mobile-menu-header-3" 
+            aria-controls="mobile-menu-header-3" 
+            aria-expanded="false">
+            <span class="sr-only">Open main menu</span>
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="hidden lg:hidden bg-white border-b border-gray-200 absolute w-full z-40" id="mobile-menu-header-3">
+    <div class="p-4 space-y-1">
+      <a href="#" class="block bg-gray-50 rounded px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-100">Solutions</a>
+      <a href="#" class="block rounded px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-100">Industries</a>
+      <a href="#" class="block rounded px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-100">Pricing</a>
+      <a href="#" class="block rounded px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-100">Resources</a>
+      <div class="mt-4 pt-4 border-t border-gray-200">
+        <a href="#" class="block rounded px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-100 mb-2">Sign In</a>
+        <a href="#" class="block text-center rounded bg-blue-900 px-3 py-2.5 text-base font-bold text-white hover:bg-blue-800">Request Demo</a>
+      </div>
+    </div>
+  </div>
+</header>

@@ -122,7 +122,11 @@ export default function Sidebar() {
                         ))}
                     </div>
                 </div>
-                <UserProfileMenu isOpen={isOpen} onOpenSettings={onOpenSettings} />
+                <UserProfileMenu 
+                    isOpen={isOpen} 
+                    onOpenSettings={onOpenSettings} 
+                    onSignIn={() => actions.setIsAuthOpen(true)}
+                />
             </div>
         </>
     );

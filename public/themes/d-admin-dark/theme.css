@@ -1,0 +1,72 @@
+:root {
+  font-family: Roboto, "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  --d-admin-font-family: Roboto, "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  --d-admin-blue-50: #f4fafe;
+  --d-admin-blue-200: #a0d2fa;
+  --d-admin-blue-600: #1c80cf;
+  --d-admin-blue-700: #1769aa;
+  --d-admin-blue-800: #125386;
+  --d-admin-blue-900: #0d3c61;
+  --d-admin-green-500: #689f38;
+  --d-admin-yellow-50: #fffcf5;
+  --d-admin-yellow-500: #fbc02d;
+  --d-admin-yellow-700: #b08620;
+  --d-admin-yellow-800: #8a6a19;
+  --d-admin-orange-500: #ff9800;
+  --d-admin-red-50: #fef6f5;
+  --d-admin-red-200: #faaea9;
+  --d-admin-red-500: #f44336;
+  --d-admin-red-600: #cf392e;
+  --d-admin-primary-600: #878fb9;
+  --d-admin-surface-c: hsla(0, 0%, 100%, .04);
+  --d-admin-surface-d: hsla(0, 0%, 100%, .12);
+  --d-admin-gray-600: #595959;
+  --d-admin-text-color: #e3e3e3;
+  --d-admin-text-color-secondary: #b1b1b1;
+  --d-admin-primary-color: #9FA8DA;
+  --d-admin-primary-color-text: #121212;
+  --d-admin-border-radius: 4px;
+  --d-admin-surface-ground: #050505;
+  --d-admin-surface-section: #131417;
+  --d-admin-surface-card: #2126299a;
+  --d-admin-surface-overlay: #262626;
+  --d-admin-surface-border: #2B2B2B;
+  --d-admin-surface-hover: #2c3236;
+  --d-admin-focus-ring: none;
+  --d-admin-maskbg: rgba(0, 0, 0, 0.32);
+  color-scheme: dark;
+  --d-admin-bg-color: var(--d-admin-surface-ground);
+  
+  /* React Toastify Overrides */
+  --toastify-color-dark: var(--d-admin-surface-section);
+  --toastify-text-color-dark: var(--d-admin-text-color);
+  --toastify-color-progress-dark: var(--d-admin-primary-color);
+  --toastify-font-family: var(--d-admin-font-family);
+}
+
+/* roboto-regular - latin-ext_latin */
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Roboto"), local("Roboto-Regular"), url("./fonts/roboto-v20-latin-ext_latin-regular.woff2") format("woff2"), url("./fonts/roboto-v20-latin-ext_latin-regular.woff") format("woff");
+  /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+/* roboto-500 - latin-ext_latin */
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  src: local("Roboto Medium"), local("Roboto-Medium"), url("./fonts/roboto-v20-latin-ext_latin-500.woff2") format("woff2"), url("./fonts/roboto-v20-latin-ext_latin-500.woff") format("woff");
+  /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+/* roboto-700 - latin-ext_latin */
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  src: local("Roboto Bold"), local("Roboto-Bold"), url("./fonts/roboto-v20-latin-ext_latin-700.woff2") format("woff2"), url("./fonts/roboto-v20-latin-ext_latin-700.woff") format("woff");
+  /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}

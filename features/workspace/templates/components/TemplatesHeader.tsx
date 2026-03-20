@@ -10,7 +10,7 @@ interface TemplatesHeaderProps {
 
 export default function TemplatesHeader({ searchValue, setSearchValue }: TemplatesHeaderProps) {
     return (
-        <div className="mb-8 2xl:mb-16 text-center animate-in fade-in slide-in-from-top-4 duration-700">
+        <div className="mb-8 2xl:mb-16  text-center sm:text-left animate-in fade-in slide-in-from-top-4 duration-700">
             <h1 className="text-3xl lg:text-4xl 2xl:text-6xl 3xl:text-8xl font-black text-gray-900 dark:text-white mb-3 2xl:mb-6">
                 Start with <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-indigo-500 dark:from-blue-400 dark:to-indigo-400 italic font-serif">Templates</span>
             </h1>

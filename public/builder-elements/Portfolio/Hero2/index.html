@@ -1,0 +1,70 @@
+<section data-component-name="Hero2" class="min-h-[70vh] flex items-center bg-zinc-950 overflow-hidden">
+  <div class="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center py-20">
+    
+    <!-- Left Content -->
+    <div class="relative z-10 pt-10 lg:pt-0">
+      <div class="inline-block border border-zinc-700 rounded-full px-4 py-1.5 mb-6 text-sm font-semibold text-zinc-300 uppercase tracking-widest hover:border-zinc-500 transition-colors cursor-pointer">
+        Creative Studio
+      </div>
+      
+      <h1 class="text-5xl sm:text-6xl lg:text-8xl font-black text-white leading-[1.1] mb-6 tracking-tighter">
+        OUT<br/>
+        <span class="text-zinc-500">STANDING</span><br/>
+        WORK.
+      </h1>
+      
+      <p class="text-zinc-400 text-lg sm:text-xl max-w-lg mb-10 border-l-2 border-zinc-700 pl-4">
+        We push the boundaries of creative engineering to build digital products that break the mold and define the future.
+      </p>
+      
+      <div class="flex items-center gap-6">
+        <a href="#" class="group relative inline-flex items-center justify-center px-8 py-4 bg-white text-zinc-950 font-bold overflow-hidden rounded hover:text-white transition-colors duration-300">
+          <span class="absolute inset-0 w-full h-full bg-zinc-800 -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out z-0"></span>
+          <span class="relative z-10 flex items-center gap-2">
+            Let's Talk 
+            <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+          </span>
+        </a>
+      </div>
+    </div>
+    
+    <!-- Right Interactive Grid -->
+    <div class="relative h-[500px] w-full lg:h-[700px] hidden sm:block perspective-1000">
+      <div class="absolute inset-0 grid grid-cols-2 gap-4 origin-center transform rotate-y-[-15deg] rotate-x-[5deg] hover:rotate-y-[0deg] hover:rotate-x-[0deg] transition-transform duration-700 ease-out group">
+        
+        <div class="flex flex-col gap-4 -translate-y-8 group-hover:translate-y-0 transition-transform duration-700 delay-75">
+          <div class="h-64 rounded-2xl bg-zinc-800 overflow-hidden shadow-2xl relative">
+            <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=600" alt="Work 1" class="w-full h-full object-cover opacity-80 hover:opacity-100 hover:scale-110 transition-all duration-500 object-center">
+          </div>
+          <div class="h-80 rounded-2xl bg-zinc-800 overflow-hidden shadow-2xl relative">
+            <img src="https://images.unsplash.com/photo-1541462608143-67571c6738dd?auto=format&fit=crop&q=80&w=600" alt="Work 2" class="w-full h-full object-cover opacity-80 hover:opacity-100 hover:scale-110 transition-all duration-500 object-center">
+          </div>
+        </div>
+        
+        <div class="flex flex-col gap-4 translate-y-12 group-hover:translate-y-4 transition-transform duration-700 delay-150">
+          <div class="h-80 rounded-2xl bg-zinc-800 overflow-hidden shadow-2xl relative">
+            <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&q=80&w=600" alt="Work 3" class="w-full h-full object-cover opacity-80 hover:opacity-100 hover:scale-110 transition-all duration-500 object-center">
+          </div>
+          <div class="h-64 rounded-2xl bg-zinc-800 overflow-hidden shadow-2xl relative">
+            <img src="https://images.unsplash.com/photo-1507238692062-5a0445d41fac?auto=format&fit=crop&q=80&w=600" alt="Work 4" class="w-full h-full object-cover opacity-80 hover:opacity-100 hover:scale-110 transition-all duration-500 object-center">
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+.perspective-1000 {
+  perspective: 1000px;
+}
+.rotate-y-\[-15deg\] {
+  transform: rotateY(-15deg);
+}
+.rotate-x-\[5deg\] {
+  transform: rotateX(5deg);
+}
+.hover\:rotate-y-\[0deg\]:hover {
+  transform: rotateY(0deg) rotateX(0deg);
+}
+</style>

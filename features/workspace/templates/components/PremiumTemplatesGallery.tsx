@@ -1,24 +1,60 @@
 'use client';
 
 import React, { useState } from 'react';
-import { ArrowLeft, Search } from 'lucide-react';
 import ItemCard from '@/shared/ui/ItemCard';
 import { TEMPLATES } from '@/features/workspace/templates';
 import { WorkspaceViewBackground } from '@/features/home';
 import TemplatesHeader from './TemplatesHeader';
 import TemplatesFilter from './TemplatesFilter';
+import { useProjectsStore } from '@/features/builder/store/projects-store';
+import { useBuilderStore } from '@/features/builder/store/builder-store';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
+
+const ADMIN_EMAIL = process.env.NEXT_PUBLIC_ADMIN_EMAIL || 'drjsde@gmail.com';
 
 interface PremiumTemplatesGalleryProps {
     onBack?: () => void;
 }
 
 export default function PremiumTemplatesGallery({ onBack }: PremiumTemplatesGalleryProps) {
+    const router = useRouter();
+    const { data: session } = useSession();
+    const { setPendingTemplate } = useBuilderStore();
     const [searchValue, setSearchValue] = useState('');
     const [selectedCategory, setSelectedCategory] = useState('All');
     const [isFilterOpen, setIsFilterOpen] = useState(false);
 
-    const filteredTemplates = TEMPLATES.filter(t => 
-        (selectedCategory === 'All' || t.category === selectedCategory) && 
+    const { templates: customTemplates } = useProjectsStore();
+    const [isMounted, setIsMounted] = useState(false);
+
+    const filteredCustomTemplates = React.useMemo(() => {
+        // Everyone sees default templates. Logged-in users also see their own.
+        return customTemplates.filter(t => 
+            t.isDefault || (session?.user?.email && t.ownerEmail === session.user.email)
+        );
+    }, [customTemplates, session?.user?.email]);
+
+    React.useEffect(() => {
+        setIsMounted(true);
+    }, []);
+
+    const mappedCustomTemplates = filteredCustomTemplates.map(t => {
+        const isOfficial = t.isDefault;
+        return {
+            id: t.id,
+            title: t.title,
+            description: t.author || (isOfficial ? 'Official Template' : 'My Saved Template'),
+            image: t.thumbnail,
+            category: isOfficial ? 'DEFAULT' : 'SAVED PROJECTS',
+            html: t.html,
+        };
+    });
+
+    const allTemplates = isMounted ? [...mappedCustomTemplates, ...TEMPLATES] : TEMPLATES;
+
+    const filteredTemplates = allTemplates.filter(t => 
+        (selectedCategory === 'All' && t.category !== 'SAVED PROJECTS' || t.category === selectedCategory) && 
         (t.title.toLowerCase().includes(searchValue.toLowerCase()) || 
          t.category.toLowerCase().includes(searchValue.toLowerCase()))
     );
@@ -38,12 +74,6 @@ export default function PremiumTemplatesGallery({ onBack }: PremiumTemplatesGall
             <div className="w-full max-w-[1800px] relative z-10 px-4 2xl:px-8">
                 {/* Header with Back Button */}
                 <div className="flex items-center gap-4 mb-6 2xl:mb-12">
-                    <button 
-                        onClick={handleBack}
-                        className="p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all hover:shadow-md active:scale-95 group shrink-0"
-                    >
-                        <ArrowLeft size={20} className="group-hover:-translate-x-0.5 transition-transform" />
-                    </button>
                     <TemplatesHeader searchValue={searchValue} setSearchValue={setSearchValue} />
                 </div>
 
@@ -59,11 +89,15 @@ export default function PremiumTemplatesGallery({ onBack }: PremiumTemplatesGall
                         <ItemCard
                             key={template.id}
                             title={template.title}
-                            description={template.description}
-                            image={template.image}
+                            description={(template as any).description || ''}
+                            image={(template as any).image || (template as any).thumbnail || ''}
                             badge={template.category}
                             primaryActionText="Use Template"
-                            onPrimaryAction={() => {}}
+                            onPrimaryAction={() => {
+                                const html = (template as any).html || '';
+                                setPendingTemplate(html, template.title);
+                                router.push('/builder');
+                            }}
                         />
                     ))}
                 </div>

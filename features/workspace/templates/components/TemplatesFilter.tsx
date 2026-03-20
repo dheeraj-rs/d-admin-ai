@@ -1,8 +1,9 @@
 'use client';
 
 import React from 'react';
-import { Plus, Filter, ChevronDown } from 'lucide-react';
+import { Plus, Filter, ChevronDown, Folder } from 'lucide-react';
 import { CATEGORIES } from '@/features/workspace/templates';
+import { useRouter } from 'next/navigation';
 
 interface TemplatesFilterProps {
     selectedCategory: string;
@@ -19,6 +20,8 @@ export default function TemplatesFilter({
     setIsFilterOpen,
     onBack
 }: TemplatesFilterProps) {
+    const router = useRouter();
+
     return (
         <div className="flex items-center justify-between mb-8 2xl:mb-12 gap-2 sm:gap-4 pb-2 border-b border-gray-200 dark:border-white/5 px-1 relative">
             {/* Desktop Categories */}
@@ -31,7 +34,9 @@ export default function TemplatesFilter({
                             cat === selectedCategory ? 'bg-blue-600 dark:bg-blue-500 text-white shadow-lg shadow-blue-500/20' : 'bg-gray-100 dark:bg-[#2a2a2a] text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-[#333333] hover:text-gray-900 dark:hover:text-gray-200 border border-gray-200 dark:border-[#3e3e3e]'
                         }`}
                     >
-                        {cat}
+                        {cat === 'SAVED PROJECTS' ? (
+                            <span className="flex items-center gap-2 uppercase text-[12px] 2xl:text-base tracking-wider"><Folder size={16} className="2xl:w-5 2xl:h-5" /> SAVED PROJECTS</span>
+                        ) : cat}
                     </button>
                 ))}
             </div>
@@ -71,7 +76,7 @@ export default function TemplatesFilter({
             </div>
 
             <button 
-                onClick={() => onBack?.()}
+                onClick={() => router.push('/builder')}
                 className="flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 sm:px-5 sm:py-2.5 2xl:px-10 2xl:py-5 bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-500 dark:to-indigo-500 text-white rounded-xl 2xl:rounded-2xl font-bold text-[13px] sm:text-sm 2xl:text-2xl hover:scale-[1.02] hover:shadow-[0_8px_25px_rgba(37,99,235,0.4)] transition-all active:scale-[0.98] whitespace-nowrap group shrink-0"
             >
                 <Plus size={18} className="2xl:w-8 2xl:h-8 group-hover:rotate-90 transition-transform duration-300" />

@@ -1,0 +1,76 @@
+<section data-component-name="Hero3" class="relative min-h-screen flex items-center bg-[#0a0a0a] overflow-hidden text-[#e5e5e5]">
+  
+  <!-- Cyberpunk Grid Background -->
+  <div class="absolute inset-0 bg-[#0a0a0a] bg-[linear-gradient(to_right,#1f2937_1px,transparent_1px),linear-gradient(to_bottom,#1f2937_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] z-0"></div>
+
+  <!-- Glowing Line -->
+  <div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#22d3ee] to-transparent shadow-[0_0_20px_#22d3ee] animate-pulse"></div>
+
+  <!-- Content Container -->
+  <div class="relative z-10 w-full max-w-7xl mx-auto px-6 py-20 flex flex-col md:flex-row items-center gap-16">
+    
+    <div class="flex-1 flex flex-col items-start font-mono">
+      <div class="inline-flex items-center gap-3 px-4 py-2 border border-[#22d3ee]/30 bg-[#22d3ee]/5 text-[#22d3ee] rounded-sm uppercase tracking-widest text-xs font-semibold mb-8 animate-fade-in">
+        <span class="w-2 h-2 bg-[#22d3ee] shadow-[0_0_8px_#22d3ee] animate-ping"></span>
+        System Online
+      </div>
+      
+      <h1 class="text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter leading-none mb-6 text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.2)] animate-glitch" title="NEXT-GEN INTERFACES">
+        NEXT-GEN<br/>
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#22d3ee] to-[#a855f7]">INTERFACES</span>
+      </h1>
+      
+      <p class="text-lg md:text-xl text-[#a3a3a3] max-w-xl mb-10 leading-relaxed font-sans border-l-2 border-[#a855f7] pl-4">
+        We engineer high-performance web applications with futuristic aesthetics. Merging cutting-edge technology with cyberpunk design principles to dominate the digital frontier.
+      </p>
+      
+      <div class="flex gap-4">
+        <a href="#" class="group relative px-8 py-4 bg-transparent border border-[#22d3ee] text-[#22d3ee] font-bold uppercase tracking-widest text-sm overflow-hidden hover:text-[#0a0a0a] transition-colors duration-300">
+          <span class="absolute inset-0 bg-[#22d3ee] -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-300 ease-out z-0"></span>
+          <span class="relative z-10">Initialize Project</span>
+        </a>
+        <a href="#" class="px-8 py-4 bg-transparent border border-[#333] text-[#888] font-bold uppercase tracking-widest text-sm hover:border-[#a855f7] hover:text-[#a855f7] hover:shadow-[0_0_15px_rgba(168,85,247,0.3)] transition-all duration-300">
+          Access Database
+        </a>
+      </div>
+    </div>
+    
+    <!-- Neon Decoration Image/Object -->
+    <div class="flex-1 w-full max-w-md relative animate-float">
+      <div class="absolute inset-0 bg-gradient-to-br from-[#22d3ee] to-[#a855f7] filter blur-[100px] opacity-40 rounded-full"></div>
+      <img src="https://images.unsplash.com/photo-1614729939124-032f0b56c9ce?auto=format&fit=crop&q=80&w=800" alt="Cyberpunk Element" class="relative z-10 w-full h-auto object-cover rounded-sm border border-[#333] shadow-[0_0_30px_rgba(34,211,238,0.2)] grayscale contrast-150 hover:grayscale-0 transition-all duration-700 cursor-none">
+    </div>
+
+  </div>
+</section>
+
+<style>
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+  animation: fade-in 1s ease-out forwards;
+}
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0px); }
+}
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+/* Subtle hover glitch effect */
+.animate-glitch:hover {
+  text-shadow: 2px 0 #22d3ee, -2px 0 #a855f7;
+  animation: glitch-skew 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+}
+@keyframes glitch-skew {
+  0% { transform: skew(0deg); }
+  20% { transform: skew(-5deg); }
+  40% { transform: skew(5deg); }
+  60% { transform: skew(-5deg); }
+  80% { transform: skew(5deg); }
+  100% { transform: skew(0deg); }
+}
+</style>

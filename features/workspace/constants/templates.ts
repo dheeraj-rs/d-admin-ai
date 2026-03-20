@@ -38,4 +38,4 @@ export const TEMPLATES: Template[] = [
     }
 ];
 
-export const CATEGORIES = ['All', 'Portfolio', 'Business', 'Blog', 'Tool', 'E-commerce'];
+export const CATEGORIES = ['SAVED PROJECTS', 'All', 'Portfolio', 'Business', 'Blog', 'Tool', 'E-commerce'];

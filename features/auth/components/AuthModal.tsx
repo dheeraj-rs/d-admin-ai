@@ -66,27 +66,8 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                         Choose an account to continue.
                     </p>
 
-                    <div className="w-full flex items-center justify-between p-4 rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 transition-all cursor-pointer mb-6 group active:scale-[0.98]">
-                        <div className="flex items-center gap-4">
-                            <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-amber-500 to-orange-400 flex items-center justify-center text-white font-black text-[16px] shadow-lg">
-                                DS
-                            </div>
-                            <div className="flex flex-col">
-                                <span className="text-[15px] font-bold text-white leading-tight">
-                                    DHEERAJ R S
-                                </span>
-                                <span className="text-[12px] text-slate-400 font-medium">drjsde@gmail.com</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="flex items-center w-full gap-4 mb-6">
-                        <div className="flex-1 h-[1px] bg-white/10"></div>
-                        <span className="text-[10px] text-slate-500 font-bold tracking-widest uppercase mt-0.5">OR</span>
-                        <div className="flex-1 h-[1px] bg-white/10"></div>
-                    </div>
-
                     <div className="w-full flex flex-col gap-3">
+
                         <button
                             onClick={() => signIn("github")}
                             className="w-full h-12 min-h-[48px] flex items-center justify-center gap-3 bg-white text-black hover:bg-gray-100 rounded-xl font-bold transition-all transform active:scale-95 shadow-lg"

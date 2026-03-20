@@ -1,12 +1,21 @@
 const CACHE_NAME = 'd-admin-ai-v1';
 const STATIC_ASSETS = [
     '/',
-    '/manifest.json',
+    '/manifest.webmanifest',
 ];
 
 self.addEventListener('install', (event) => {
     event.waitUntil(
-        caches.open(CACHE_NAME).then((cache) => cache.addAll(STATIC_ASSETS))
+        caches.open(CACHE_NAME).then((cache) => {
+          return Promise.all(
+            STATIC_ASSETS.map(url => {
+              return fetch(url).then(response => {
+                if (response.ok) return cache.put(url, response);
+                return Promise.resolve();
+              }).catch(() => {});
+            })
+          );
+        })
     );
     self.skipWaiting();
 });

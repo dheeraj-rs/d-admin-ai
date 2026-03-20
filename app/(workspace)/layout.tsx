@@ -27,7 +27,9 @@ export default function WorkspaceLayout({
     const { showLeftSidebar, isAuthOpen, isSettingsOpen, isHelpOpen, viewState } = state;
 
     useEffect(() => {
-        initializeStore();
+        if (session) {
+            initializeStore();
+        }
     }, [initializeStore, session]);
 
     if (isBuilder) {

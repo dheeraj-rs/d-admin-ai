@@ -1,5 +1,22 @@
 import mongoose, { Schema, Document } from 'mongoose';
 
+export interface IUser extends Document {
+  name?: string;
+  email: string;
+  image?: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+const UserSchema = new Schema<IUser>(
+  {
+    name: { type: String },
+    email: { type: String, required: true, unique: true },
+    image: { type: String },
+  },
+  { timestamps: true },
+);
+
 // --- Types ---
 
 export interface IPage {
@@ -83,12 +100,6 @@ const TemplateSchema = new Schema<ITemplate>({
   deploymentUrl: String,
   ownerEmail: { type: String, required: true, index: true },
   isDefault: { type: Boolean, default: false },
-}, { timestamps: true });
-
-const UserSchema = new Schema<IUser>({
-  email: { type: String, required: true, unique: true, index: true },
-  name: String,
-  image: String,
 }, { timestamps: true });
 
 // --- Models ---

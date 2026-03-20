@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { Settings, LifeBuoy, LogOut, ChevronRight, User } from 'lucide-react';
+import { Settings, LifeBuoy, LogOut, ChevronRight, User, Github } from 'lucide-react';
 import { useSession, signIn, signOut } from 'next-auth/react';
 
 interface UserProfileMenuProps {
@@ -75,6 +75,12 @@ export default function UserProfileMenu({ isOpen, onOpenSettings, onSignIn }: Us
                                 {userName}
                             </span>
                             <span className="text-[11px] font-bold text-slate-400 dark:text-slate-500 tracking-wider truncate w-full">{userEmail}</span>
+                            {session?.provider && (
+                                <div className="mt-1 flex items-center gap-1.5 text-[10px] font-bold text-indigo-500/80 dark:text-indigo-400/80 uppercase tracking-widest">
+                                    {session.provider === 'github' ? <Github size={10} strokeWidth={3} /> : <div className="w-2.5 h-2.5 rounded-full bg-indigo-500/20 flex items-center justify-center"><div className="w-1 h-1 rounded-full bg-current" /></div>}
+                                    <span>{session.provider}</span>
+                                </div>
+                            )}
                         </div>
                     </div>
 

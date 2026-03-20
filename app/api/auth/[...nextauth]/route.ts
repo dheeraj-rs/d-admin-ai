@@ -36,11 +36,29 @@ const authOptions: NextAuthOptions = {
     },
     callbacks: {
         async signIn({ user }) {
-            // Temporarily disabling DB sync to debug OAuthCallback issue
-            return true;
+            try {
+                await connectDB();
+                if (user.email) {
+                    await UserModel.findOneAndUpdate(
+                        { email: user.email },
+                        {
+                            email: user.email,
+                            name: user.name || undefined,
+                            image: user.image || undefined,
+                        },
+                        { upsert: true, new: true }
+                    );
+                }
+                return true;
+            } catch (error) {
+                console.error('Error syncing user to DB:', error);
+                return true;
+            }
         },
-        async jwt({ token, account, user }) {
+        async jwt({ token, account, user, profile }) {
+            // Initial sign in
             if (account && user) {
+                // Primary login
                 token.accessToken = account.access_token;
                 token.provider = account.provider;
                 token.email = user.email;
@@ -48,25 +66,43 @@ const authOptions: NextAuthOptions = {
                 token.picture = user.image;
 
                 if (account.provider === 'github') {
-                   token.githubAccessToken = account.access_token;
+                    token.githubAccessToken = account.access_token;
+                    token.githubUser = {
+                        name: user.name,
+                        email: user.email,
+                        image: user.image,
+                        login: (profile as any)?.login,
+                    };
                 }
             }
             return token;
         },
         async session({ session, token }) {
+            // Add custom fields to session
             if (session.user) {
-                (session.user as any).id = token.sub as string;
-                (session as any).accessToken = token.accessToken as string;
-                (session as any).provider = token.provider as string;
+                session.user.id = token.sub as string;
+                session.accessToken = token.accessToken as string;
+                session.provider = token.provider as string;
 
+                // Add GitHub specific fields if they exist
                 if (token.githubAccessToken) {
-                    (session as any).githubAccessToken = token.githubAccessToken;
+                    session.githubAccessToken = token.githubAccessToken;
+                }
+                if (token.githubUser) {
+                    session.githubUser = token.githubUser;
                 }
             }
             return session;
         },
+        async redirect({ url, baseUrl }) {
+            // Allows relative callback URLs
+            if (url.startsWith("/")) return `${baseUrl}${url}`;
+            // Allows callback URLs on the same origin
+            else if (new URL(url).origin === baseUrl) return url;
+            return baseUrl;
+        },
     },
-    debug: true,
+    debug: process.env.NODE_ENV === 'development',
 };
 
 const handler = NextAuth(authOptions);

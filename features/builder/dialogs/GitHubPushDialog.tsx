@@ -29,11 +29,11 @@ export default function GitHubPushDialog({
   const pages = project?.pages || [];
 
   const isGitHubConnected =
-    (session as any)?.provider === 'github' || (session as any)?.accessToken;
-  const isGoogleUser = (session as any)?.provider === 'google';
+    session?.provider === 'github' || session?.accessToken;
+  const isGoogleUser = session?.provider === 'google';
 
   const handlePushToGitHub = async () => {
-    const token = (session as any)?.githubAccessToken || (session as any)?.accessToken;
+    const token = session?.githubAccessToken || session?.accessToken;
 
     if (!token) {
       toast.error('Not authenticated with GitHub');
@@ -62,7 +62,7 @@ export default function GitHubPushDialog({
       } catch (error: any) {
         if (error.message === 'Repository already exists') {
           toast.info('Repository exists, pushing updates...');
-          let owner = (session?.user as any)?.login;
+          let owner = session?.githubUser?.login;
           if (!owner) {
             const user = await ghService.getUser();
             owner = user.login;

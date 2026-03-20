@@ -39,6 +39,25 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
         }
     }, [status, isOpen, onClose]);
 
+    const handleLogin = async (provider: 'google' | 'github') => {
+        try {
+            const result = await signIn(provider, {
+                redirect: false,
+                callbackUrl: window.location.pathname,
+            });
+            onClose();
+            if (result?.ok) {
+                setTimeout(() => {
+                    window.location.reload();
+                }, 500);
+            } else if (result?.error) {
+                console.error('Sign in error:', result.error);
+            }
+        } catch (error) {
+            console.error('Login error:', error);
+        }
+    };
+
     if (!isOpen) return null;
     if (status === "loading" || status === "authenticated") return null;
 
@@ -69,7 +88,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                     <div className="w-full flex flex-col gap-3">
 
                         <button
-                            onClick={() => signIn("github")}
+                            onClick={() => handleLogin("github")}
                             className="w-full h-12 min-h-[48px] flex items-center justify-center gap-3 bg-white text-black hover:bg-gray-100 rounded-xl font-bold transition-all transform active:scale-95 shadow-lg"
                         >
                             <Github size={18} strokeWidth={2.5} />
@@ -77,7 +96,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                         </button>
 
                         <button
-                            onClick={() => signIn("google")}
+                            onClick={() => handleLogin("google")}
                             className="w-full h-12 min-h-[48px] flex items-center justify-center gap-3 bg-white/5 text-white hover:bg-white/10 rounded-xl font-bold transition-all border border-white/10 active:scale-95"
                         >
                             <GoogleLogo className="w-[18px] h-[18px]" />

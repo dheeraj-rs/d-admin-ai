@@ -4,7 +4,7 @@ import GoogleProvider from 'next-auth/providers/google';
 import connectDB from '@/shared/lib/db';
 import { UserModel as User } from '@/features/builder/services/models';
 
-export const authOptions: AuthOptions = {
+const authOptions: AuthOptions = {
   providers: [
     GithubProvider({
       clientId: process.env.GITHUB_CLIENT_ID ?? '',
@@ -45,29 +45,41 @@ export const authOptions: AuthOptions = {
   callbacks: {
     async signIn({ user, account, profile }) {
       try {
+        console.log(`📡 Attempting sign-in for: ${user.email} (${account?.provider})`);
+        
+        if (!user.email) {
+          console.warn('⚠️ Sign-in attempted without email address. Skipping database sync.');
+          return true;
+        }
+
         await connectDB();
+        console.log('✅ Connected to MongoDB for sign-in sync');
 
         const existingUser = await User.findOne({ email: user.email });
+        console.log(`🔍 User lookup complete: ${existingUser ? 'Found existing user' : 'User not found'}`);
 
         if (existingUser) {
           // Update existing user
           existingUser.name = user.name || existingUser.name;
           existingUser.image = user.image || existingUser.image;
-          // You might mostly likely simply just save it, schemas timestamps handles updated at
           await existingUser.save();
+          console.log('📝 Updated existing user in MongoDB');
         } else {
           // Create new user
           await User.create({
-            email: user.email!,
+            email: user.email,
             name: user.name || undefined,
             image: user.image || undefined,
           });
+          console.log('✨ Created new user in MongoDB');
         }
 
         return true;
-      } catch (error) {
-        console.error('Error storing user in MongoDB:', error);
-        return true; // Still allow sign in even if DB storage fails
+      } catch (error: any) {
+        console.error('❌ CRITICAL ERROR in signIn callback:', error.message || error);
+        console.error('Stack trace:', error.stack);
+        // We MUST return true to allow the user to still log in even if our DB sync fails
+        return true;
       }
     },
 

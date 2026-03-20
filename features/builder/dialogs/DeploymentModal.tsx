@@ -80,7 +80,7 @@ export function DeploymentModal({
       }
     }
 
-    return [...new Set(urls)];
+    return Array.from(new Set(urls));
   };
 
   const fetchImageAsBase64 = async (imageUrl: string): Promise<string> => {

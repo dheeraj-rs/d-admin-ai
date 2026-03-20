@@ -72,7 +72,7 @@ const authOptions: NextAuthOptions = {
         async session({ session, token }) {
             if (session.user) {
                 (session.user as any).id = token.sub as string;
-                session.accessToken = token.accessToken as string;
+                (session as any).accessToken = token.accessToken as string;
                 (session as any).provider = token.provider as string;
 
                 if (token.githubAccessToken) {

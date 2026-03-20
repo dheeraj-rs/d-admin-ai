@@ -53,15 +53,16 @@ async function uploadFiles(req: NextRequest): Promise<string[]> {
 
   return new Promise((resolve, reject) => {
     form.on('fileBegin', (_, file) => {
-      if (file.name) {
+      const f = file as any;
+      if (f.originalFilename) {
         // Create a unique filename to prevent caching
         const timestamp = Date.now();
         const uniqueSuffix = Math.random().toString(36).substring(7);
-        const fileName = `${timestamp}-${uniqueSuffix}-${file.name}`;
+        const fileName = `${timestamp}-${uniqueSuffix}-${f.originalFilename}`;
 
-        file.path = path.join(uploadPath, fileName);
+        f.filepath = path.join(uploadPath, fileName);
         // Store the filename for later use
-        (file as any).newFilename = fileName;
+        f.newFilename = fileName;
       }
     });
 
@@ -71,14 +72,17 @@ async function uploadFiles(req: NextRequest): Promise<string[]> {
         return;
       }
 
-      const urls = Object.values(files).map((f) => {
-        const file = f as FormidableFile;
-        // In formidable v1, we can get the path from file.path
-        // We extract the filename we set earlier
-        const fileName = path.basename(file.path);
-
-        // Force forward slashes for URLs, regardless of OS
-        return `/${uploadFolder}/${fileName}`;
+      const urls: string[] = [];
+      Object.values(files).forEach((f) => {
+        if (Array.isArray(f)) {
+          f.forEach((file) => {
+            const fileName = path.basename((file as any).filepath || '');
+            if (fileName) urls.push(`/${uploadFolder}/${fileName}`);
+          });
+        } else if (f) {
+          const fileName = path.basename((f as any).filepath || '');
+          if (fileName) urls.push(`/${uploadFolder}/${fileName}`);
+        }
       });
       resolve(urls);
     });

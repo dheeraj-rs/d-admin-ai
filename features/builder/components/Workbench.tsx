@@ -721,15 +721,30 @@ export function Workbench() {
   }, []);
 
   return (
-    <div className="flex h-full w-full flex-col overflow-hidden bg-[var(--d-admin-surface-section)] text-[var(--d-admin-text-color)] border-t border-[var(--d-admin-surface-border)]">
+    <div className="flex h-full w-full flex-col overflow-hidden bg-[var(--d-admin-surface-section)] text-[var(--d-admin-text-color)] border-t border-[var(--border-main)]">
       {/* Error Alert */}
       {error && (
         <div
-          className="relative m-2 mx-4 rounded border border-red-500 bg-red-50 px-4 py-3 text-red-600"
+          className="relative m-2 mx-4 rounded-xl border border-red-500/20 bg-red-500/10 backdrop-blur-md px-4 py-4 text-red-500 shadow-2xl animate-in fade-in slide-in-from-top-4 duration-300 ring-1 ring-red-500/20"
           role="alert"
         >
-          <strong className="font-bold">Error: </strong>
-          <span className="block sm:inline">{error}</span>
+          <div className="flex items-center gap-3">
+            <div className="flex shrink-0 items-center justify-center h-8 w-8 rounded-full bg-red-500/20">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4.5 h-4.5 text-red-500">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />
+              </svg>
+            </div>
+            <div className="flex flex-col">
+              <strong className="text-sm font-semibold tracking-wide uppercase">Storage Limit Exceeded</strong>
+              <span className="text-sm opacity-90 leading-relaxed">{error}</span>
+            </div>
+            <button 
+              onClick={() => window.location.reload()}
+              className="ml-auto flex items-center gap-2 px-3 py-1.5 rounded-lg bg-red-500 text-white text-xs font-bold hover:bg-red-600 transition-colors shadow-lg"
+            >
+              Reset Storage
+            </button>
+          </div>
         </div>
       )}
 
@@ -738,7 +753,7 @@ export function Workbench() {
       >
         {isLoading && (
           <div className="absolute inset-0 z-50 flex items-center justify-center bg-[var(--d-admin-surface-ground)]/50 backdrop-blur-sm animate-in fade-in duration-200">
-            <div className="flex flex-col items-center gap-3 p-4 rounded-lg bg-[var(--d-admin-surface-card)] shadow-lg border border-[var(--d-admin-surface-border)]">
+            <div className="flex flex-col items-center gap-3 p-4 rounded-lg bg-[var(--d-admin-surface-card)] shadow-lg border border-[var(--border-main)]">
               <svg
                 className="animate-spin h-8 w-8 text-[var(--d-admin-primary)]"
                 xmlns="http://www.w3.org/2000/svg"
@@ -766,7 +781,7 @@ export function Workbench() {
           </div>
         )}
         <div
-          className={`flex min-h-full justify-center ${resolvedTheme === 'dark' ? 'dark bg-[#111827]' : 'light bg-white'}`}
+          className={`flex min-h-full justify-center ${resolvedTheme === 'dark' ? 'dark bg-[#111827]' : 'light bg-[#f3f4f6]'}`}
         >
           <ImageDialog
             isOpen={showImageDialog}

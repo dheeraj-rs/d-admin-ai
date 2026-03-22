@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import CustomSelect from '@/shared/ui/CustomSelect';
 
 import { useSettingsStore } from '../store/useSettingsStore';
+import { useBuilderStore } from '@/features/builder/store/builder-store';
 
 const THEME_OPTIONS = [
     { label: 'System', value: 'system' },
@@ -16,6 +17,7 @@ const LANGUAGE_OPTIONS = [{ label: 'English', value: 'English' }];
 export default function GeneralSettings() {
     const { language, setLanguage } = useSettingsStore();
     const { theme, setTheme } = useTheme();
+    const { setCanvasTheme } = useBuilderStore();
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
@@ -34,7 +36,14 @@ export default function GeneralSettings() {
                     <span className="text-[15px] font-bold text-slate-800 dark:text-slate-200">
                         Appearance
                     </span>
-                    <CustomSelect value={theme} onChange={setTheme} options={THEME_OPTIONS} />
+                    <CustomSelect 
+                        value={theme} 
+                        onChange={(val) => {
+                            setTheme(val);
+                            setCanvasTheme(val as any);
+                        }} 
+                        options={THEME_OPTIONS} 
+                    />
                 </div>
 
                 <div className="flex items-center justify-between p-4 rounded-2xl bg-slate-50 dark:bg-slate-950/30 border border-slate-200/50 dark:border-slate-800/50 transition-all hover:border-slate-300 dark:hover:border-slate-700">

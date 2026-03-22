@@ -228,7 +228,7 @@ export const useBuilderStore = create<DragDropState>()(
 
         newHistory.push(html);
 
-        if (newHistory.length > 50) {
+        if (newHistory.length > 25) {
           newHistory.shift();
         }
 
@@ -261,7 +261,7 @@ export const useBuilderStore = create<DragDropState>()(
       markAsSaved: () =>
         set((state) => ({ lastSavedHistoryIndex: state.historyIndex })),
 
-      canvasTheme: 'dark',
+      canvasTheme: 'system',
       setCanvasTheme: (v) => set({ canvasTheme: v }),
 
       isHydrated: false,
@@ -271,12 +271,7 @@ export const useBuilderStore = create<DragDropState>()(
       name: 'd-admin-builder-storage',
       partialize: (state) => ({
         themeIndex: state.themeIndex,
-        components: state.components,
         currentPage: state.currentPage,
-        canvasComponents: state.canvasComponents,
-        history: state.history,
-        historyIndex: state.historyIndex,
-        lastSavedHistoryIndex: state.lastSavedHistoryIndex,
         projectsGalleryTab: state.projectsGalleryTab,
         canvasTheme: state.canvasTheme,
       }),

@@ -25,13 +25,13 @@
     --cm-foldGutter-textColorHover: var(--d-admin-text-color-secondary);
 
     /* Panels */
-    --cm-panels-borderColor: var(--d-admin-surface-border);
+    --cm-panels-borderColor: var(--border-main);
 
     /* Search */
     --cm-search-backgroundColor: var(--surface-e);
     --cm-search-textColor: var(--d-admin-text-color);
     --cm-search-button-backgroundColor: var(--d-admin-surface-c);
-    --cm-search-button-borderColor: var(--d-admin-surface-border);
+    --cm-search-button-borderColor: var(--border-main);
     --cm-search-button-textColor: var(--d-admin-text-color-secondary);
     --cm-search-button-textColorHover: var(--d-admin-text-color);
     --cm-search-button-borderColorFocused: var(--d-admin-primary-color);
@@ -42,13 +42,13 @@
     --cm-search-closeButton-textColorHover: var(--d-admin-text-color);
     --cm-search-closeButton-backgroundColorHover: var(--d-admin-surface-c);
     --cm-search-input-backgroundColor: var(--surface-0);
-    --cm-search-input-borderColor: var(--d-admin-surface-border);
+    --cm-search-input-borderColor: var(--border-main);
     --cm-search-input-textColor: var(--d-admin-text-color);
     --cm-search-input-borderColorFocused: var(--d-admin-primary-color);
 
     /* Tooltip */
     --cm-tooltip-backgroundColor: var(--d-admin-surface-overlay);
-    --cm-tooltip-borderColor: var(--d-admin-surface-border);
+    --cm-tooltip-borderColor: var(--border-main);
     --cm-tooltip-textColor: var(--d-admin-text-color);
     --cm-tooltip-backgroundColorSelected: var(--d-admin-primary-color);
     --cm-tooltip-textColorSelected: var(--d-admin-primary-color-text);
@@ -62,7 +62,7 @@
     --dev-elements-bg-depth-3: var(--d-admin-surface-c);
     --dev-elements-bg-depth-4: var(--d-admin-surface-d);
 
-    --dev-elements-borderColor: var(--d-admin-surface-border);
+    --dev-elements-borderColor: var(--border-main);
     --dev-elements-borderColorActive: var(--d-admin-primary-color);
     --dev-elements-borderColorHover: var(--surface-400);
 
@@ -96,7 +96,7 @@
 
     --dev-elements-artifacts-background: var(--surface-0);
     --dev-elements-artifacts-backgroundHover: var(--surface-b);
-    --dev-elements-artifacts-borderColor: var(--d-admin-surface-border);
+    --dev-elements-artifacts-borderColor: var(--border-main);
 
     --dev-elements-messages-background: var(--surface-0);
     --dev-elements-messages-linkColor: var(--d-admin-primary-color);

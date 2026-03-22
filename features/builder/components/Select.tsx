@@ -33,7 +33,7 @@ export function Select({
         sideOffset={5}
         className="z-50 max-h-[300px] overflow-hidden"
       >
-        <SelectPrimitive.Viewport className="rounded-lg border border-(--d-admin-surface-border) bg-(--d-admin-surface-section) p-2 text-(--d-admin-text-color) shadow-lg">
+        <SelectPrimitive.Viewport className="rounded-lg border border-[var(--border-main)] bg-[var(--d-admin-surface-section)] p-2 text-[var(--d-admin-text-color)] shadow-lg">
           <SelectPrimitive.Group>
             {values.map((value, index) => (
               <SelectPrimitive.Item

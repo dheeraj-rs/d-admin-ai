@@ -58,7 +58,7 @@ export function Category({
     <div id={category.toLowerCase()}>
       <div
         onClick={() => setShow((i) => !i)}
-        className={`sticky top-0 z-10 flex h-12 cursor-pointer items-center border-b border-[var(--d-admin-surface-border)] bg-[var(--d-admin-surface-section)] px-2 text-[var(--d-admin-text-color)] transition-colors hover:bg-[var(--d-admin-surface-hover)] last:border-b-0 ${
+        className={`sticky top-0 z-10 flex h-12 cursor-pointer items-center border-b border-[var(--border-main)] bg-[var(--d-admin-surface-section)] px-2 text-[var(--d-admin-text-color)] transition-colors hover:bg-[var(--d-admin-surface-hover)] last:border-b-0 ${
           show ? 'shadow-sm' : ''
         }`}
       >

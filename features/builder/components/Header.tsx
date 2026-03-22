@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { useTheme } from 'next-themes';
 import { useSession } from 'next-auth/react';
 import { Icon } from '@iconify/react';
 import { useIsMobile } from '@/shared/hooks/use-mobile';
@@ -16,6 +17,7 @@ export function Header() {
   const router = useRouter();
   const isMobile = useIsMobile();
   const { data: session } = useSession();
+  const { setTheme } = useTheme();
   const {
     isPreview,
     setIsPreview,
@@ -32,6 +34,10 @@ export function Header() {
     setCanvasTheme,
     canvasTheme,
   } = useBuilderStore();
+
+  const resolvedTheme = canvasTheme === 'system'
+    ? (typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+    : canvasTheme as 'light' | 'dark';
 
   const { currentProjectId, getProject, setCurrentProject, deletePage } =
     useProjectsStore();
@@ -50,11 +56,11 @@ export function Header() {
   const [isThemeMenuOpen, setIsThemeMenuOpen] = useState(false);
 
   return (
-    <header className="flex h-[var(--header-height)] w-full shrink-0 items-center pr-3 pl-2 select-none">
+    <header className="dark bg-[#0A0B0E] flex h-[var(--header-height)] w-full shrink-0 items-center pr-3 pl-2 select-none">
       <div className="flex w-full max-w-[75%] min-w-0 flex-1 items-center gap-2 md:max-w-[40.5%]">
         <button
           onClick={() => router.back()}
-          className="hidden md:flex items-center justify-center gap-2 font-medium min-w-0 max-w-full rounded-md focus-visible:outline-2 disabled:op-50 relative disabled:cursor-not-allowed focus-visible:outline-[var(--d-admin-blue-600)] bg-[var(--d-admin-surface-section)] border border-[var(--d-admin-surface-border)] text-[var(--d-admin-text-color)] hover:bg-[var(--d-admin-surface-hover)] transition-colors gap-1.7 shrink-0 h-8 text-sm px-2"
+          className="hidden md:flex items-center justify-center gap-2 font-medium min-w-0 max-w-full rounded-md focus-visible:outline-2 disabled:op-50 relative disabled:cursor-not-allowed focus-visible:outline-[var(--d-admin-blue-600)] bg-[var(--d-admin-surface-section)] border border-[var(--border-main)] text-[var(--d-admin-text-color)] hover:bg-[var(--d-admin-surface-hover)] transition-colors gap-1.7 shrink-0 h-8 text-sm px-2"
           type="button"
           title="Go Back"
         >
@@ -70,7 +76,7 @@ export function Header() {
             setCurrentPage('/index');
             triggerClearCanvas();
           }}
-          className="flex md:hidden items-center justify-center gap-2 font-medium min-w-0 rounded-md focus-visible:outline-2 disabled:op-50 relative disabled:cursor-not-allowed focus-visible:outline-[var(--d-admin-blue-600)] bg-[var(--d-admin-surface-section)] border border-[var(--d-admin-surface-border)] text-[var(--d-admin-text-color)] hover:bg-[var(--d-admin-surface-hover)] transition-colors shrink-0 h-8 text-sm px-2"
+          className="flex md:hidden items-center justify-center gap-2 font-medium min-w-0 rounded-md focus-visible:outline-2 disabled:op-50 relative disabled:cursor-not-allowed focus-visible:outline-[var(--d-admin-blue-600)] bg-[var(--d-admin-surface-section)] border border-[var(--border-main)] text-[var(--d-admin-text-color)] hover:bg-[var(--d-admin-surface-hover)] transition-colors shrink-0 h-8 text-sm px-2"
           type="button"
           title="Create New Project"
         >
@@ -100,7 +106,7 @@ export function Header() {
             setCurrentPage('/index');
             triggerClearCanvas();
           }}
-          className="hidden md:flex items-center justify-center gap-2 font-medium min-w-0 max-w-full rounded-md focus-visible:outline-2 disabled:op-50 relative disabled:cursor-not-allowed focus-visible:outline-[var(--d-admin-blue-600)] bg-[var(--d-admin-surface-section)] border border-[var(--d-admin-surface-border)] text-[var(--d-admin-text-color)] hover:bg-[var(--d-admin-surface-hover)] transition-colors gap-1.7 shrink-0 h-8 text-sm px-3 ml-auto mr-2"
+          className="hidden md:flex items-center justify-center gap-2 font-medium min-w-0 max-w-full rounded-md focus-visible:outline-2 disabled:op-50 relative disabled:cursor-not-allowed focus-visible:outline-[var(--d-admin-blue-600)] bg-[var(--d-admin-surface-section)] border border-[var(--border-main)] text-[var(--d-admin-text-color)] hover:bg-[var(--d-admin-surface-hover)] transition-colors gap-1.7 shrink-0 h-8 text-sm px-3 ml-auto mr-2"
           type="button"
           title="Create New Project"
         >
@@ -111,7 +117,7 @@ export function Header() {
         <div className="relative">
           <button
             onClick={() => setIsPageMenuOpen(!isPageMenuOpen)}
-            className="flex items-center justify-center gap-2 font-medium min-w-0 max-w-full rounded-md focus-visible:outline-2 disabled:op-50 relative disabled:cursor-not-allowed focus-visible:outline-[var(--d-admin-blue-600)] bg-[var(--d-admin-surface-section)] border border-[var(--d-admin-surface-border)] text-[var(--d-admin-text-color)] hover:bg-[var(--d-admin-surface-hover)] transition-colors gap-1.7 shrink-0 h-8 text-sm px-3"
+            className="flex items-center justify-center gap-2 font-medium min-w-0 max-w-full rounded-md focus-visible:outline-2 disabled:op-50 relative disabled:cursor-not-allowed focus-visible:outline-[var(--d-admin-blue-600)] bg-[var(--d-admin-surface-section)] border border-[var(--border-main)] text-[var(--d-admin-text-color)] hover:bg-[var(--d-admin-surface-hover)] transition-colors gap-1.7 shrink-0 h-8 text-sm px-3"
             type="button"
             title="Switch Page"
           >
@@ -128,7 +134,7 @@ export function Header() {
                 className="fixed inset-0 z-40"
                 onClick={() => setIsPageMenuOpen(false)}
               />
-              <div className="animate-in fade-in zoom-in-95 absolute top-full left-0 z-[100] mt-2 flex w-64 flex-col overflow-hidden rounded-lg border border-[var(--d-admin-surface-border)] bg-[var(--d-admin-surface-section)] p-1 shadow-xl duration-100">
+              <div className="animate-in fade-in zoom-in-95 absolute top-full left-0 z-[100] mt-2 flex w-64 flex-col overflow-hidden rounded-lg border border-[var(--border-main)] bg-[var(--d-admin-surface-section)] p-1 shadow-xl duration-100 text-[var(--d-admin-text-color)] dark">
                 <div className="max-h-60 overflow-y-auto p-1">
                   {project?.pages.map((page) => (
                     <div
@@ -244,7 +250,7 @@ export function Header() {
         </div>
       </div>
       <div className="ml-auto hidden gap-3 md:flex">
-        <div className="flex items-center gap-1 bg-[var(--d-admin-surface-section)] border border-[var(--d-admin-surface-border)] rounded-md p-0.5 h-8">
+        <div className="flex items-center gap-1 bg-[var(--d-admin-surface-section)] border border-[var(--border-main)] rounded-md p-0.5 h-8">
           <button
             onClick={useBuilderStore.getState().undo}
             disabled={useBuilderStore((state) => state.historyIndex <= 0)}
@@ -269,7 +275,7 @@ export function Header() {
         <div className="relative">
           <button
             onClick={() => setIsThemeMenuOpen(!isThemeMenuOpen)}
-            className="flex items-center justify-center h-8 w-8 rounded-md bg-[var(--d-admin-surface-section)] border border-[var(--d-admin-surface-border)] text-[var(--d-admin-text-color)] hover:bg-[var(--d-admin-surface-hover)] transition-colors shrink-0"
+            className="flex items-center justify-center h-8 w-8 rounded-md bg-[var(--d-admin-surface-section)] border border-[var(--border-main)] text-[var(--d-admin-text-color)] hover:bg-[var(--d-admin-surface-hover)] transition-colors shrink-0"
             title={`Theme: ${canvasTheme}`}
             type="button"
           >
@@ -291,7 +297,7 @@ export function Header() {
                 className="fixed inset-0 z-40"
                 onClick={() => setIsThemeMenuOpen(false)}
               />
-              <div className="animate-in fade-in zoom-in-95 absolute top-full right-0 z-[100] mt-2 flex w-36 flex-col overflow-hidden rounded-lg border border-[var(--d-admin-surface-border)] bg-[var(--d-admin-surface-section)] p-1 shadow-xl duration-100">
+              <div className="animate-in fade-in zoom-in-95 absolute top-full right-0 z-[100] mt-2 flex w-36 flex-col overflow-hidden rounded-lg border border-[var(--border-main)] bg-[var(--d-admin-surface-section)] p-1 shadow-xl duration-100 text-[var(--d-admin-text-color)] dark">
                 {[
                   { id: 'light', icon: 'ph:sun-duotone', label: 'Light' },
                   { id: 'dark', icon: 'ph:moon-duotone', label: 'Dark' },
@@ -301,6 +307,7 @@ export function Header() {
                     key={t.id}
                     onClick={() => {
                       setCanvasTheme(t.id as any);
+                      setTheme(t.id);
                       setIsThemeMenuOpen(false);
                     }}
                     className={`flex w-full items-center gap-2 rounded-md px-3 py-2 text-left text-sm transition-colors ${
@@ -322,7 +329,7 @@ export function Header() {
         </div>
 
         <button
-          className="items-center justify-center gap-2 font-medium min-w-0 max-w-full rounded-md focus-visible:outline-2 disabled:op-50 relative disabled:cursor-not-allowed focus-visible:outline-[var(--d-admin-blue-600)] bg-[var(--d-admin-surface-section)] border border-[var(--d-admin-surface-border)] text-[var(--d-admin-text-color)] hover:bg-[var(--d-admin-surface-hover)] transition-colors flex gap-1.7 shrink-0 h-8 text-sm px-3"
+          className="items-center justify-center gap-2 font-medium min-w-0 max-w-full rounded-md focus-visible:outline-2 disabled:op-50 relative disabled:cursor-not-allowed focus-visible:outline-[var(--d-admin-blue-600)] bg-[var(--d-admin-surface-section)] border border-[var(--border-main)] text-[var(--d-admin-text-color)] hover:bg-[var(--d-admin-surface-hover)] transition-colors flex gap-1.7 shrink-0 h-8 text-sm px-3"
           onClick={() => {
             if (showProjectsGallery && projectsGalleryTab === 'templates') {
               setShowProjectsGallery(false);
@@ -337,7 +344,7 @@ export function Header() {
           <span>Templates</span>
         </button>
         <button
-          className="items-center justify-center gap-2 font-medium min-w-0 max-w-full rounded-md focus-visible:outline-2 disabled:op-50 relative disabled:cursor-not-allowed focus-visible:outline-[var(--d-admin-blue-600)] bg-[var(--d-admin-surface-section)] border border-[var(--d-admin-surface-border)] text-[var(--d-admin-text-color)] hover:bg-[var(--d-admin-surface-hover)] transition-colors flex gap-1.7 shrink-0 h-8 text-sm px-3"
+          className="items-center justify-center gap-2 font-medium min-w-0 max-w-full rounded-md focus-visible:outline-2 disabled:op-50 relative disabled:cursor-not-allowed focus-visible:outline-[var(--d-admin-blue-600)] bg-[var(--d-admin-surface-section)] border border-[var(--border-main)] text-[var(--d-admin-text-color)] hover:bg-[var(--d-admin-surface-hover)] transition-colors flex gap-1.7 shrink-0 h-8 text-sm px-3"
           onClick={() => setHeaderAction('save')}
           title="Save Project"
         >
@@ -347,7 +354,7 @@ export function Header() {
 
         {!isPreview ? (
           <button
-            className="items-center justify-center gap-2 font-medium min-w-0 max-w-full rounded-md focus-visible:outline-2 disabled:op-50 relative disabled:cursor-not-allowed focus-visible:outline-[var(--d-admin-blue-600)] bg-[var(--d-admin-surface-section)] border border-[var(--d-admin-surface-border)] text-[var(--d-admin-text-color)] hover:bg-[var(--d-admin-surface-hover)] transition-colors flex gap-1.7 shrink-0 h-8 text-sm px-3"
+            className="items-center justify-center gap-2 font-medium min-w-0 max-w-full rounded-md focus-visible:outline-2 disabled:op-50 relative disabled:cursor-not-allowed focus-visible:outline-[var(--d-admin-blue-600)] bg-[var(--d-admin-surface-section)] border border-[var(--border-main)] text-[var(--d-admin-text-color)] hover:bg-[var(--d-admin-surface-hover)] transition-colors flex gap-1.7 shrink-0 h-8 text-sm px-3"
             onClick={() => setIsPreview(true)}
           >
             <Icon icon="lucide:eye" className="text-lg" />
@@ -365,7 +372,7 @@ export function Header() {
 
         <div className="relative">
           <button
-            className="items-center justify-center gap-2 font-medium min-w-0 max-w-full rounded-md focus-visible:outline-2 disabled:op-50 relative disabled:cursor-not-allowed focus-visible:outline-[var(--d-admin-blue-600)] bg-[var(--d-admin-surface-section)] border border-[var(--d-admin-surface-border)] text-[var(--d-admin-text-color)] hover:bg-[var(--d-admin-surface-hover)] transition-colors flex gap-1.7 shrink-0 h-8 text-sm px-3"
+            className="items-center justify-center gap-2 font-medium min-w-0 max-w-full rounded-md focus-visible:outline-2 disabled:op-50 relative disabled:cursor-not-allowed focus-visible:outline-[var(--d-admin-blue-600)] bg-[var(--d-admin-surface-section)] border border-[var(--border-main)] text-[var(--d-admin-text-color)] hover:bg-[var(--d-admin-surface-hover)] transition-colors flex gap-1.7 shrink-0 h-8 text-sm px-3"
             onClick={() => setIsShareMenuOpen(!isShareMenuOpen)}
             title="Share & Export"
           >
@@ -380,7 +387,7 @@ export function Header() {
                 className="fixed inset-0 z-40"
                 onClick={() => setIsShareMenuOpen(false)}
               />
-              <div className="animate-in fade-in zoom-in-95 absolute top-full right-0 z-[100] mt-2 flex w-48 flex-col overflow-hidden rounded-lg border border-[var(--d-admin-surface-border)] bg-[var(--d-admin-surface-section)] p-1 shadow-xl duration-100">
+              <div className="animate-in fade-in zoom-in-95 absolute top-full right-0 z-[100] mt-2 flex w-48 flex-col overflow-hidden rounded-lg border border-[var(--border-main)] bg-[var(--d-admin-surface-section)] p-1 shadow-xl duration-100 text-[var(--d-admin-text-color)] dark">
                 <button
                   onClick={() => {
                     setShowExportDialog(true);
@@ -467,7 +474,7 @@ export function Header() {
                 className="fixed inset-0 z-40"
                 onClick={() => setIsMoreMenuOpen(false)}
               ></div>
-              <div className="animate-in fade-in zoom-in-95 absolute top-full right-0 z-[100] mt-2 flex w-56 flex-col overflow-hidden rounded-lg border border-[var(--d-admin-surface-border)] bg-[var(--d-admin-surface-section)] p-1 shadow-xl duration-100">
+              <div className="animate-in fade-in zoom-in-95 absolute top-full right-0 z-[100] mt-2 flex w-56 flex-col overflow-hidden rounded-lg border border-[var(--border-main)] bg-[var(--d-admin-surface-section)] p-1 shadow-xl duration-100">
                 <button
                   onClick={() => {
                     const { setCurrentProject } = useProjectsStore.getState();

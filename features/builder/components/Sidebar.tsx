@@ -25,11 +25,11 @@ export function Sidebar() {
   }, [themeIndex, loadThemeComponents]);
 
   return (
-    <div className="flex h-full w-full flex-col overflow-hidden bg-[var(--d-admin-surface-ground)] text-[var(--d-admin-text-color)]">
-      <div className="shrink-0 flex items-center gap-2 border-b border-[var(--d-admin-surface-border)] p-3">
+    <div className="dark flex h-full w-full flex-col overflow-hidden bg-[var(--d-admin-surface-ground)] text-[var(--d-admin-text-color)]">
+      <div className="shrink-0 flex items-center gap-2 border-b border-[var(--border-main)] p-3">
         <Select
           trigger={
-            <div className="flex h-[34px] w-full cursor-pointer items-center justify-between rounded-md border border-[var(--d-admin-surface-border)] bg-[var(--d-admin-surface-section)] px-3 text-sm shadow-sm transition-colors hover:bg-[var(--d-admin-surface-hover)]">
+            <div className="flex h-[34px] w-full cursor-pointer items-center justify-between rounded-md border border-[var(--border-main)] bg-[var(--d-admin-surface-section)] px-3 text-sm shadow-sm transition-colors hover:bg-[var(--d-admin-surface-hover)]">
               <div className="flex items-center gap-2 overflow-hidden">
                 <span className="shrink-0 text-[10px] font-bold uppercase tracking-wider text-[var(--d-admin-text-color-secondary)]">
                   Website Type :
@@ -59,7 +59,7 @@ export function Sidebar() {
           className={`flex h-[34px] items-center justify-between gap-3 rounded-md border px-3 transition-colors ${
             sidebarView === 'layers'
               ? 'border-[var(--d-admin-primary-color)] bg-[var(--d-admin-primary-color)] text-white'
-              : 'border-[var(--d-admin-surface-border)] bg-[var(--d-admin-surface-section)] text-[var(--d-admin-text-color-secondary)] hover:bg-[var(--d-admin-surface-hover)] hover:text-[var(--d-admin-text-color)]'
+              : 'border-[var(--border-main)] bg-[var(--d-admin-surface-section)] text-[var(--d-admin-text-color-secondary)] hover:bg-[var(--d-admin-surface-hover)] hover:text-[var(--d-admin-text-color)]'
           }`}
           title={
             sidebarView === 'components'

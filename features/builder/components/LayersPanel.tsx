@@ -67,7 +67,7 @@ function SortableItem({
       className={`group flex items-center gap-2 rounded-lg border p-2 transition-all ${
         isDragging
           ? 'z-10 border-[var(--d-admin-primary-color)] bg-[var(--d-admin-surface-hover)] shadow-lg'
-          : 'border-[var(--d-admin-surface-border)] bg-[var(--d-admin-surface-section)] hover:bg-[var(--d-admin-surface-hover)]'
+          : 'border-[var(--border-main)] bg-[var(--d-admin-surface-section)] hover:bg-[var(--d-admin-surface-hover)]'
       }`}
     >
       <div
@@ -97,7 +97,7 @@ function SortableItem({
         {index + 1}
       </div>
 
-      <div className="flex h-16 w-32 flex-shrink-0 items-center justify-center overflow-hidden rounded border border-[var(--d-admin-surface-border)] bg-[var(--d-admin-surface-ground)]">
+      <div className="flex h-16 w-32 flex-shrink-0 items-center justify-center overflow-hidden rounded border border-[var(--border-main)] bg-[var(--d-admin-surface-ground)]">
         {item.thumbnail ? (
           <img
             src={item.thumbnail}

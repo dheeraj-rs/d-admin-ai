@@ -15,15 +15,14 @@
 }
 
 :root {
-  --bg-main: #f8fafc;
-  --text-main: #0f172a;
+  --bg-main: #f3f4f6;
+  --text-main: #1a171e;
   --text-muted: #64748b;
-  --border-main: rgba(203, 213, 225, 0.5);
-  --glass-bg: rgba(255, 255, 255, 0.45);
-  --glass-border: rgba(255, 255, 255, 0.3);
-  
-  background-color: var(--bg-main);
-  color: var(--text-main);
+  --border-main: #e2e8f0;
+
+  /* Force these for light mode root */
+  background-color: #f3f4f6 !important;
+  color: #1a171e !important;
   font-family: 'Inter', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
@@ -35,6 +34,23 @@
   --border-main: rgba(30, 41, 59, 0.7);
   --glass-bg: rgba(15, 23, 42, 0.4);
   --glass-border: rgba(99, 102, 241, 0.25);
+
+  /* Bridge for d-admin themes in dark mode */
+  --d-admin-text-color: #e3e3e3;
+  --d-admin-text-color-secondary: #b1b1b1;
+  --d-admin-surface-section: #131417;
+  --d-admin-surface-ground: #050505;
+  --d-admin-surface-hover: #2c3236;
+  --d-admin-surface-border: #2B2B2B;
+  --d-admin-bg-color: var(--d-admin-surface-ground);
+}
+
+.light {
+  /* Class-based fallback for light mode */
+  --bg-main: #f3f4f6;
+  --text-main: #1a171e;
+  --d-admin-text-color: #1a171e;
+  --d-admin-surface-section: #f3f4f6;
 }
 
 /* ── Base ── */

@@ -5,8 +5,6 @@
   Precision-built for d-admin-ai v3.
 */
 
-@variant dark (&:where(.dark, .dark *):not(:where(.light, .light *)));
-
 @theme {
   --color-primary: #6366f1;
   --color-accent: #06b6d4;
@@ -15,21 +13,22 @@
 }
 
 :root {
+  color-scheme: light dark;
   --bg-main: #f3f4f6;
   --text-main: #1a171e;
   --text-muted: #64748b;
   --border-main: #e2e8f0;
 
-  /* Force these for light mode root */
-  background-color: #f3f4f6 !important;
-  color: #1a171e !important;
+  /* Basic defaults for light mode root */
+  background-color: var(--bg-main);
+  color: var(--text-main);
   font-family: 'Inter', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
 .dark {
   --bg-main: #050507;
-  --text-main: #ffffff !important;
+  --text-main: #ffffff;
   --text-muted: #94a3b8;
   --border-main: rgba(30, 41, 59, 0.7);
   --glass-bg: rgba(15, 23, 42, 0.4);
@@ -50,7 +49,12 @@
   --bg-main: #f3f4f6;
   --text-main: #1a171e;
   --d-admin-text-color: #1a171e;
-  --d-admin-surface-section: #f3f4f6;
+  --d-admin-text-color-secondary: #64748b;
+  --d-admin-surface-section: #f4f6f8;
+  --d-admin-surface-ground: #ffffff;
+  --d-admin-surface-hover: #eef1f4;
+  --d-admin-surface-border: #e2e8f0;
+  --d-admin-bg-color: var(--d-admin-surface-ground);
 }
 
 /* ── Base ── */

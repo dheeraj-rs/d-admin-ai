@@ -53,10 +53,9 @@ export function Header() {
   const [isCreatePageOpen, setIsCreatePageOpen] = useState(false);
   const [isPageMenuOpen, setIsPageMenuOpen] = useState(false);
   const [isShareMenuOpen, setIsShareMenuOpen] = useState(false);
-  const [isThemeMenuOpen, setIsThemeMenuOpen] = useState(false);
 
   return (
-    <header className="dark bg-[#0A0B0E] flex h-[var(--header-height)] w-full shrink-0 items-center pr-3 pl-2 select-none">
+    <header className="bg-[var(--d-admin-surface-ground)] flex h-[var(--header-height)] w-full shrink-0 items-center pr-3 pl-2 select-none border-b border-[var(--border-main)] transition-colors duration-300">
       <div className="flex w-full max-w-[75%] min-w-0 flex-1 items-center gap-2 md:max-w-[40.5%]">
         <button
           onClick={() => router.back()}
@@ -134,7 +133,7 @@ export function Header() {
                 className="fixed inset-0 z-40"
                 onClick={() => setIsPageMenuOpen(false)}
               />
-              <div className="animate-in fade-in zoom-in-95 absolute top-full left-0 z-[100] mt-2 flex w-64 flex-col overflow-hidden rounded-lg border border-[var(--border-main)] bg-[var(--d-admin-surface-section)] p-1 shadow-xl duration-100 text-[var(--d-admin-text-color)] dark">
+              <div className="animate-in fade-in zoom-in-95 absolute top-full left-0 z-[100] mt-2 flex w-64 flex-col overflow-hidden rounded-lg border border-[var(--border-main)] bg-[var(--d-admin-surface-section)] p-1 shadow-xl duration-100 text-[var(--d-admin-text-color)]">
                 <div className="max-h-60 overflow-y-auto p-1">
                   {project?.pages.map((page) => (
                     <div
@@ -272,61 +271,6 @@ export function Header() {
           </button>
         </div>
 
-        <div className="relative">
-          <button
-            onClick={() => setIsThemeMenuOpen(!isThemeMenuOpen)}
-            className="flex items-center justify-center h-8 w-8 rounded-md bg-[var(--d-admin-surface-section)] border border-[var(--border-main)] text-[var(--d-admin-text-color)] hover:bg-[var(--d-admin-surface-hover)] transition-colors shrink-0"
-            title={`Theme: ${canvasTheme}`}
-            type="button"
-          >
-            <Icon
-              icon={
-                canvasTheme === 'light'
-                  ? 'ph:sun-duotone'
-                  : canvasTheme === 'dark'
-                    ? 'ph:moon-duotone'
-                    : 'ph:desktop-duotone'
-              }
-              className="text-lg"
-            />
-          </button>
-
-          {isThemeMenuOpen && (
-            <>
-              <div
-                className="fixed inset-0 z-40"
-                onClick={() => setIsThemeMenuOpen(false)}
-              />
-              <div className="animate-in fade-in zoom-in-95 absolute top-full right-0 z-[100] mt-2 flex w-36 flex-col overflow-hidden rounded-lg border border-[var(--border-main)] bg-[var(--d-admin-surface-section)] p-1 shadow-xl duration-100 text-[var(--d-admin-text-color)] dark">
-                {[
-                  { id: 'light', icon: 'ph:sun-duotone', label: 'Light' },
-                  { id: 'dark', icon: 'ph:moon-duotone', label: 'Dark' },
-                  { id: 'system', icon: 'ph:desktop-duotone', label: 'System' },
-                ].map((t) => (
-                  <button
-                    key={t.id}
-                    onClick={() => {
-                      setCanvasTheme(t.id as any);
-                      setTheme(t.id);
-                      setIsThemeMenuOpen(false);
-                    }}
-                    className={`flex w-full items-center gap-2 rounded-md px-3 py-2 text-left text-sm transition-colors ${
-                      canvasTheme === t.id
-                        ? 'bg-[var(--d-admin-surface-hover)] text-[var(--d-admin-text-color)] font-medium'
-                        : 'text-[var(--d-admin-text-color-secondary)] hover:bg-[var(--d-admin-surface-hover)] hover:text-[var(--d-admin-text-color)]'
-                    }`}
-                  >
-                    <Icon icon={t.icon} className="size-4" />
-                    <span>{t.label}</span>
-                    {canvasTheme === t.id && (
-                      <Icon icon="ph:check-bold" className="ml-auto size-3" />
-                    )}
-                  </button>
-                ))}
-              </div>
-            </>
-          )}
-        </div>
 
         <button
           className="items-center justify-center gap-2 font-medium min-w-0 max-w-full rounded-md focus-visible:outline-2 disabled:op-50 relative disabled:cursor-not-allowed focus-visible:outline-[var(--d-admin-blue-600)] bg-[var(--d-admin-surface-section)] border border-[var(--border-main)] text-[var(--d-admin-text-color)] hover:bg-[var(--d-admin-surface-hover)] transition-colors flex gap-1.7 shrink-0 h-8 text-sm px-3"
@@ -387,7 +331,7 @@ export function Header() {
                 className="fixed inset-0 z-40"
                 onClick={() => setIsShareMenuOpen(false)}
               />
-              <div className="animate-in fade-in zoom-in-95 absolute top-full right-0 z-[100] mt-2 flex w-48 flex-col overflow-hidden rounded-lg border border-[var(--border-main)] bg-[var(--d-admin-surface-section)] p-1 shadow-xl duration-100 text-[var(--d-admin-text-color)] dark">
+              <div className="animate-in fade-in zoom-in-95 absolute top-full right-0 z-[100] mt-2 flex w-48 flex-col overflow-hidden rounded-lg border border-[var(--border-main)] bg-[var(--d-admin-surface-section)] p-1 shadow-xl duration-100 text-[var(--d-admin-text-color)]">
                 <button
                   onClick={() => {
                     setShowExportDialog(true);

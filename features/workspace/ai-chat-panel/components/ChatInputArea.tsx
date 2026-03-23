@@ -23,14 +23,14 @@ export default function ChatInputArea({
 
     return (
         <div
-            className={`absolute bottom-0 w-full bg-gradient-to-t from-white dark:from-[#02060D] via-white/95 dark:via-[#02060D]/95 to-transparent ${isSidebar ? 'pt-8 pb-4 sm:pb-6 px-4' : 'pt-6 pb-4 sm:pb-6 px-4'} pointer-events-none z-10 transition-colors duration-300`}
+            className={`absolute bottom-0 w-full bg-gradient-to-t from-[var(--bg-main)] via-[var(--bg-main)]/95 to-transparent ${isSidebar ? 'pt-8 pb-4 sm:pb-6 px-4' : 'pt-6 pb-4 sm:pb-6 px-4'} pointer-events-none z-10 transition-colors duration-300`}
         >
             <div className={`${isSidebar ? 'w-full' : 'max-w-3xl 2xl:max-w-6xl mx-auto'} pointer-events-auto`}>
                 <div className="relative flex items-center bg-black/20 dark:bg-white/[0.03] backdrop-blur-xl border border-white/5 rounded-[32px] 2xl:rounded-[48px] p-2 2xl:p-4 pl-3 pr-3 2xl:pl-5 2xl:pr-5 shadow-2xl transition-colors duration-300 ring-1 ring-white/5">
                     <PlusActionMenu />
                     <input
                         type="text"
-                        className="flex-1 min-w-0 bg-transparent border-none outline-none text-gray-100 px-2 sm:px-3 py-3 2xl:py-6 3xl:py-8 placeholder-gray-400 dark:placeholder-gray-500 text-[16px] sm:text-[15px] 2xl:text-[24px] 3xl:text-[28px]"
+                        className="flex-1 min-w-0 bg-transparent border-none outline-none text-[var(--text-main)] px-2 sm:px-3 py-3 2xl:py-6 3xl:py-8 placeholder-[var(--text-muted)] text-[16px] sm:text-[15px] 2xl:text-[24px] 3xl:text-[28px]"
                         placeholder="Ask anything"
                         value={inputValue}
                         onChange={(e) => setInputValue(e.target.value)}
@@ -54,7 +54,7 @@ export default function ChatInputArea({
                         )}
                     </div>
                 </div>
-                <div className="text-center text-xs 2xl:text-lg text-gray-500 dark:text-gray-500 mt-3 pb-1 mix-blend-normal dark:mix-blend-screen opacity-80 transition-colors duration-300">
+                <div className="text-center text-xs 2xl:text-lg text-[var(--text-muted)] mt-3 pb-1 mix-blend-normal dark:mix-blend-screen opacity-80 transition-colors duration-300">
                     d-admin can make mistakes. Check important info.
                 </div>
             </div>

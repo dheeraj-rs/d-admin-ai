@@ -62,14 +62,14 @@ export default function FeatureHeader({
         <div className="mb-4 2xl:mb-8 animate-in fade-in slide-in-from-top-4 duration-700 w-full">
             <div className="flex flex-col md:flex-row md:items-start justify-between gap-6 w-full">
                 <div className="min-w-0 flex-1">
-                    <h1 className="text-3xl lg:text-4xl 2xl:text-6xl 3xl:text-8xl font-black text-gray-900 dark:text-white mb-2 2xl:mb-4">
+                    <h1 className="text-3xl lg:text-4xl 2xl:text-6xl 3xl:text-8xl font-black text-[var(--text-main)] mb-2 2xl:mb-4">
                         {title} {highlight && (
                             <span className={`bg-clip-text text-transparent bg-gradient-to-r ${gradientFrom} ${gradientTo} ${darkGradientFrom} ${darkGradientTo} italic font-serif`}>
                                 {highlight}
                             </span>
                         )}
                     </h1>
-                    <p className="text-gray-500 dark:text-gray-400 text-sm lg:text-base 2xl:text-2xl 3xl:text-3xl font-medium max-w-xl 2xl:max-w-3xl">
+                    <p className="text-[var(--text-muted)] text-sm lg:text-base 2xl:text-2xl 3xl:text-3xl font-medium max-w-xl 2xl:max-w-3xl">
                         {description}
                     </p>
                 </div>
@@ -83,7 +83,7 @@ export default function FeatureHeader({
                             placeholder={searchPlaceholder}
                             value={searchValue}
                             onChange={(e) => setSearchValue(e.target.value)}
-                            className={`w-full h-11 2xl:h-16 3xl:h-20 bg-blue-500/5 dark:bg-white/[0.05] backdrop-blur-xl border border-blue-500/30 dark:border-white/20 rounded-2xl 2xl:rounded-3xl pl-12 2xl:pl-16 pr-4 text-gray-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-gray-500 text-sm 2xl:text-lg 3xl:text-xl focus:outline-none ${focusBorder} ${focusBg} transition-all shadow-[inset_0_1px_1px_rgba(255,255,255,0.5)] dark:shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)]`}
+                            className={`w-full h-11 2xl:h-16 3xl:h-20 bg-blue-500/5 dark:bg-white/[0.05] backdrop-blur-xl border border-[var(--border-main)] rounded-2xl 2xl:rounded-3xl pl-12 2xl:pl-16 pr-4 text-[var(--text-main)] placeholder:text-[var(--text-muted)] text-sm 2xl:text-lg 3xl:text-xl focus:outline-none ${focusBorder} ${focusBg} transition-all shadow-[inset_0_1px_1px_rgba(255,255,255,0.5)] dark:shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)]`}
                         />
                     </div>
                 </div>

@@ -8,7 +8,7 @@ import HomeFooter from './HomeFooter';
 
 export default function HomeMainView() {
     return (
-        <div className="dark flex-1 w-full min-h-screen text-[var(--text-main)] font-sans overflow-x-hidden overflow-y-auto relative z-0 flex flex-col transition-colors duration-300">
+        <div className="flex-1 w-full min-h-screen text-[var(--text-main)] font-sans overflow-x-hidden overflow-y-auto relative z-0 flex flex-col transition-colors duration-300">
             <HomeBackground />
             <div className="relative z-10 flex flex-col w-full min-h-screen max-w-[1800px] xl:max-w-[1700px] 2xl:max-w-[2200px] 3xl:max-w-[2800px] mx-auto pt-20 md:pt-28 2xl:pt-40 px-4 md:px-8 lg:px-12 pb-10 2xl:pb-20">
                 <HomeHero />

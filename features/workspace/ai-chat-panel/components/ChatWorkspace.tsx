@@ -10,14 +10,14 @@ export default function ChatWorkspace() {
     const { state, actions } = useWorkspace();
     const { viewState, activeTab, inputValue } = state;
     return (
-        <div className="flex-1 flex overflow-hidden relative h-full bg-[#ecfeff] dark:bg-[#02060D] text-gray-900 dark:text-white font-sans z-0 transition-colors duration-300">
+        <div className="flex-1 flex overflow-hidden relative h-full bg-[var(--bg-main)] text-[var(--text-main)] font-sans z-0 transition-colors duration-300">
             {viewState !== 'fullscreen-editor' && (
                 <WorkspaceViewBackground />
             )}
             
             {viewState === 'fullscreen-editor' ? (
                 <>
-                    <div className={`w-full lg:w-[450px] shrink-0 bg-[#0B0B0D] flex flex-col relative transition-colors duration-300 ${activeTab === 'chat' ? 'flex h-full' : 'hidden lg:flex h-full'}`}>
+                    <div className={`w-full lg:w-[450px] shrink-0 bg-[var(--bg-main)] border-r border-[var(--border-main)] flex flex-col relative transition-colors duration-300 ${activeTab === 'chat' ? 'flex h-full' : 'hidden lg:flex h-full'}`}>
                         <div className="flex-1 overflow-y-auto no-scrollbar w-full pt-6">
                             <div className="px-4 pb-40 flex flex-col max-w-3xl mx-auto w-full">
                                 <ChatHistory 

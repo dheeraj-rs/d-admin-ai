@@ -27,7 +27,7 @@ function ItemCard({
 }: ItemCardProps) {
     return (
         <div className="flex flex-col group cursor-pointer animate-in fade-in zoom-in-95 duration-500">
-            <div className="aspect-[16/10] rounded-2xl bg-white/50 dark:bg-[#1a1a1a] border border-white/60 dark:border-[#2f2f2f] overflow-hidden relative mb-4 group-hover:border-blue-500/30 transition-all duration-300 shadow-sm dark:shadow-none">
+            <div className="aspect-[16/10] rounded-2xl bg-[var(--bg-main)]/50 border border-[var(--border-main)] overflow-hidden relative mb-4 group-hover:border-blue-500/30 transition-all duration-300 shadow-sm dark:shadow-none">
                 {image ? (
                     <Image 
                         src={image} 
@@ -37,7 +37,7 @@ function ItemCard({
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
                 ) : (
-                    <div className="w-full h-full flex items-center justify-center bg-gray-100 dark:bg-[#242424] group-hover:bg-gray-200 dark:group-hover:bg-[#2a2a2a] transition-colors">
+                    <div className="w-full h-full flex items-center justify-center bg-[var(--bg-main)] group-hover:bg-gray-200 dark:group-hover:bg-[#2a2a2a] transition-colors">
                         {Icon && <Icon size={48} className="text-gray-400 dark:text-gray-700 group-hover:text-blue-500/20 transition-all duration-500" />}
                     </div>
                 )}
@@ -68,7 +68,7 @@ function ItemCard({
 
             <div className="flex flex-col gap-1.5 px-0.5">
                 <div className="flex items-center justify-between gap-4">
-                    <h3 className="text-lg font-bold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors truncate 2xl:text-2xl 3xl:text-3xl">
+                    <h3 className="text-lg font-bold text-[var(--text-main)] group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors truncate 2xl:text-2xl 3xl:text-3xl">
                         {title}
                     </h3>
                     {secondaryAction && (
@@ -77,11 +77,11 @@ function ItemCard({
                         </div>
                     )}
                 </div>
-                <p className="text-gray-600 dark:text-gray-400 text-sm 2xl:text-lg 3xl:text-xl line-clamp-2 leading-relaxed">
+                <p className="text-[var(--text-muted)] text-sm 2xl:text-lg 3xl:text-xl line-clamp-2 leading-relaxed">
                     {description}
                 </p>
                 {metaInfo && (
-                    <div className="flex items-center gap-2 mt-2 pt-2 border-t border-gray-100 dark:border-white/5">
+                    <div className="flex items-center gap-2 mt-2 pt-2 border-t border-[var(--border-main)]">
                         <span className="text-[11px] text-gray-500 font-medium tracking-tight">
                             {metaInfo}
                         </span>

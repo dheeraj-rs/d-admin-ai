@@ -15,7 +15,7 @@ export default function FeatureLayout({
     className = ""
 }: FeatureLayoutProps) {
     return (
-        <div className={`flex-1 flex flex-col pt-4 pb-12 w-full min-w-0 bg-[#ecfeff] dark:bg-[#02060D] text-gray-900 dark:text-white font-sans relative z-0 transition-colors duration-300 ${className}`}>
+        <div className={`flex-1 flex flex-col pt-4 pb-12 w-full min-w-0 bg-[var(--bg-main)] text-[var(--text-main)] font-sans relative z-0 transition-colors duration-300 ${className}`}>
             <WorkspaceViewBackground />
             <div className={`w-full ${maxWidth} mx-auto relative z-10 px-4 2xl:px-8`}>
                 {children}

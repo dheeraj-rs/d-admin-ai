@@ -25,7 +25,7 @@ export function Sidebar() {
   }, [themeIndex, loadThemeComponents]);
 
   return (
-    <div className="dark flex h-full w-full flex-col overflow-hidden bg-[var(--d-admin-surface-ground)] text-[var(--d-admin-text-color)]">
+    <div className="flex h-full w-full flex-col overflow-hidden bg-[var(--d-admin-surface-ground)] text-[var(--d-admin-text-color)] transition-colors duration-300">
       <div className="shrink-0 flex items-center gap-2 border-b border-[var(--border-main)] p-3">
         <Select
           trigger={

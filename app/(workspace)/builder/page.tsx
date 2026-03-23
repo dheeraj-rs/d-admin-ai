@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useTheme } from 'next-themes';
 import { Header } from '@/features/builder/components/Header';
 import { Interface } from '@/features/builder/components/Interface';
 import { Workbench } from '@/features/builder/components/Workbench';
@@ -36,11 +37,10 @@ export default function DragDropBuilderPage() {
     setShowUnsavedDialog(true),
   );
 
-  const resolvedTheme = canvasTheme === 'system' 
-    ? (typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
-    : canvasTheme;
+  const { theme, resolvedTheme: nextResolvedTheme } = useTheme();
+  const resolvedTheme = (nextResolvedTheme || theme || 'dark') as 'light' | 'dark';
 
-  if (!mounted) return <div className="h-full w-full bg-slate-950 flex items-center justify-center text-white">Loading...</div>;
+  if (!mounted) return <div className="h-full w-full bg-[var(--bg-main)] flex items-center justify-center text-[var(--text-main)]">Loading...</div>;
 
   const showInterface = (isMobile ? false : true) && !isPreview;
 
@@ -54,7 +54,7 @@ export default function DragDropBuilderPage() {
         <div className="relative h-full w-full flex-1 overflow-hidden">
           {showProjectsGallery && <ProjectsGallery />}
           
-          <div className="dark contents">
+          <div className="contents">
             <SidebarMobile />
           </div>
 
@@ -62,11 +62,11 @@ export default function DragDropBuilderPage() {
             {showInterface && (
               <>
                 <Panel defaultSize={20} minSize={15} maxSize={30}>
-                  <div className="h-full w-full dark">
+                  <div className="h-full w-full">
                     <Interface />
                   </div>
                 </Panel>
-                <PanelResizeHandle className="w-1.5 bg-[#02060D] hover:bg-indigo-500/30 transition-colors border-x border-[var(--border-main)]" />
+                <PanelResizeHandle className="w-1.5 bg-[var(--bg-main)] hover:bg-indigo-500/30 transition-colors border-x border-[var(--border-main)]" />
               </>
             )}
             <Panel>

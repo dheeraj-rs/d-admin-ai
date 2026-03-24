@@ -34,7 +34,7 @@ export default function UserProfileMenu({ isOpen, onOpenSettings, onSignIn }: Us
                         isOpen 
                             ? 'left-2.5 right-2.5 h-10 top-1/2 -translate-y-1/2' 
                             : 'left-[12px] right-[12px] h-10 top-1/2 -translate-y-1/2'
-                    } group-hover:bg-black/[0.05] dark:group-hover:bg-white/[0.05] border border-transparent group-hover:border-black/[0.05] dark:group-hover:border-white/[0.05]`} />
+                    } bg-black/[0.05] dark:bg-white/[0.05] border border-transparent border-black/[0.05] dark:border-white/[0.05]`} />
                     
                     <div className="absolute left-0 w-16 h-[64px] flex items-center justify-center shrink-0 z-10">
                         <div className={`flex items-center justify-center rounded-lg transition-all text-[var(--d-admin-text-color-secondary)] group-hover:text-[var(--d-admin-text-color)]`}>

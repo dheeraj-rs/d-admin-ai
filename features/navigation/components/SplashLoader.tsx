@@ -30,10 +30,7 @@ export default function SplashLoader({ children }: SplashLoaderProps) {
     // Show splash if not mounted yet (SSR) OR if not hydrated AND timeout hasn't reached
     const showSplash = !mounted || (!isHydratedFromStore && !timeoutReached);
 
-    // We use suppressesHydrationWarning on the orbs box to handle the 
-    // decorative elements which are intentionally client-only to avoid 
-    // blocking the critical path rendering.
-    const renderOrbs = mounted && (
+    const renderOrbs = (
         <div className="d-splash-decoration">
             <div className="d-splash-orb d-splash-orb-1" />
             <div className="d-splash-orb d-splash-orb-2" />
@@ -50,7 +47,6 @@ export default function SplashLoader({ children }: SplashLoaderProps) {
                         exit={{ opacity: 0, scale: 1.05, filter: "blur(10px)" }}
                         transition={{ duration: 0.8, ease: "easeInOut" }}
                         className="d-splash-root"
-                        suppressHydrationWarning
                     >
                         {renderOrbs}
 

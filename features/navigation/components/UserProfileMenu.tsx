@@ -25,18 +25,34 @@ export default function UserProfileMenu({ isOpen, onOpenSettings, onSignIn }: Us
 
     if (status === 'unauthenticated') {
         return (
-            <div className="relative flex-shrink-0 w-full h-[64px] px-3 flex items-center">
+            <div className="relative flex-shrink-0 w-full h-[64px] group">
                 <button
                     onClick={() => onSignIn ? onSignIn() : signIn()}
-                    className={`flex items-center gap-3 w-full h-11 px-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-[13px] transition-all shadow-lg shadow-indigo-500/20 active:scale-95 group overflow-hidden whitespace-nowrap`}
+                    className={`absolute inset-0 flex items-center transition-all duration-300 ease-in-out font-sans overflow-hidden whitespace-nowrap cursor-pointer px-0 outline-none w-full text-left`}
                 >
-                    <div className="shrink-0">
-                        <User size={20} strokeWidth={2.5} />
+                    <div className={`absolute transition-all duration-300 ease-in-out rounded-full ${
+                        isOpen 
+                            ? 'left-2.5 right-2.5 h-10 top-1/2 -translate-y-1/2' 
+                            : 'left-[12px] right-[12px] h-10 top-1/2 -translate-y-1/2'
+                    } group-hover:bg-black/[0.05] dark:group-hover:bg-white/[0.05] border border-transparent group-hover:border-black/[0.05] dark:group-hover:border-white/[0.05]`} />
+                    
+                    <div className="absolute left-0 w-16 h-[64px] flex items-center justify-center shrink-0 z-10">
+                        <div className={`flex items-center justify-center rounded-lg transition-all text-[var(--d-admin-text-color-secondary)] group-hover:text-[var(--d-admin-text-color)]`}>
+                            <User size={20} strokeWidth={2} />
+                        </div>
                     </div>
-                    <span className={`transition-all duration-300 ${isOpen ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'}`}>
+                    
+                    <span className={`absolute left-16 font-bold text-[13.5px] tracking-tight transition-all duration-300 ${isOpen ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'} text-[var(--d-admin-text-color)]`}>
                         Sign In
                     </span>
                 </button>
+
+                {!isOpen && (
+                    <div className="absolute left-full top-1/2 -translate-y-1/2 ml-3 px-3 py-2 bg-[var(--d-admin-surface-section)] text-[var(--d-admin-text-color)] text-[12px] font-bold rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-200 z-[70] hidden lg:flex items-center shadow-xl border border-[var(--border-main)] pointer-events-none whitespace-nowrap translate-x-1 group-hover:translate-x-0">
+                        Sign In
+                        <div className="absolute left-[-4px] top-1/2 -translate-y-1/2 w-2 h-2 bg-[#ecfeff] dark:bg-[#1e1e1e] rotate-45 border-l border-b border-cyan-200 dark:border-white/[0.1]" />
+                    </div>
+                )}
             </div>
         );
     }

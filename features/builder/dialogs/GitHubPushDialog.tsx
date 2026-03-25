@@ -1,5 +1,4 @@
 import { useState, useEffect, useMemo } from 'react';
-import { useSession, signIn } from 'next-auth/react';
 import * as DialogPrimitive from '@radix-ui/react-dialog';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
@@ -34,7 +33,6 @@ export default function GitHubPushDialog({
   isOpen,
   onClose,
 }: GitHubPushDialogProps) {
-  const { data: session } = useSession();
   const { currentProjectId, getProject, updateProject } = useProjectsStore();
   const project = currentProjectId ? getProject(currentProjectId) : null;
   const { history, historyIndex } = useBuilderStore();
@@ -67,17 +65,17 @@ export default function GitHubPushDialog({
   const { github: manualTokens } = useSettingsStore();
   const manualToken = manualTokens.length > 0 ? manualTokens[0] : null;
 
-  const isGitHubConnected = session?.provider === 'github' || session?.accessToken || manualToken;
+  const isGitHubConnected = !!manualToken;
 
   const handlePushToGitHub = async () => {
-    const token = session?.githubAccessToken || session?.accessToken || manualToken;
+    const token = manualToken;
 
     if (!token) {
       toast.error('Not authenticated with GitHub');
       return;
     }
 
-    if (token === manualToken && !session?.accessToken) {
+    if (token === manualToken) {
       toast.info('Using manual GitHub token for deployment');
     }
 
@@ -112,7 +110,7 @@ export default function GitHubPushDialog({
         repo = await ghService.createRepository(repoName, isPrivate, homepage);
       } catch (error: any) {
         if (error.message === 'Repository already exists') {
-          let owner = (session as any)?.githubUser?.login;
+          let owner = undefined;
           if (!owner) {
             const user = await ghService.getUser();
             owner = user.login;
@@ -150,8 +148,7 @@ export default function GitHubPushDialog({
   };
 
   const handleConnectGitHub = () => {
-    const callbackUrl = window.location.href;
-    signIn('github', { callbackUrl });
+    toast.info('Please connect a manual token from settings in this version.');
   };
 
   const steps = [
@@ -346,16 +343,12 @@ export default function GitHubPushDialog({
                     className="space-y-6"
                   >
                     <div className="flex items-center justify-between rounded-xl border border-[var(--d-admin-surface-border)] bg-[var(--d-admin-surface-section)] p-4 shadow-sm">
-                      <div className="flex items-center gap-3">
-                        {session?.user?.image ? (
-                          <img src={session.user.image} alt={session.user.name || ''} className="h-10 w-10 rounded-full border border-[var(--d-admin-surface-border)]" />
-                        ) : (
-                          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-500/10 text-blue-500">
-                             <Github className="size-6" />
-                          </div>
-                        )}
+                        <div className="flex items-center gap-3">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-500/10 text-blue-500">
+                           <Github className="size-6" />
+                        </div>
                         <div>
-                          <p className="text-sm font-bold text-[var(--d-admin-text-color)]">{session?.user?.name || 'GitHub User'}</p>
+                          <p className="text-sm font-bold text-[var(--d-admin-text-color)]">GitHub User</p>
                           <div className="flex items-center gap-1.5 text-[10px] font-semibold text-green-500 uppercase tracking-widest">
                              <span className="block size-1.5 rounded-full bg-green-500 animate-pulse" />
                              Connected

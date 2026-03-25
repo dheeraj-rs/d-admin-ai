@@ -1,14 +1,12 @@
 import { useState } from 'react';
 import { Github, ArrowRight, X, Loader2, CheckCircle2, Power } from 'lucide-react';
-import { useSession, signIn, signOut } from 'next-auth/react';
 import { useSettingsStore } from '../store/useSettingsStore';
 import { ProviderSection } from './ProviderSection';
 
 export default function GitHubSettings() {
-    const { data: session, status } = useSession();
-    const isConnected = !!session?.user;
-    
     const { github } = useSettingsStore();
+    const isConnected = github && github.length > 0;
+    
     const [expanded, setExpanded] = useState<{ [key: string]: boolean }>({ github: true });
     const [tutorial, setTutorial] = useState<{ isOpen: boolean; url: string }>({ isOpen: false, url: '' });
 
@@ -21,11 +19,7 @@ export default function GitHubSettings() {
     };
 
     const handleGitHubConnect = () => {
-        if (isConnected) {
-            signOut();
-        } else {
-            signIn('github');
-        }
+        // Mock connection toggle or do nothing, since manual config handles it
     };
 
     return (
@@ -63,7 +57,7 @@ export default function GitHubSettings() {
                                     <>
                                         <div className="flex items-center gap-2 mb-0.5">
                                             <h3 className="text-[14px] font-bold text-slate-900 dark:text-white tracking-tight">
-                                                {session.user?.name || 'GitHub Account'}
+                                                GitHub Token
                                             </h3>
                                             <span className="flex items-center gap-1 text-[10px] font-bold text-green-500 uppercase tracking-widest bg-green-500/10 px-2 py-0.5 rounded-full">
                                                 <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
@@ -71,7 +65,7 @@ export default function GitHubSettings() {
                                             </span>
                                         </div>
                                         <p className="text-[11px] text-slate-500 dark:text-slate-400 italic">
-                                            {session.user?.email || 'Logged in via OAuth'}
+                                            Using manual PAT
                                         </p>
                                     </>
                                 ) : (
@@ -88,17 +82,14 @@ export default function GitHubSettings() {
                         </div>
 
                         <button 
-                            onClick={handleGitHubConnect}
-                            disabled={status === 'loading'}
+                            disabled={false}
                             className={`px-6 py-2.5 font-black text-[11px] uppercase tracking-wider rounded-xl transition-all flex items-center justify-center gap-2 group/btn active:scale-95 whitespace-nowrap shadow-lg ${
                                 isConnected 
                                 ? 'bg-slate-100 hover:bg-red-50 text-slate-600 hover:text-red-500 border border-slate-200 hover:border-red-200' 
                                 : 'bg-white hover:bg-blue-50 text-black shadow-white/5'
                             }`}
                         >
-                            {status === 'loading' ? (
-                                <Loader2 size={14} className="animate-spin" />
-                            ) : isConnected ? (
+                            {isConnected ? (
                                 <>
                                     Disconnect
                                     <Power size={14} className="group-hover/btn:rotate-12 transition-transform" />

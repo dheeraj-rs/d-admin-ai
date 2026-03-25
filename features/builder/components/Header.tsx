@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useTheme } from 'next-themes';
-import { useSession } from 'next-auth/react';
 import { Icon } from '@iconify/react';
 import { useIsMobile } from '@/shared/hooks/use-mobile';
 import { useProjectsStore } from '../store/projects-store';
@@ -16,7 +15,6 @@ const ADMIN_EMAIL = process.env.NEXT_PUBLIC_ADMIN_EMAIL || 'drjsde@gmail.com';
 export function Header() {
   const router = useRouter();
   const isMobile = useIsMobile();
-  const { data: session } = useSession();
   const { setTheme } = useTheme();
   const {
     isPreview,
@@ -44,10 +42,7 @@ export function Header() {
   const project = currentProjectId ? getProject(currentProjectId) : null;
   const currentProjectName = pendingTemplateName || project?.name || null;
 
-  const canUpdate =
-    project &&
-    (session?.user?.email === project.ownerEmail ||
-      session?.user?.email === ADMIN_EMAIL);
+  const canUpdate = !!project;
 
   const [isMoreMenuOpen, setIsMoreMenuOpen] = useState(false);
   const [isCreatePageOpen, setIsCreatePageOpen] = useState(false);

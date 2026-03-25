@@ -8,7 +8,6 @@ import TemplatesHeader from './TemplatesHeader';
 import TemplatesFilter from './TemplatesFilter';
 import { useProjectsStore } from '@/features/builder/store/projects-store';
 import { useBuilderStore } from '@/features/builder/store/builder-store';
-import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 
 const ADMIN_EMAIL = process.env.NEXT_PUBLIC_ADMIN_EMAIL || 'drjsde@gmail.com';
@@ -21,7 +20,6 @@ import FeatureLayout from '@/shared/ui/FeatureLayout';
 
 export default function PremiumTemplatesGallery({ onBack }: PremiumTemplatesGalleryProps) {
     const router = useRouter();
-    const { data: session } = useSession();
     const { setPendingTemplate } = useBuilderStore();
     const [searchValue, setSearchValue] = useState('');
     const [selectedCategory, setSelectedCategory] = useState('All');
@@ -31,11 +29,9 @@ export default function PremiumTemplatesGallery({ onBack }: PremiumTemplatesGall
     const [isMounted, setIsMounted] = useState(false);
 
     const filteredCustomTemplates = React.useMemo(() => {
-        // Everyone sees default templates. Logged-in users also see their own.
-        return customTemplates.filter(t => 
-            t.isDefault || (session?.user?.email && t.ownerEmail === session.user.email)
-        );
-    }, [customTemplates, session?.user?.email]);
+        // Everyone sees all templates without auth
+        return customTemplates.filter(t => true);
+    }, [customTemplates]);
 
     React.useEffect(() => {
         setIsMounted(true);

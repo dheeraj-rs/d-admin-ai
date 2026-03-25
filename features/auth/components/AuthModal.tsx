@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { signIn, useSession } from "next-auth/react";
 import { Icon } from '@iconify/react';
 import { X } from 'lucide-react';
 
@@ -11,37 +10,13 @@ interface AuthModalProps {
 }
 
 export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
-    const { status } = useSession();
-
-    useEffect(() => {
-        if (status === "authenticated" && isOpen) {
-            onClose();
-        }
-    }, [status, isOpen, onClose]);
-
     const handleLogin = async (provider: 'google' | 'github') => {
-        try {
-            const result = await signIn(provider, {
-                redirect: false,
-                callbackUrl: window.location.pathname,
-            });
-            
-            if (result?.ok) {
-                onClose();
-                // Refresh session
-                setTimeout(() => {
-                    window.location.reload();
-                }, 500);
-            } else if (result?.error) {
-                console.error('Sign in error:', result.error);
-            }
-        } catch (error) {
-            console.error('Login error:', error);
-        }
+        // Auth removed for deep clean, keeping UI only
+        console.log(`Mock login with ${provider}`);
+        onClose();
     };
 
     if (!isOpen) return null;
-    if (status === "loading" || status === "authenticated") return null;
 
     return (
         <div

@@ -4,7 +4,6 @@ import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon';
 import { Icon } from '@iconify/react';
 import { useProjectsStore } from '../store/projects-store';
 import { useBuilderStore } from '../store/builder-store';
-import { useSession } from 'next-auth/react';
 import { classMixin } from '../lib/class-utils';
 
 const ADMIN_EMAIL = process.env.NEXT_PUBLIC_ADMIN_EMAIL || 'drjsde@gmail.com';
@@ -34,16 +33,12 @@ export function SaveProjectModal({
     useProjectsStore();
   const existingProject = currentProjectId ? getProject(currentProjectId) : null;
 
-  const { data: session } = useSession();
   const [name, setName] = useState(existingProject?.name || '');
   const [projectType, setProjectType] = useState(existingProject?.category || PROJECT_TYPES[0]);
   const [saveAsTemplate, setSaveAsTemplate] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
 
-  const canUpdate =
-    existingProject &&
-    ((session?.user?.email === existingProject.ownerEmail) ||
-     (session?.user?.email === ADMIN_EMAIL));
+  const canUpdate = !!existingProject;
 
   React.useEffect(() => {
     if (isOpen && existingProject) {
@@ -65,7 +60,7 @@ export function SaveProjectModal({
 
     const html = getHtmlContent();
     const id = canUpdate ? existingProject!.id : generateId();
-    const ownerEmail = session?.user?.email || undefined;
+    const ownerEmail = undefined;
 
     let thumbnail = existingProject?.thumbnail || '';
     try {
@@ -95,34 +90,15 @@ export function SaveProjectModal({
 
     if (!canUpdate) setCurrentProject(id);
     
-    // ADMIN ALWAYS saves as a template
-    if (session?.user?.email === ADMIN_EMAIL) {
-      addTemplate({
-        id: `template-${Date.now()}`,
-        title: name.trim(),
-        author: session?.user?.name || 'Admin',
-        authorAvatar: session?.user?.image || '',
-        thumbnail:
-          thumbnail ||
-          'https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=800&auto=format&fit=crop',
-        category: projectType || 'Official',
-        likes: '0',
-        views: '0',
-        html,
-        ownerEmail: session.user.email,
-        isDefault: saveAsTemplate, // Controlled by the checkbox
-      });
-    }
+    // Default Template saving is disabled without auth for now
 
-    const isDefaultSave = session?.user?.email === ADMIN_EMAIL && saveAsTemplate;
+    const isDefaultSave = false;
 
     import('react-hot-toast').then(({ toast }) => {
       (toast as any).success(
         isDefaultSave
           ? 'Published as Default Template!'
-          : session?.user?.email === ADMIN_EMAIL
-          ? 'Saved to Private Templates!'
-          : `Project ${canUpdate ? 'updated' : 'saved'} successfully!`,
+          : 'Saved successfully',
       );
     });
 
@@ -209,8 +185,8 @@ export function SaveProjectModal({
               </div>
             </div>
 
-            {/* Save as Template Toggle - ONLY FOR ADMIN */}
-            {session?.user?.email === ADMIN_EMAIL && (
+            {/* Save as Template Toggle - Disabled without auth */}
+            {false && (
               <button
                 type="button"
                 onClick={() => setSaveAsTemplate(!saveAsTemplate)}

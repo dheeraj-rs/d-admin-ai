@@ -7,7 +7,6 @@ import dynamic from 'next/dynamic';
 import { usePathname } from 'next/navigation';
 import { useEffect } from 'react';
 import { useProjectsStore } from '@/features/builder/store/projects-store';
-import { useSession } from 'next-auth/react';
 
 const AuthModal = dynamic(() => import('@/features/auth/components/AuthModal'), { ssr: false });
 const SettingsModal = dynamic(() => import('@/features/settings/components/SettingsModal'), { ssr: false });
@@ -20,17 +19,14 @@ export default function WorkspaceLayout({
 }) {
     const { state, actions } = useWorkspace();
     const pathname = usePathname();
-    const { data: session } = useSession();
     const { initializeStore } = useProjectsStore();
     const isHome = pathname === '/';
     const isBuilder = pathname === '/builder';
     const { showLeftSidebar, isAuthOpen, isSettingsOpen, isHelpOpen, viewState } = state;
 
     useEffect(() => {
-        if (session) {
-            initializeStore();
-        }
-    }, [initializeStore, session]);
+        initializeStore();
+    }, [initializeStore]);
 
     if (isBuilder) {
         return (

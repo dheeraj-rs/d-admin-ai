@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
 import { Settings, LifeBuoy, LogOut, ChevronRight, User, Github } from 'lucide-react';
-import { useSession, signIn, signOut } from 'next-auth/react';
 
 interface UserProfileMenuProps {
     isOpen: boolean;
@@ -9,7 +8,9 @@ interface UserProfileMenuProps {
 }
 
 export default function UserProfileMenu({ isOpen, onOpenSettings, onSignIn }: UserProfileMenuProps) {
-    const { data: session, status } = useSession();
+    // Mock status to keep UI
+    const status = 'unauthenticated';
+    const session = null as any;
     const [isProfileOpen, setIsProfileOpen] = useState(false);
     const profileRef = useRef<HTMLDivElement>(null);
 
@@ -27,7 +28,7 @@ export default function UserProfileMenu({ isOpen, onOpenSettings, onSignIn }: Us
         return (
             <div className="relative flex-shrink-0 w-full h-[64px] group">
                 <button
-                    onClick={() => onSignIn ? onSignIn() : signIn()}
+                    onClick={() => onSignIn ? onSignIn() : console.log('Sign in clicked')}
                     className={`absolute inset-0 flex items-center transition-all duration-300 ease-in-out font-sans overflow-hidden whitespace-nowrap cursor-pointer px-0 outline-none w-full text-left`}
                 >
                     <div className={`absolute transition-all duration-300 ease-in-out rounded-full ${
@@ -59,7 +60,7 @@ export default function UserProfileMenu({ isOpen, onOpenSettings, onSignIn }: Us
 
     const userEmail = session?.user?.email || '';
     const userName = session?.user?.name || 'User';
-    const userInitials = userName.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+    const userInitials = userName.split(' ').map((n: string) => n[0]).join('').substring(0, 2).toUpperCase();
 
     return (
         <div className="relative flex-shrink-0 w-full h-[64px]" ref={profileRef}>
@@ -125,7 +126,7 @@ export default function UserProfileMenu({ isOpen, onOpenSettings, onSignIn }: Us
                             <ChevronRight size={14} className="text-[var(--d-admin-surface-border)] group-hover:translate-x-0.5 transition-all" />
                         </button>
                         <button 
-                            onClick={() => signOut()}
+                            onClick={() => console.log('Sign out clicked')}
                             className="flex items-center gap-3 px-3 py-2.5 rounded-2xl text-[13.5px] font-bold text-[var(--d-admin-text-color-secondary)] hover:text-red-500 hover:bg-red-500/10 cursor-pointer outline-none w-full text-left transition-all group mt-1"
                         >
                             <LogOut size={17} className="opacity-70 group-hover:opacity-100 transition-opacity" strokeWidth={2.5} />
